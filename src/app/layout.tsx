@@ -77,6 +77,18 @@ export default async function RootLayout({
               >
                 禁止区間
               </Link>
+              <Link
+                href="/prefectures"
+                className="text-xs text-gray-500 hover:text-gray-800"
+              >
+                都道府県別
+              </Link>
+              <Link
+                href="/faq"
+                className="text-xs text-gray-500 hover:text-gray-800"
+              >
+                FAQ
+              </Link>
               <AuthButton userEmail={user?.email} />
             </div>
           </div>
@@ -86,6 +98,9 @@ export default async function RootLayout({
           <div className="mx-auto max-w-2xl flex flex-col gap-1 text-xs text-gray-400 sm:flex-row sm:items-center sm:justify-between">
             <span>© 2026 BikeRoute — MIT License / Data: ODbL 1.0</span>
             <div className="flex gap-4">
+              <Link href="/articles" className="hover:text-gray-600">解説記事</Link>
+              <Link href="/guide" className="hover:text-gray-600">使い方</Link>
+              <Link href="/faq" className="hover:text-gray-600">FAQ</Link>
               <Link href="/privacy" className="hover:text-gray-600">プライバシーポリシー</Link>
               <a
                 href="https://github.com/shibata-kento/bikeroute"

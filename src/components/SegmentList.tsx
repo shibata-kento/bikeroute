@@ -20,24 +20,30 @@ const LIST_LIMIT = 200;
 
 export function SegmentList() {
   const [category, setCategory] = useState<RestrictionCategory>("all_bikes");
+  const [userOnly, setUserOnly] = useState(false);
   const [segments, setSegments] = useState<SegmentListItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/segments?category=${category}&status=verified`)
+    const params = new URLSearchParams({
+      category,
+      status: "verified",
+      ...(userOnly ? { userOnly: "1" } : {}),
+    });
+    fetch(`/api/segments?${params}`)
       .then((r) => r.json())
       .then((data) => setSegments(Array.isArray(data) ? data : []))
       .finally(() => setLoading(false));
-  }, [category]);
+  }, [category, userOnly]);
 
   const hasCoords = !loading && segments.some((s) => s.start_lat != null);
   const listItems = segments.slice(0, LIST_LIMIT);
 
   return (
     <div className="space-y-4">
-      {/* カテゴリタブ */}
-      <div className="flex flex-wrap gap-2">
+      {/* フィルター行 */}
+      <div className="flex flex-wrap items-center gap-2">
         {CATEGORY_LIST.map((cat) => (
           <button
             key={cat}
@@ -52,6 +58,19 @@ export function SegmentList() {
             {CATEGORY_CONFIG[cat].label}
           </button>
         ))}
+        <div className="ml-auto">
+          <button
+            onClick={() => setUserOnly((v) => !v)}
+            className={[
+              "flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
+              userOnly
+                ? "border-blue-500 bg-blue-500 text-white"
+                : "border-gray-300 bg-white text-gray-600 hover:border-blue-300",
+            ].join(" ")}
+          >
+            <span>{userOnly ? "✓" : ""} ユーザー投稿のみ</span>
+          </button>
+        </div>
       </div>
 
       {/* 高速道路バナー（125cc以下カテゴリ時） */}

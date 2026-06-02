@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import { VEHICLES, type VehicleClass } from "@/lib/vehicle";
+import type { LatLng } from "@/components/SegmentMapPicker";
+import { PREFECTURES } from "@/lib/prefectures";
+
+const SegmentMapPicker = dynamic(
+  () => import("@/components/SegmentMapPicker").then((m) => m.SegmentMapPicker),
+  { ssr: false, loading: () => <div className="h-64 w-full animate-pulse rounded-xl bg-gray-100 sm:h-80" /> }
+);
 
 export function SegmentForm() {
   const router = useRouter();
@@ -10,10 +18,8 @@ export function SegmentForm() {
   const [prefecture, setPrefecture] = useState("");
   const [description, setDescription] = useState("");
   const [appliesTo, setAppliesTo] = useState<VehicleClass[]>(["genki1", "genki2"]);
-  const [startLat, setStartLat] = useState("");
-  const [startLng, setStartLng] = useState("");
-  const [endLat, setEndLat] = useState("");
-  const [endLng, setEndLng] = useState("");
+  const [start, setStart] = useState<LatLng | null>(null);
+  const [end, setEnd] = useState<LatLng | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -29,6 +35,10 @@ export function SegmentForm() {
       setError("対象車種を1つ以上選択してください");
       return;
     }
+    if (!start || !end) {
+      setError("地図で始点と終点を指定してください");
+      return;
+    }
     setSubmitting(true);
     setError(null);
 
@@ -41,10 +51,10 @@ export function SegmentForm() {
           prefecture: prefecture || null,
           description: description || null,
           applies_to: appliesTo,
-          start_lat: parseFloat(startLat),
-          start_lng: parseFloat(startLng),
-          end_lat: parseFloat(endLat),
-          end_lng: parseFloat(endLng),
+          start_lat: start.lat,
+          start_lng: start.lng,
+          end_lat: end.lat,
+          end_lng: end.lng,
         }),
       });
 
@@ -99,13 +109,16 @@ export function SegmentForm() {
         </div>
         <div>
           <label className="block text-sm font-semibold text-gray-700">都道府県</label>
-          <input
-            type="text"
+          <select
             value={prefecture}
             onChange={(e) => setPrefecture(e.target.value)}
-            placeholder="例: 神奈川県"
             className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-base focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
-          />
+          >
+            <option value="">選択してください</option>
+            {PREFECTURES.map((p) => (
+              <option key={p.slug} value={p.name}>{p.name}</option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -115,63 +128,22 @@ export function SegmentForm() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={3}
-          placeholder="規制の詳細・標識の内容など"
+          placeholder="規制の詳細・標識の内容など（例: 入口に「自動車専用」の標識あり）"
           className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-base focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
         />
       </div>
 
-      {/* 座標入力 */}
+      {/* 地図ピッカー */}
       <div>
         <p className="mb-2 text-sm font-semibold text-gray-700">
-          区間の座標
-          <span className="ml-1 font-normal text-gray-400">
-            (Googleマップで右クリック → 「この場所について」で確認)
-          </span>
+          区間を地図で指定
+          <span className="ml-1 font-normal text-gray-400">（始点→終点の順にクリック）</span>
         </p>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="space-y-2 rounded-lg bg-gray-50 p-3">
-            <p className="text-xs font-semibold text-gray-500">始点</p>
-            <input
-              type="number"
-              step="any"
-              value={startLat}
-              onChange={(e) => setStartLat(e.target.value)}
-              placeholder="緯度 例: 35.6812"
-              required
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none"
-            />
-            <input
-              type="number"
-              step="any"
-              value={startLng}
-              onChange={(e) => setStartLng(e.target.value)}
-              placeholder="経度 例: 139.7671"
-              required
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none"
-            />
-          </div>
-          <div className="space-y-2 rounded-lg bg-gray-50 p-3">
-            <p className="text-xs font-semibold text-gray-500">終点</p>
-            <input
-              type="number"
-              step="any"
-              value={endLat}
-              onChange={(e) => setEndLat(e.target.value)}
-              placeholder="緯度 例: 35.2325"
-              required
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none"
-            />
-            <input
-              type="number"
-              step="any"
-              value={endLng}
-              onChange={(e) => setEndLng(e.target.value)}
-              placeholder="経度 例: 139.1069"
-              required
-              className="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none"
-            />
-          </div>
-        </div>
+        <SegmentMapPicker
+          start={start}
+          end={end}
+          onChange={(s, en) => { setStart(s); setEnd(en); }}
+        />
       </div>
 
       {error && (
@@ -180,10 +152,10 @@ export function SegmentForm() {
 
       <button
         type="submit"
-        disabled={submitting}
+        disabled={submitting || !start || !end}
         className="w-full rounded-xl bg-orange-500 py-3 font-bold text-white hover:bg-orange-600 disabled:bg-gray-300"
       >
-        {submitting ? "投稿中…" : "投稿する"}
+        {submitting ? "投稿中…" : !start || !end ? "地図で始点・終点を指定してください" : "投稿する"}
       </button>
     </form>
   );

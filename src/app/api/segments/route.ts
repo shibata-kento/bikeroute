@@ -5,19 +5,22 @@ import type { SegmentStatus, SegmentListItem } from "@/lib/supabase/types";
 
 const VALID_STATUSES: SegmentStatus[] = ["pending", "verified", "rejected"];
 
-// GET /api/segments?category=all_bikes&status=verified[&prefecture=東京都]
+// GET /api/segments?category=all_bikes&status=verified[&prefecture=東京都][&userOnly=1]
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const rawCategory = searchParams.get("category") as RestrictionCategory | null;
   const category: RestrictionCategory =
     rawCategory && rawCategory in CATEGORY_CONFIG ? rawCategory : "all_bikes";
   const prefecture = searchParams.get("prefecture");
+  const userOnly = searchParams.get("userOnly") === "1";
   const rawStatus = searchParams.get("status") ?? "verified";
   const status: SegmentStatus = VALID_STATUSES.includes(rawStatus as SegmentStatus)
     ? (rawStatus as SegmentStatus)
     : "verified";
 
-  const { appliesToExact, sources, restrictionTags } = CATEGORY_CONFIG[category];
+  const { appliesToExact, sources: categorySources, restrictionTags } = CATEGORY_CONFIG[category];
+  // userOnly=1 のときは source を user のみに絞る
+  const sources = userOnly ? ["user"] : categorySources;
 
   const supabase = await createServerSupabaseClient();
 

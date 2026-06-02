@@ -12,6 +12,7 @@
     "import:jmpsa": "tsx --env-file=.env.local scripts/import-jmpsa.ts",
     "import:osm": "tsx --env-file=.env.local scripts/import-osm.ts",
     "import:mlit": "tsx --env-file=.env.local scripts/import-mlit.ts",
+    "fill:prefecture": "tsx --env-file=.env.local scripts/fill-prefecture.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },

@@ -27,6 +27,7 @@ export interface Database {
           end_point: string;
           geometry: string | null;
           description: string | null;
+          restriction_tag: string | null;
           status: SegmentStatus;
           verification_count: number;
           created_by: string | null;
@@ -136,6 +137,14 @@ export interface Database {
           end_lat: number | null;
           end_lng: number | null;
         }[];
+      };
+      get_prefecture_segment_counts: {
+        Args: Record<string, never>;
+        Returns: { prefecture: string; cnt: number }[];
+      };
+      get_prefecture_segment_count: {
+        Args: { p_prefecture: string };
+        Returns: number;
       };
     };
     Enums: {
