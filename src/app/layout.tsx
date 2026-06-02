@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { AuthButton } from "@/components/AuthButton";
@@ -57,6 +58,11 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body className="min-h-screen bg-gray-50 text-gray-900 antialiased">
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7521900221411063"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
         <nav className="border-b border-gray-200 bg-white px-4 py-3">
           <div className="mx-auto flex max-w-2xl items-center justify-between">
             <Link href="/" className="text-sm font-black text-gray-900 hover:text-orange-500">
