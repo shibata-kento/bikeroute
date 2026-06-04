@@ -158,6 +158,34 @@ export default function Home() {
         </Link>
       </div>
 
+      {/* 内部リンク：解説記事 */}
+      <div className="mt-10 border-t border-gray-100 pt-8">
+        <p className="text-xs font-bold text-gray-500 mb-3">通行ルールを詳しく知る</p>
+        <ul className="space-y-2">
+          {[
+            { href: "/articles/bike-traffic-rules", label: "原付・125cc・二輪の通行ルール完全ガイド" },
+            { href: "/articles/125cc-road-guide", label: "原付二種で通れる道・通れない道" },
+            { href: "/articles/shutoko-bike-restriction", label: "首都高バイク通行禁止区間まとめ" },
+            { href: "/articles/bike-no-entry-signs", label: "二輪通行禁止の標識の見分け方" },
+            { href: "/articles/moped-expressway-reason", label: "有料道路・バイパスで原付が通れない理由" },
+          ].map(({ href, label }) => (
+            <li key={href}>
+              <Link href={href} className="text-sm text-gray-600 hover:text-orange-600 hover:underline">
+                → {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 flex gap-4">
+          <Link href="/prefectures" className="text-sm text-gray-500 hover:text-orange-600 hover:underline">
+            都道府県別の通行禁止区間 →
+          </Link>
+          <Link href="/faq" className="text-sm text-gray-500 hover:text-orange-600 hover:underline">
+            よくある質問 →
+          </Link>
+        </div>
+      </div>
+
       <footer className="mt-8 text-center text-xs text-gray-400">
         <p>
           表示される情報は参考情報です。走行時は必ず道路標識を確認してください。

@@ -138,7 +138,28 @@ export default async function PrefecturePage({ params }: Props) {
         </>
       )}
 
-      <div className="mt-10 rounded-lg bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700">
+      {/* 関連解説記事 */}
+      <div className="mt-10 border-t border-gray-100 pt-6">
+        <p className="text-xs font-bold text-gray-500 mb-3">関連解説記事</p>
+        <ul className="space-y-2">
+          {[
+            ...(slug === "tokyo" || slug === "kanagawa"
+              ? [{ href: "/articles/shutoko-bike-restriction", label: "首都高バイク通行禁止区間まとめ" }]
+              : []),
+            { href: "/articles/bike-traffic-rules", label: "原付・125cc・二輪の通行ルール完全ガイド" },
+            { href: "/articles/bike-no-entry-signs", label: "二輪通行禁止の標識の見分け方" },
+            { href: "/articles/125cc-road-guide", label: "原付二種で通れる道・通れない道" },
+          ].map(({ href, label }) => (
+            <li key={href}>
+              <Link href={href} className="text-sm text-orange-600 hover:underline">
+                → {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-6 rounded-lg bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700">
         <p className="font-bold text-gray-900 mb-1">データに誤りがある場合</p>
         <p>
           <a
