@@ -1,21 +1,11 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "BikeRoute — バイク車種別 通行禁止区間チェック";
+export const alt = "BikeRoute — Bike Route Restriction Checker";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function Image() {
-  const fontData = await fetch(
-    "https://fonts.gstatic.com/s/notosansjp/v53/-F6jfjtqLzI2JPCgQBnQYggHqhH_iFqp.woff2"
-  )
-    .then((r) => r.arrayBuffer())
-    .catch(() => null);
-
-  const fonts = fontData
-    ? [{ name: "NotoJP", data: fontData, weight: 700 as const }]
-    : [];
-
+export default function Image() {
   return new ImageResponse(
     (
       <div
@@ -27,99 +17,85 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "60px",
-          fontFamily: fontData ? "NotoJP" : "sans-serif",
-          position: "relative",
+          fontFamily: "sans-serif",
         }}
       >
-        {/* オレンジのトップバー */}
+        {/* オレンジトップバー */}
         <div
           style={{
+            display: "flex",
             position: "absolute",
             top: 0,
             left: 0,
             right: 0,
-            height: "10px",
+            height: 10,
             background: "#f97316",
-            display: "flex",
           }}
         />
 
-        {/* タイトル */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "20px",
-          }}
-        >
+        {/* ロゴ行 */}
+        <div style={{ display: "flex", alignItems: "center", marginBottom: 24 }}>
           <div
             style={{
-              background: "#f97316",
-              borderRadius: "16px",
-              width: "72px",
-              height: "72px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              marginRight: "20px",
-              fontSize: "40px",
+              background: "#f97316",
+              borderRadius: 16,
+              width: 80,
+              height: 80,
+              marginRight: 24,
+              fontSize: 48,
+              color: "white",
+              fontWeight: 900,
             }}
           >
             B
           </div>
-          <span
-            style={{ color: "white", fontSize: "72px", fontWeight: 900, letterSpacing: "-1px" }}
-          >
+          <span style={{ color: "white", fontSize: 80, fontWeight: 900 }}>
             BikeRoute
           </span>
         </div>
 
-        {/* キャッチコピー */}
+        {/* サブタイトル */}
         <div
           style={{
+            display: "flex",
             color: "#fb923c",
-            fontSize: "32px",
+            fontSize: 32,
             fontWeight: 700,
-            marginBottom: "20px",
-            textAlign: "center",
+            marginBottom: 20,
           }}
         >
-          バイク車種別 通行禁止区間チェック
+          Bike Restriction Checker for Mopeds & Motorcycles
         </div>
 
         {/* 説明 */}
         <div
           style={{
+            display: "flex",
             color: "#9ca3af",
-            fontSize: "22px",
+            fontSize: 22,
             textAlign: "center",
-            maxWidth: "800px",
-            lineHeight: 1.6,
+            maxWidth: 800,
           }}
         >
-          原付・125cc・二輪の通行禁止区間を事前に確認
+          Check restricted roads before your ride — by vehicle class
         </div>
 
-        {/* 3 バッジ */}
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            marginTop: "40px",
-          }}
-        >
-          {["原付一種", "原付二種", "普通二輪以上"].map((label) => (
+        {/* バッジ行 */}
+        <div style={{ display: "flex", gap: 16, marginTop: 40 }}>
+          {["Moped 50cc", "Moped 125cc", "Motorcycle 126cc+"].map((label) => (
             <div
               key={label}
               style={{
+                display: "flex",
                 background: "#1f2937",
                 border: "1px solid #374151",
-                borderRadius: "9999px",
-                padding: "8px 20px",
+                borderRadius: 9999,
+                padding: "8px 24px",
                 color: "#d1d5db",
-                fontSize: "18px",
-                display: "flex",
+                fontSize: 20,
               }}
             >
               {label}
@@ -130,18 +106,18 @@ export default async function Image() {
         {/* ドメイン */}
         <div
           style={{
-            position: "absolute",
-            bottom: "36px",
-            right: "60px",
-            color: "#4b5563",
-            fontSize: "16px",
             display: "flex",
+            position: "absolute",
+            bottom: 36,
+            right: 60,
+            color: "#4b5563",
+            fontSize: 18,
           }}
         >
           bikeroute.vercel.app
         </div>
       </div>
     ),
-    { width: 1200, height: 630, fonts }
+    { width: 1200, height: 630 }
   );
 }
