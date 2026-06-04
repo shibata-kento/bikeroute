@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "よくある質問 (FAQ)",
@@ -154,6 +155,10 @@ export default function FaqPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "よくある質問 (FAQ)", path: "/faq" },
+      ]} />
       <h1 className="mb-2 text-2xl font-black text-gray-900">よくある質問</h1>
       <p className="mb-8 text-sm text-gray-500">FAQ</p>
 

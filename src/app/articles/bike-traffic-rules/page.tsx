@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "原付一種・原付二種・普通二輪の通行ルール完全ガイド【車種別】",
@@ -27,6 +28,11 @@ export default function BikeTrafficRulesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "解説記事", path: "/articles" },
+        { name: "原付一種・原付二種・普通二輪の通行ルール完全ガイド", path: "/articles/bike-traffic-rules" },
+      ]} />
       <div className="mb-2">
         <Link href="/articles" className="text-sm text-gray-400 hover:text-gray-600">
           ← 解説記事一覧

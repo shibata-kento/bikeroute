@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "原付二種（125cc以下）で通れる道・通れない道ガイド【バイパス・専用道路】",
@@ -24,6 +25,11 @@ const articleSchema = {
 export default function Moped125RoadGuidePage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "解説記事", path: "/articles" },
+        { name: "原付二種（125cc以下）で通れる道・通れない道ガイド", path: "/articles/125cc-road-guide" },
+      ]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

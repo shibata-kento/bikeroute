@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "二輪通行禁止の標識の見分け方【原付・バイク別に解説】",
@@ -74,6 +75,11 @@ function SignCard({ color, shape, label, name, applies, note }: SignCardProps) {
 export default function BikeNoEntrySignsPage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "解説記事", path: "/articles" },
+        { name: "二輪通行禁止の標識の見分け方", path: "/articles/bike-no-entry-signs" },
+      ]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

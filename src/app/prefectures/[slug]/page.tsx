@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PREFECTURES, slugToName } from "@/lib/prefectures";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -62,6 +63,11 @@ export default async function PrefecturePage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "都道府県別", path: "/prefectures" },
+        { name: prefectureName, path: `/prefectures/${slug}` },
+      ]} />
       <div className="mb-6">
         <Link
           href="/prefectures"

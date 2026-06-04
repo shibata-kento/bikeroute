@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "有料道路・バイパスで原付が通れないのはなぜ？【法律の仕組みを解説】",
@@ -24,6 +25,11 @@ const articleSchema = {
 export default function MopedExpresswayReasonPage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "解説記事", path: "/articles" },
+        { name: "有料道路・バイパスで原付が通れない理由", path: "/articles/moped-expressway-reason" },
+      ]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "首都高速道路 バイク通行禁止区間まとめ【原付・二輪別】",
@@ -24,6 +25,11 @@ const articleSchema = {
 export default function ShutokoBikeRestrictionPage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "解説記事", path: "/articles" },
+        { name: "首都高速道路 バイク通行禁止区間まとめ", path: "/articles/shutoko-bike-restriction" },
+      ]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

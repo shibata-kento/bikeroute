@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "新基準原付（2025年11月〜）の走行ルール解説 — 125ccでも原付一種扱い？",
@@ -23,6 +24,11 @@ const articleSchema = {
 export default function NewMoped2025Page() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "解説記事", path: "/articles" },
+        { name: "新基準原付（2025年11月〜）の走行ルール解説", path: "/articles/new-moped-2025" },
+      ]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
