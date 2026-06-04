@@ -7,9 +7,26 @@ export const metadata: Metadata = {
     "2025年11月から導入された新基準原付（排気量125cc以下・出力4kW以下）の通行ルールを解説。高速道路・自動車専用道路・バイパスへの通行可否、従来の原付一種・二種との違いも比較します。",
 };
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "新基準原付（2025年11月〜）の走行ルール解説 — 125ccでも原付一種扱い？",
+  description: "2025年11月から導入された新基準原付（排気量125cc以下・出力4kW以下）の通行ルールを解説。高速道路・自動車専用道路・バイパスへの通行可否、従来の原付一種・二種との違いも比較します。",
+  datePublished: "2026-06-03",
+  dateModified: "2026-06-03",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
+  url: "https://bikeroute.vercel.app/articles/new-moped-2025",
+  inLanguage: "ja",
+};
+
 export default function NewMoped2025Page() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <div className="mb-2">
         <Link href="/articles" className="text-sm text-gray-400 hover:text-gray-600">
           ← 解説記事一覧

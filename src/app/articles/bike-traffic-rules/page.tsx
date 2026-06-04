@@ -7,9 +7,26 @@ export const metadata: Metadata = {
     "50cc・125cc・それ以上のバイクで「通れない道」が違う理由を、法律の仕組みからわかりやすく解説します。自動車専用道路・高速道路・バイパスごとに、原付一種・原付二種・普通二輪の通行可否を整理。",
 };
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "原付一種・原付二種・普通二輪の通行ルール完全ガイド【車種別】",
+  description: "50cc・125cc・それ以上のバイクで「通れない道」が違う理由を、法律の仕組みからわかりやすく解説します。自動車専用道路・高速道路・バイパスごとに、原付一種・原付二種・普通二輪の通行可否を整理。",
+  datePublished: "2026-06-03",
+  dateModified: "2026-06-03",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
+  url: "https://bikeroute.vercel.app/articles/bike-traffic-rules",
+  inLanguage: "ja",
+};
+
 export default function BikeTrafficRulesPage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <div className="mb-2">
         <Link href="/articles" className="text-sm text-gray-400 hover:text-gray-600">
           ← 解説記事一覧
