@@ -8,21 +8,21 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bikeroute.vercel.a
 
 export const metadata: Metadata = {
   title: {
-    default: "BikeRoute — バイク車種別 通行禁止区間チェック",
+    default: "BikeRoute — 50cc・バイク 通行禁止区間マップ",
     template: "%s | BikeRoute",
   },
   description:
-    "原付・125cc・二輪車の通行禁止区間を地図で確認。出発地と目的地を入力するだけで、あなたのバイクが通れない道が含まれていないかを事前にチェックできます。",
+    "50cc・125cc・二輪車の通行禁止区間をマップで事前確認。原付が通れない道・自動車専用道路を出発前にチェック。50cc通行禁止マップ・二輪車通行禁止マップとして使えます。",
   keywords: [
-    "バイク 通行禁止",
+    "50cc 通行禁止 マップ",
+    "二輪車 通行禁止 マップ",
+    "バイク 通行禁止 マップ",
+    "125cc 通行禁止 マップ",
     "原付 自動車専用道路",
     "50cc 通れない道",
-    "125cc ルート確認",
-    "二輪車 通行禁止 地図",
+    "二輪通行禁止区間",
     "原付一種 高速道路",
     "原付二種 バイパス",
-    "バイク ルート",
-    "二輪通行禁止区間",
   ],
   metadataBase: new URL(BASE_URL),
   openGraph: {
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     url: BASE_URL,
     siteName: "BikeRoute",
-    title: "BikeRoute — バイク車種別 通行禁止区間チェック",
+    title: "BikeRoute — 50cc・バイク 通行禁止区間マップ",
     description:
-      "原付・125cc・二輪車の通行禁止区間を地図で確認。出発地・目的地と車種を選ぶだけ。",
+      "50cc・125cc・二輪車の通行禁止区間をマップで事前確認。原付が通れない道を出発前にチェック。",
   },
   twitter: {
     card: "summary",
-    title: "BikeRoute — バイク車種別 通行禁止区間チェック",
-    description: "原付・125cc・二輪車の通行禁止区間を事前に確認できるWebアプリ。",
+    title: "BikeRoute — 50cc・バイク 通行禁止区間マップ",
+    description: "50cc・125cc・二輪車の通行禁止区間マップ。原付が通れない道を出発前に確認。",
   },
   alternates: {
     canonical: BASE_URL,
