@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SegmentList } from "@/components/SegmentList";
 
-export const metadata = { title: "禁止区間マップ | BikeRoute" };
+export const metadata: Metadata = {
+  title: "バイク・原付 通行禁止区間マップ",
+  description:
+    "原付50cc・125cc・二輪車が通れない道をマップで確認。全国の自動車専用道路・二輪通行禁止区間を一覧表示。ツーリング前の50cc通行禁止マップ・二輪車通行禁止マップとしてご活用ください。",
+};
 
 export default function SegmentsPage() {
   return (

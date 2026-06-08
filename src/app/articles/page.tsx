@@ -9,6 +9,14 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    slug: "bike-restriction-map",
+    title: "50cc・バイクの通行禁止区間マップの見方と使い方【BikeRoute】",
+    description:
+      "原付50cc・125cc・二輪車が通れない道をマップで確認する方法を解説。禁止区間の種類と車種別の影響、BikeRouteの使い方まで。ツーリング前の事前確認に。",
+    tags: ["通行禁止マップ", "50cc", "ルート確認"],
+    date: "2026-06-08",
+  },
+  {
     slug: "shutoko-bike-restriction",
     title: "首都高速道路 バイク通行禁止区間まとめ【原付・二輪別】",
     description:

@@ -163,6 +163,7 @@ export default function Home() {
         <p className="text-xs font-bold text-gray-500 mb-3">通行ルールを詳しく知る</p>
         <ul className="space-y-2">
           {[
+            { href: "/articles/bike-restriction-map", label: "50cc・バイクの通行禁止区間マップの見方と使い方" },
             { href: "/articles/bike-traffic-rules", label: "原付・125cc・二輪の通行ルール完全ガイド" },
             { href: "/articles/125cc-road-guide", label: "原付二種で通れる道・通れない道" },
             { href: "/articles/shutoko-bike-restriction", label: "首都高バイク通行禁止区間まとめ" },
