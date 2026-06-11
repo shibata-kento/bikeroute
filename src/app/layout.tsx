@@ -60,6 +60,25 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "BikeRoute",
+              url: "https://bikeroute.vercel.app",
+              description:
+                "50cc・125cc・二輪車の通行禁止区間をマップで事前確認できるWebアプリ。原付が通れない道・自動車専用道路を車種別にチェック。",
+              inLanguage: "ja",
+              publisher: {
+                "@type": "Organization",
+                name: "BikeRoute",
+                url: "https://bikeroute.vercel.app",
+              },
+            }),
+          }}
+        />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           async
