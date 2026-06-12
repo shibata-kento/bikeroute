@@ -1,22 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SegmentList } from "@/components/SegmentList";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "バイク・原付 通行禁止区間マップ",
+  title: "二輪車・バイク 通行禁止区間マップ",
   description:
-    "原付50cc・125cc・二輪車が通れない道をマップで確認。全国の自動車専用道路・二輪通行禁止区間を一覧表示。ツーリング前の50cc通行禁止マップ・二輪車通行禁止マップとしてご活用ください。",
+    "二輪車・バイク・原付50ccが通れない道の通行禁止区間マップ。自動車専用道路・高速道路・二輪禁止トンネルを全国一覧で確認。50cc通行禁止マップ・二輪車通行禁止マップとして出発前にご活用ください。",
 };
 
 export default function SegmentsPage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
+      <BreadcrumbJsonLd items={[
+        { name: "ホーム", path: "/" },
+        { name: "通行禁止区間マップ", path: "/segments" },
+      ]} />
       <div className="mb-6 flex items-center justify-between">
         <div>
           <Link href="/" className="text-sm text-gray-400 hover:text-gray-600">
             ← ルート検索に戻る
           </Link>
-          <h1 className="mt-1 text-2xl font-black text-gray-900">禁止区間リスト</h1>
+          <h1 className="mt-1 text-2xl font-black text-gray-900">二輪車・バイク 通行禁止区間マップ</h1>
         </div>
         <Link
           href="/segments/new"
