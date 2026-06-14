@@ -4,9 +4,9 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PREFECTURES, nameToSlug } from "@/lib/prefectures";
 
 export const metadata: Metadata = {
-  title: "都道府県別 通行禁止区間",
+  title: "都道府県別 バイク・原付 通行禁止区間マップ",
   description:
-    "都道府県ごとのバイク通行禁止区間をまとめました。東京・神奈川・大阪など各都道府県の自動車専用道路・二輪通行禁止区間を確認できます。",
+    "都道府県ごとのバイク・原付 通行禁止区間マップ一覧。東京・神奈川・大阪など全47都道府県の自動車専用道路・二輪通行禁止区間・原付通行禁止区間を車種別に確認できます。",
 };
 
 async function getPrefectureCounts(): Promise<Map<string, number>> {

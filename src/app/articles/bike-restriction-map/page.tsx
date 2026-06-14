@@ -3,9 +3,9 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "50cc・バイクの通行禁止区間マップの見方と使い方【BikeRoute】",
+  title: "バイク・50cc 通行禁止区間マップ一覧【全国対応・車種別】",
   description:
-    "原付50cc・125cc・二輪車の通行禁止区間をマップで確認する方法を解説。50cc通行禁止マップ・二輪車通行禁止マップとして使えるBikeRouteの使い方、確認すべき禁止区間の種類も紹介します。",
+    "バイク・原付50cc・二輪車の通行禁止区間マップを全国一覧で確認。自動車専用道路・高速道路・二輪禁止トンネルを車種別に表示。50cc通行禁止マップ・バイク通行禁止マップとして出発前にご利用ください。",
 };
 
 const articleSchema = {
