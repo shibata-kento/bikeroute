@@ -57,12 +57,16 @@ export default function Home() {
 
   return (
     <main className="mx-auto max-w-xl px-4 py-8 sm:py-12">
-      <header className="mb-8 text-center">
+      <header className="mb-6 text-center">
         <h1 className="text-3xl font-black tracking-tight text-gray-900">
           🏍️ BikeRoute
         </h1>
         <p className="mt-2 text-gray-600">
-          車種に合わせた通行制限を確認して、Googleマップで最適ルートを開きます
+          バイク・原付の通行禁止区間を事前チェック
+        </p>
+        <p className="mt-3 text-sm text-gray-500 leading-relaxed max-w-sm mx-auto">
+          Google マップは車種を考慮しません。出発地・目的地・車種を入力するだけで、
+          ルート上に原付50ccや二輪車が通れない道が含まれていないかを自動判定します。
         </p>
       </header>
 
@@ -154,9 +158,89 @@ export default function Home() {
           href="/segments"
           className="text-sm text-orange-600 underline hover:text-orange-800"
         >
-          通行禁止区間リストを見る →
+          通行禁止区間マップを見る →
         </Link>
       </div>
+
+      {/* なぜBikeRouteが必要か */}
+      <section className="mt-10 border-t border-gray-100 pt-8">
+        <h2 className="text-lg font-black text-gray-900 mb-3">なぜBikeRouteが必要か</h2>
+        <p className="text-sm text-gray-700 leading-relaxed mb-3">
+          Google マップや一般的なカーナビは、バイクの車種（排気量・区分）を考慮したルート案内に対応していません。
+          原付一種（50cc以下）や原付二種（125cc以下）のライダーが Google マップのルートをそのまま走ると、
+          自動車専用道路や高速道路に誘導されてしまうことがあります。
+        </p>
+        <p className="text-sm text-gray-700 leading-relaxed">
+          BikeRoute は車種ごとの通行ルールを自動で判定し、ルート上に通行禁止区間が含まれていないかを
+          出発前にチェックできるWebアプリです。知らずに通行禁止区間へ侵入するリスクを出発前に防ぎます。
+        </p>
+      </section>
+
+      {/* 使い方 3ステップ */}
+      <section className="mt-8">
+        <h2 className="text-lg font-black text-gray-900 mb-4">3ステップで使える</h2>
+        <ol className="space-y-3">
+          {[
+            {
+              step: "1",
+              title: "出発地・目的地を入力",
+              desc: "住所・地名・スポット名など、Google マップと同じ感覚で入力できます。",
+            },
+            {
+              step: "2",
+              title: "車種を選択",
+              desc: "原付一種（50cc以下・新基準原付）、原付二種（125cc以下）、普通二輪以上（126cc〜）から選びます。",
+            },
+            {
+              step: "3",
+              title: "ルートを確認する",
+              desc: "通行禁止区間が含まれていればその場で警告。問題なければ Google マップでルートを開けます。",
+            },
+          ].map(({ step, title, desc }) => (
+            <li key={step} className="flex items-start gap-3">
+              <span className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-orange-500 text-white text-xs font-black">
+                {step}
+              </span>
+              <div>
+                <p className="text-sm font-bold text-gray-900">{title}</p>
+                <p className="text-xs text-gray-600 mt-0.5">{desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* 対応している禁止区間の種類 */}
+      <section className="mt-8">
+        <h2 className="text-lg font-black text-gray-900 mb-3">対応している通行禁止区間</h2>
+        <div className="space-y-2">
+          {[
+            {
+              label: "自動車専用道路",
+              desc: "高速道路・首都高・阪神高速・自動車専用バイパス。原付一種・二種は通行禁止。普通二輪以上は通行可。",
+              color: "bg-blue-50 border-blue-200 text-blue-800",
+            },
+            {
+              label: "二輪車通行禁止区間",
+              desc: "山手トンネル・川崎トンネルなど。排気量に関係なくすべての二輪が禁止。",
+              color: "bg-red-50 border-red-200 text-red-800",
+            },
+            {
+              label: "原付通行禁止区間",
+              desc: "幹線道路の一部に設置。原付一種・二種が禁止、普通二輪以上（126cc〜）は通行可。",
+              color: "bg-yellow-50 border-yellow-200 text-yellow-800",
+            },
+          ].map(({ label, desc, color }) => (
+            <div key={label} className={`rounded-lg border px-4 py-3 ${color}`}>
+              <p className="text-xs font-bold">{label}</p>
+              <p className="text-xs mt-0.5 opacity-80">{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-xs text-gray-400">
+          データはJMPSA・国土交通省・OpenStreetMap・ユーザー投稿をもとに構成されています。
+        </p>
+      </section>
 
       {/* 内部リンク：解説記事 */}
       <div className="mt-10 border-t border-gray-100 pt-8">
@@ -187,11 +271,11 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="mt-8 text-center text-xs text-gray-400">
-        <p>
-          表示される情報は参考情報です。走行時は必ず道路標識を確認してください。
-        </p>
-        <p className="mt-1">
+      <footer className="mt-8 text-center text-xs text-gray-400 space-y-1">
+        <p>表示される情報は参考情報です。走行時は必ず道路標識を確認してください。</p>
+        <div className="flex justify-center gap-4">
+          <Link href="/about" className="underline hover:text-gray-600">運営者情報</Link>
+          <Link href="/privacy" className="underline hover:text-gray-600">プライバシーポリシー</Link>
           <a
             href="https://github.com/shibata-kento/bikeroute"
             target="_blank"
@@ -200,7 +284,7 @@ export default function Home() {
           >
             GitHub
           </a>
-        </p>
+        </div>
       </footer>
     </main>
   );
