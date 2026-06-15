@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PREFECTURES, slugToName } from "@/lib/prefectures";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { PrefectureSegmentMap } from "@/components/PrefectureSegmentMap";
 import type { SegmentListItem } from "@/lib/supabase/types";
-
-const SegmentMap = dynamic(
-  () => import("@/components/SegmentMap").then((m) => m.SegmentMap),
-  { ssr: false, loading: () => <div className="h-64 w-full animate-pulse rounded-xl bg-gray-100 sm:h-80" /> }
-);
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -87,11 +82,7 @@ export default async function PrefecturePage({ params }: Props) {
         </p>
       </div>
 
-      {segments.some((s) => s.start_lat != null) && (
-        <div className="mb-4">
-          <SegmentMap segments={segments} />
-        </div>
-      )}
+      <PrefectureSegmentMap segments={segments} />
 
       {segments.length === 0 ? (
         <div className="rounded-lg border border-gray-200 bg-white p-8 text-center text-sm text-gray-500">
