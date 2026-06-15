@@ -49,6 +49,65 @@ const VEHICLE_LABEL: Record<string, string> = {
   normal: "普通二輪以上",
 };
 
+const PREFECTURE_INFO: Record<string, { summary: string; roads: { name: string; note: string }[]; articleHref?: string; articleLabel?: string }> = {
+  tokyo: {
+    summary: "東京都内では首都高速道路（全線）が自動車専用道路に指定されており、原付一種・原付二種は通行できません。また、C2中央環状線の山手トンネルは普通二輪以上も通行禁止です。",
+    roads: [
+      { name: "首都高速道路（全線）", note: "原付一種・二種 通行禁止" },
+      { name: "C2山手トンネル", note: "二輪車全車種 通行禁止" },
+      { name: "東京外環自動車道", note: "原付一種・二種 通行禁止" },
+    ],
+    articleHref: "/articles/shutoko-bike-restriction",
+    articleLabel: "首都高バイク通行禁止区間まとめ",
+  },
+  kanagawa: {
+    summary: "神奈川県では首都高速神奈川線（横羽線・湾岸線）・第三京浜・横浜横須賀道路・横浜新道・小田原厚木道路などが自動車専用道路に指定されており、原付は通行できません。",
+    roads: [
+      { name: "首都高 横羽線（K1）", note: "原付一種・二種 通行禁止" },
+      { name: "首都高 湾岸線（K3・K5）", note: "原付一種・二種 通行禁止" },
+      { name: "第三京浜道路", note: "原付一種・二種 通行禁止" },
+      { name: "横浜横須賀道路", note: "原付一種・二種 通行禁止" },
+    ],
+    articleHref: "/articles/kanagawa-bike-restriction",
+    articleLabel: "神奈川のバイク通行禁止区間まとめ",
+  },
+  osaka: {
+    summary: "大阪府では阪神高速道路（全線）が自動車専用道路に指定されており、原付一種・原付二種は通行できません。大阪港トンネル・夢咲トンネルは普通二輪以上も通行禁止です。",
+    roads: [
+      { name: "阪神高速道路（全線）", note: "原付一種・二種 通行禁止" },
+      { name: "大阪港トンネル", note: "二輪車全車種 通行禁止" },
+      { name: "夢咲トンネル", note: "二輪車全車種 通行禁止" },
+      { name: "近畿自動車道", note: "原付一種・二種 通行禁止" },
+    ],
+    articleHref: "/articles/osaka-bike-restriction",
+    articleLabel: "大阪のバイク通行禁止区間まとめ",
+  },
+  aichi: {
+    summary: "愛知県では名古屋高速道路（全線）・東名高速・新東名高速・伊勢湾岸自動車道などが自動車専用道路に指定されており、原付一種・原付二種は通行できません。",
+    roads: [
+      { name: "名古屋高速道路（全線）", note: "原付一種・二種 通行禁止" },
+      { name: "東名高速道路", note: "原付一種・二種 通行禁止" },
+      { name: "伊勢湾岸自動車道", note: "原付一種・二種 通行禁止" },
+    ],
+  },
+  fukuoka: {
+    summary: "福岡県では福岡都市高速道路（全線）が自動車専用道路に指定されています。また若戸トンネルは126cc以上の二輪車も通行禁止となる区間として知られています。",
+    roads: [
+      { name: "福岡都市高速道路（全線）", note: "原付一種・二種 通行禁止" },
+      { name: "若戸トンネル", note: "二輪車全車種 通行禁止" },
+      { name: "九州自動車道", note: "原付一種・二種 通行禁止" },
+    ],
+  },
+  hyogo: {
+    summary: "兵庫県では阪神高速道路（全線）と播但連絡道路・姫路バイパスなどが自動車専用道路に指定されており、原付は通行できません。",
+    roads: [
+      { name: "阪神高速道路（神戸線・湾岸線）", note: "原付一種・二種 通行禁止" },
+      { name: "播但連絡道路", note: "原付一種・二種 通行禁止" },
+      { name: "姫路バイパス（自動車専用区間）", note: "原付一種・二種 通行禁止" },
+    ],
+  },
+};
+
 export default async function PrefecturePage({ params }: Props) {
   const { slug } = await params;
   const prefectureName = slugToName(slug);
@@ -81,6 +140,28 @@ export default async function PrefecturePage({ params }: Props) {
           {totalCount > segments.length && `（上位 ${segments.length} 件を表示）`}
         </p>
       </div>
+
+      {PREFECTURE_INFO[slug] && (
+        <div className="mb-6 rounded-lg border border-orange-100 bg-orange-50 p-4 text-sm text-gray-700">
+          <p className="mb-3">{PREFECTURE_INFO[slug].summary}</p>
+          <ul className="space-y-1">
+            {PREFECTURE_INFO[slug].roads.map((r) => (
+              <li key={r.name} className="flex items-start gap-2">
+                <span className="mt-0.5 shrink-0 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">禁止</span>
+                <span><span className="font-medium">{r.name}</span> — {r.note}</span>
+              </li>
+            ))}
+          </ul>
+          {PREFECTURE_INFO[slug].articleHref && (
+            <Link
+              href={PREFECTURE_INFO[slug].articleHref!}
+              className="mt-3 inline-block text-xs text-orange-600 underline"
+            >
+              → {PREFECTURE_INFO[slug].articleLabel}
+            </Link>
+          )}
+        </div>
+      )}
 
       <PrefectureSegmentMap segments={segments} />
 

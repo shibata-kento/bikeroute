@@ -25,6 +25,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bikeroute.vercel.app/articles/osaka-bike-restriction</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/kanagawa-bike-restriction</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bikeroute.vercel.app/articles/moped-expressway-reason</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
