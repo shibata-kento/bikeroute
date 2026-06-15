@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { PREFECTURES, slugToName } from "@/lib/prefectures";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import type { SegmentListItem } from "@/lib/supabase/types";
+
+const SegmentMap = dynamic(
+  () => import("@/components/SegmentMap").then((m) => m.SegmentMap),
+  { ssr: false, loading: () => <div className="h-64 w-full animate-pulse rounded-xl bg-gray-100 sm:h-80" /> }
+);
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -21,20 +28,16 @@ export function generateStaticParams() {
   return PREFECTURES.map((p) => ({ slug: p.slug }));
 }
 
-async function getSegments(prefectureName: string) {
+async function getSegments(prefectureName: string): Promise<SegmentListItem[]> {
   const supabase = await createServerSupabaseClient();
-  const { data, error } = await supabase
-    .from("restricted_segments")
-    .select(
-      "id, applies_to, road_name, prefecture, description, status, verification_count, created_at, source"
-    )
-    .eq("status", "verified")
-    .eq("prefecture", prefectureName)
-    .order("created_at", { ascending: false })
-    .limit(200);
+  const { data, error } = await supabase.rpc("list_restricted_segments", {
+    p_prefecture: prefectureName,
+    p_status: "verified",
+    p_limit: 200,
+  });
 
   if (error) return [];
-  return data ?? [];
+  return (data ?? []) as SegmentListItem[];
 }
 
 async function getTotalCount(prefectureName: string): Promise<number> {
@@ -83,6 +86,12 @@ export default async function PrefecturePage({ params }: Props) {
           {totalCount > segments.length && `（上位 ${segments.length} 件を表示）`}
         </p>
       </div>
+
+      {segments.some((s) => s.start_lat != null) && (
+        <div className="mb-4">
+          <SegmentMap segments={segments} />
+        </div>
+      )}
 
       {segments.length === 0 ? (
         <div className="rounded-lg border border-gray-200 bg-white p-8 text-center text-sm text-gray-500">

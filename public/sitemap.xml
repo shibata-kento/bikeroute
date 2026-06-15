@@ -361,6 +361,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://bikeroute.vercel.app/about</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://bikeroute.vercel.app/privacy</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
