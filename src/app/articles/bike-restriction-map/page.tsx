@@ -3,9 +3,9 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "バイク・50cc 通行禁止区間マップ一覧【全国対応・車種別】",
+  title: "バイク・50cc 通行禁止区間マップを地図で確認【車種別・全国対応】",
   description:
-    "バイク・原付50cc・二輪車の通行禁止区間マップを全国一覧で確認。自動車専用道路・高速道路・二輪禁止トンネルを車種別に表示。50cc通行禁止マップ・バイク通行禁止マップとして出発前にご利用ください。",
+    "50cc・125cc・二輪車の通行禁止区間を地図上で確認できます。自動車専用道路・二輪禁止トンネルを車種別にマップ表示。首都高・阪神高速など全国対応。ツーリング前の事前チェックに。",
 };
 
 const articleSchema = {
@@ -50,9 +50,21 @@ export default function BikeRestrictionMapPage() {
       </div>
 
       <h1 className="mb-1 text-2xl font-black text-gray-900 leading-snug">
-        50cc・バイクの通行禁止区間マップの見方と使い方
+        バイク・50cc 通行禁止区間マップを地図で確認【車種別・全国対応】
       </h1>
-      <p className="mb-8 text-xs text-gray-400">公開: 2026年6月8日</p>
+      <p className="mb-4 text-xs text-gray-400">公開: 2026年6月8日</p>
+
+      {/* 地図への直接リンク（最重要CTA） */}
+      <div className="mb-8 rounded-xl border-2 border-orange-300 bg-orange-50 p-4">
+        <p className="text-sm font-bold text-gray-900 mb-1">今すぐ地図で確認したい方はこちら</p>
+        <p className="text-xs text-gray-600 mb-3">車種を選ぶと通行禁止区間が地図に表示されます</p>
+        <Link
+          href="/segments"
+          className="inline-flex items-center gap-1 rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-orange-600"
+        >
+          通行禁止区間マップを開く →
+        </Link>
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-gray-700">
 

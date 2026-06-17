@@ -4,9 +4,9 @@ import { SegmentList } from "@/components/SegmentList";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "二輪車・バイク 通行禁止区間マップ",
+  title: "二輪車・バイク 通行禁止区間マップ【50cc・125cc・車種別に地図表示】",
   description:
-    "二輪車・バイク・原付50ccが通れない道の通行禁止区間マップ。自動車専用道路・高速道路・二輪禁止トンネルを全国一覧で確認。50cc通行禁止マップ・二輪車通行禁止マップとして出発前にご活用ください。",
+    "原付50cc・125cc・二輪車が通れない道を地図で確認。自動車専用道路・二輪禁止トンネル・原付通行禁止区間を車種別にマップ表示。首都高・阪神高速など全国対応の通行禁止マップ。",
 };
 
 export default function SegmentsPage() {
@@ -21,7 +21,7 @@ export default function SegmentsPage() {
           <Link href="/" className="text-sm text-gray-400 hover:text-gray-600">
             ← ルート検索に戻る
           </Link>
-          <h1 className="mt-1 text-2xl font-black text-gray-900">二輪車・バイク 通行禁止区間マップ</h1>
+          <h1 className="mt-1 text-2xl font-black text-gray-900">二輪車・バイク 通行禁止区間マップ【地図で確認】</h1>
         </div>
         <Link
           href="/segments/new"
