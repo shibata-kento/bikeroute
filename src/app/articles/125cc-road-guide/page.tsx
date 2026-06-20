@@ -5,7 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 export const metadata: Metadata = {
   title: "原付二種（125cc以下）で通れる道・通れない道ガイド【バイパス・専用道路】",
   description:
-    "原付二種（51〜125cc）が通行できる道路・できない道路を徹底解説。高速道路・自動車専用道路は禁止。でもバイパスは通れる場合も。標識の見分け方と、BikeRouteでの事前確認方法もご紹介。",
+    "125cc（原付二種）が走れない道路・通れない道路を解説。高速道路・自動車専用道路は走行禁止。バイパスは通れる場合も。標識の見分け方とBikeRouteでのルート事前確認方法もご紹介。",
 };
 
 const articleSchema = {
