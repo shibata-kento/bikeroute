@@ -248,9 +248,11 @@ export default function Home() {
         <ul className="space-y-2">
           {[
             { href: "/articles/bike-restriction-map", label: "50cc・バイクの通行禁止区間マップの見方と使い方" },
+            { href: "/articles/shutoko-bike-restriction", label: "首都高バイク通行禁止区間まとめ（東京）" },
+            { href: "/articles/osaka-bike-restriction", label: "大阪のバイク通行禁止区間まとめ（阪神高速）" },
+            { href: "/articles/kanagawa-bike-restriction", label: "神奈川のバイク通行禁止区間まとめ（横羽線・湾岸線）" },
             { href: "/articles/bike-traffic-rules", label: "原付・125cc・二輪の通行ルール完全ガイド" },
-            { href: "/articles/125cc-road-guide", label: "原付二種で通れる道・通れない道" },
-            { href: "/articles/shutoko-bike-restriction", label: "首都高バイク通行禁止区間まとめ" },
+            { href: "/articles/125cc-road-guide", label: "125ccが走れない道路・走れる道路ガイド" },
             { href: "/articles/bike-no-entry-signs", label: "二輪通行禁止の標識の見分け方" },
             { href: "/articles/moped-expressway-reason", label: "有料道路・バイパスで原付が通れない理由" },
           ].map(({ href, label }) => (
@@ -269,6 +271,34 @@ export default function Home() {
             よくある質問 →
           </Link>
         </div>
+      </div>
+
+      {/* 主要エリアリンク */}
+      <div className="mt-8 border-t border-gray-100 pt-6">
+        <p className="text-xs font-bold text-gray-500 mb-3">主要エリアの通行禁止区間マップ</p>
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {[
+            { href: "/prefectures/tokyo", label: "東京都" },
+            { href: "/prefectures/kanagawa", label: "神奈川県" },
+            { href: "/prefectures/osaka", label: "大阪府" },
+            { href: "/prefectures/aichi", label: "愛知県" },
+            { href: "/prefectures/fukuoka", label: "福岡県" },
+            { href: "/prefectures/hyogo", label: "兵庫県" },
+            { href: "/prefectures/saitama", label: "埼玉県" },
+            { href: "/prefectures/chiba", label: "千葉県" },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-center text-xs font-medium text-gray-700 hover:border-orange-300 hover:bg-orange-50 transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+        <Link href="/prefectures" className="mt-2 inline-block text-xs text-gray-400 hover:text-orange-600 hover:underline">
+          全47都道府県を見る →
+        </Link>
       </div>
 
       <footer className="mt-8 text-center text-xs text-gray-400 space-y-1">
