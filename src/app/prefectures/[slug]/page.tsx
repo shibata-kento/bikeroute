@@ -165,11 +165,69 @@ export default async function PrefecturePage({ params }: Props) {
 
       <PrefectureSegmentMap segments={segments} />
 
+      {/* 全都道府県共通の通行禁止解説 */}
+      <section className="mb-6 space-y-4 text-sm leading-relaxed text-gray-700">
+        <h2 className="text-base font-bold text-gray-900">{prefectureName}でバイク・原付が走る前に知っておくべきこと</h2>
+        <p>
+          {prefectureName}を走るバイク・原付ライダーは、道路の種別によって通行できるかどうかが車種ごとに異なります。
+          Googleマップは車種を考慮しないため、原付が通れない自動車専用道路を案内してしまうケースがあります。
+          出発前にルートを確認する習慣をつけましょう。
+        </p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-xs">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border border-gray-200 px-3 py-2 text-left font-bold text-gray-800">道路の種類</th>
+                <th className="border border-gray-200 px-3 py-2 text-center font-bold text-gray-800">原付一種（〜50cc）</th>
+                <th className="border border-gray-200 px-3 py-2 text-center font-bold text-gray-800">原付二種（〜125cc）</th>
+                <th className="border border-gray-200 px-3 py-2 text-center font-bold text-gray-800">普通二輪以上（126cc〜）</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["高速道路", "禁止", "禁止", "通行可"],
+                ["自動車専用道路（首都高・都市高速など）", "禁止", "禁止", "通行可"],
+                ["自動車専用指定のないバイパス", "禁止", "通行可", "通行可"],
+                ["二輪車通行禁止区間（トンネルなど）", "禁止", "禁止", "禁止"],
+                ["一般道", "通行可", "通行可", "通行可"],
+              ].map(([road, v1, v2, normal]) => (
+                <tr key={road}>
+                  <td className="border border-gray-200 px-3 py-2 font-medium">{road}</td>
+                  {[v1, v2, normal].map((val, i) => (
+                    <td key={i} className={`border border-gray-200 px-3 py-2 text-center text-xs font-bold ${val === "禁止" ? "text-red-600 bg-red-50" : "text-green-700"}`}>{val}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="rounded-lg bg-yellow-50 border border-yellow-200 px-4 py-3 text-xs text-yellow-800">
+          <strong>注意：</strong> 2025年11月以降の新基準原付（125cc以下・最高出力4kW以下）は原付一種と同じ扱いです。自動車専用道路・高速道路は通行できません。
+        </div>
+
+        <p>
+          BikeRoute では出発地・目的地・車種を入力するだけで、ルート上に通行禁止区間が含まれていないかを自動判定します。
+          {prefectureName}内のルートも事前確認にご活用ください。
+        </p>
+        <Link
+          href="/"
+          className="inline-block rounded-lg bg-orange-500 px-4 py-2 text-xs font-bold text-white hover:bg-orange-600"
+        >
+          {prefectureName}のルートをチェックする →
+        </Link>
+      </section>
+
       {segments.length === 0 ? (
-        <div className="rounded-lg border border-gray-200 bg-white p-8 text-center text-sm text-gray-500">
-          <p>{prefectureName}の通行禁止区間データはまだ登録されていません。</p>
+        <div className="rounded-lg border border-gray-100 bg-gray-50 p-5 text-sm text-gray-600">
+          <p className="font-medium text-gray-700 mb-1">{prefectureName}の個別区間データ</p>
+          <p>
+            現在、{prefectureName}の個別通行禁止区間データは収録中です。
+            全国の高速道路・自動車専用道路はルート検索で自動判定されます。
+          </p>
           <p className="mt-2">
-            情報をお持ちの方は{" "}
+            地域の二輪禁止トンネル・原付通行禁止区間をご存知の方は{" "}
             <Link href="/segments/new" className="text-orange-600 underline">
               投稿フォーム
             </Link>

@@ -16,9 +16,34 @@ export default function GuidePage() {
         { name: "使い方ガイド", path: "/guide" },
       ]} />
       <h1 className="mb-2 text-2xl font-black text-gray-900">使い方ガイド</h1>
-      <p className="mb-10 text-sm text-gray-500">
+      <p className="mb-6 text-sm text-gray-500">
         BikeRouteの基本的な使い方を解説します。
       </p>
+
+      {/* 背景知識：なぜ必要か */}
+      <section className="mb-10 rounded-xl border border-gray-200 bg-white p-5">
+        <h2 className="text-base font-bold text-gray-900 mb-3">バイクのルート確認が必要な理由</h2>
+        <div className="space-y-3 text-sm leading-relaxed text-gray-700">
+          <p>
+            日本では道路交通法により、原動機付自転車（原付）は<strong>自動車専用道路・高速道路</strong>を通行できません。
+            これは排気量に関係なく原付一種（50cc以下）・原付二種（125cc以下）の両方に適用されます。
+          </p>
+          <p>
+            問題は、Google マップをはじめとする一般的なナビアプリが<strong>バイクの車種区分を考慮しない</strong>点です。
+            自動車向けに最短ルートを案内するため、原付が通れない首都高速・阪神高速・自動車専用バイパスを経由するルートを
+            提示することがあります。
+          </p>
+          <p>
+            また、トンネルや橋梁の一部には「<strong>二輪車通行禁止</strong>」の規制がかかっており、
+            126cc以上の普通二輪・大型二輪でも通行できない区間が全国に存在します。
+            これらはナビでは判別できません。
+          </p>
+          <p>
+            BikeRouteはこのギャップを埋めるためのツールです。車種を選ぶだけで通行禁止区間を自動チェックし、
+            問題があれば出発前に警告します。
+          </p>
+        </div>
+      </section>
 
       {/* Step 1 */}
       <section className="mb-10">

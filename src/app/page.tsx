@@ -70,6 +70,18 @@ export default function Home() {
         </p>
       </header>
 
+      {/* サービス説明（Googleクローラー向けにも重要なテキストコンテンツ） */}
+      <section className="mb-6 rounded-xl border border-orange-100 bg-orange-50 p-4 text-sm leading-relaxed text-gray-700">
+        <h2 className="font-bold text-gray-900 mb-2">なぜルート確認が必要なの？</h2>
+        <p className="mb-2">
+          原付一種（50cc以下）・原付二種（125cc以下）は、<strong>自動車専用道路・高速道路・首都高・阪神高速など</strong>を通行できません。
+          しかしGoogle マップはこれを無視してルートを案内するため、知らずに進入してしまうリスクがあります。
+        </p>
+        <p>
+          BikeRouteは車種を選ぶだけで、ルート上の通行禁止区間を自動チェックします。ツーリング前の5分で、違反・危険を未然に防げます。
+        </p>
+      </section>
+
       {state.status !== "done" ? (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
