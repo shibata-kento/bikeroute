@@ -33,30 +33,16 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Google フォーム埋め込み */}
-      <div className="w-full overflow-hidden rounded-xl border border-gray-200">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSdtqHfdG3nEWPC_xRjvOK78qeMsJkMq_Z3bsh5Q-Ljp2Rwz5A/viewform?embedded=true"
-          width="100%"
-          height="700"
-          title="お問い合わせフォーム"
-          className="block border-0"
-          style={{ margin: 0 }}
-        >
-          読み込んでいます…
-        </iframe>
-      </div>
-
-      <div className="mt-6 text-center text-xs text-gray-400 space-y-1">
-        <p>フォームが表示されない場合は直接リンクからご利用ください。</p>
+      <div className="text-center">
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSdtqHfdG3nEWPC_xRjvOK78qeMsJkMq_Z3bsh5Q-Ljp2Rwz5A/viewform"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-orange-600 underline hover:text-orange-800"
+          className="inline-block rounded-xl bg-orange-500 px-8 py-4 text-base font-bold text-white shadow-md hover:bg-orange-600 transition-colors"
         >
-          Googleフォームで開く →
+          お問い合わせフォームを開く →
         </a>
+        <p className="mt-3 text-xs text-gray-400">Googleフォームが新しいタブで開きます</p>
       </div>
 
       <div className="mt-8 rounded-lg bg-gray-50 border border-gray-200 px-4 py-4 text-sm text-gray-700">
