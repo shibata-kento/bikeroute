@@ -37,6 +37,48 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://bikeroute.vercel.app/articles/fukuoka-bike-restriction</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/hyogo-bike-restriction</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/saitama-bike-restriction</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/chiba-bike-restriction</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/ishikawa-bike-restriction</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/shizuoka-bike-restriction</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/hiroshima-bike-restriction</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://bikeroute.vercel.app/articles/nagoya-bike-restriction</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
