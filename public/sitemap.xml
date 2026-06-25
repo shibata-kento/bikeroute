@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://bikeroute.vercel.app/articles</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -33,6 +33,24 @@
   <url>
     <loc>https://bikeroute.vercel.app/articles/kanagawa-bike-restriction</loc>
     <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/nagoya-bike-restriction</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/hokkaido-bike-restriction</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bikeroute.vercel.app/articles/tunnel-bike-restriction</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
