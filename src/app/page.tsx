@@ -326,6 +326,7 @@ export default function Home() {
       <footer className="mt-8 text-center text-xs text-gray-400 space-y-1">
         <p>表示される情報は参考情報です。走行時は必ず道路標識を確認してください。</p>
         <div className="flex justify-center gap-4">
+          <Link href="/contact" className="underline hover:text-gray-600">お問い合わせ</Link>
           <Link href="/about" className="underline hover:text-gray-600">運営者情報</Link>
           <Link href="/privacy" className="underline hover:text-gray-600">プライバシーポリシー</Link>
           <a
