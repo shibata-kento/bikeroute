@@ -1,9 +1,16 @@
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { createMiddlewareClient } from "@/lib/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
+  const host = request.headers.get("host") ?? "";
+  if (host === "bikeroute.vercel.app") {
+    const url = request.nextUrl.clone();
+    url.host = "www.bikeroutemap.com";
+    url.protocol = "https:";
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
   const { supabase, response } = createMiddlewareClient(request);
-  // セッショントークンをリフレッシュ（@supabase/ssr の必須パターン）
   await supabase.auth.getUser();
   return response;
 }

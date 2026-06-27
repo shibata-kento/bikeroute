@@ -16,9 +16,9 @@ const articleSchema = {
     "神奈川県のバイク・原付通行禁止区間を車種別に解説。首都高神奈川線（横羽線・湾岸線）・第三京浜・横浜新道・横浜横須賀道路は原付一種・二種が通行禁止。",
   datePublished: "2026-06-15",
   dateModified: "2026-06-15",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/kanagawa-bike-restriction",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/kanagawa-bike-restriction",
   inLanguage: "ja",
 };
 

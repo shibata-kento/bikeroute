@@ -15,9 +15,9 @@ const articleSchema = {
   description: "2025年11月から導入された新基準原付（排気量125cc以下・出力4kW以下）の通行ルールを解説。高速道路・自動車専用道路・バイパスへの通行可否、従来の原付一種・二種との違いも比較します。",
   datePublished: "2026-06-03",
   dateModified: "2026-06-03",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/new-moped-2025",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/new-moped-2025",
   inLanguage: "ja",
 };
 

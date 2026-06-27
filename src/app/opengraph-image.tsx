@@ -114,7 +114,7 @@ export default function Image() {
             fontSize: 18,
           }}
         >
-          bikeroute.vercel.app
+          www.bikeroutemap.com
         </div>
       </div>
     ),

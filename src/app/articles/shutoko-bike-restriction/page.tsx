@@ -16,9 +16,9 @@ const articleSchema = {
     "首都高速道路でバイクが通れない区間を車種別に解説。原付一種・原付二種は全線通行禁止。普通二輪も山手トンネルなど一部区間で通行禁止。",
   datePublished: "2026-06-04",
   dateModified: "2026-06-04",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/shutoko-bike-restriction",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/shutoko-bike-restriction",
   inLanguage: "ja",
 };
 

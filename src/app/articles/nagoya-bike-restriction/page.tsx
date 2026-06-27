@@ -16,9 +16,9 @@ const articleSchema = {
     "名古屋・愛知県のバイク・原付通行禁止区間を車種別に解説。名古屋高速道路は原付一種・二種が全線通行禁止。",
   datePublished: "2026-06-25",
   dateModified: "2026-06-25",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/nagoya-bike-restriction",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/nagoya-bike-restriction",
   inLanguage: "ja",
 };
 

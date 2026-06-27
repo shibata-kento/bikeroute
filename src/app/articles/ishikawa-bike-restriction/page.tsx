@@ -15,9 +15,9 @@ const articleSchema = {
   description: "石川県のバイク・原付通行禁止区間を車種別に解説。",
   datePublished: "2026-06-26",
   dateModified: "2026-06-26",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/ishikawa-bike-restriction",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/ishikawa-bike-restriction",
   inLanguage: "ja",
 };
 

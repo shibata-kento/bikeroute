@@ -16,9 +16,9 @@ const articleSchema = {
     "原付50cc・125cc・二輪車の通行禁止区間をマップで確認する方法。BikeRouteの使い方と禁止区間の種類を解説。",
   datePublished: "2026-06-08",
   dateModified: "2026-06-08",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/bike-restriction-map",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/bike-restriction-map",
   inLanguage: "ja",
 };
 

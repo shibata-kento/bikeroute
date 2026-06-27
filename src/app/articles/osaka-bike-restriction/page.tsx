@@ -16,9 +16,9 @@ const articleSchema = {
     "大阪府のバイク・原付通行禁止区間を車種別に解説。阪神高速道路は原付一種・二種が全線通行禁止。大阪港トンネルなど二輪車全車種禁止区間も。",
   datePublished: "2026-06-15",
   dateModified: "2026-06-15",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/osaka-bike-restriction",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/osaka-bike-restriction",
   inLanguage: "ja",
 };
 

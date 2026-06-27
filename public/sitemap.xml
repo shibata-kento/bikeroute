@@ -1,451 +1,451 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bikeroute.vercel.app/</loc>
+    <loc>https://www.bikeroutemap.com/</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/segments</loc>
+    <loc>https://www.bikeroutemap.com/segments</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles</loc>
+    <loc>https://www.bikeroutemap.com/articles</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/bike-restriction-map</loc>
+    <loc>https://www.bikeroutemap.com/articles/bike-restriction-map</loc>
     <lastmod>2026-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/osaka-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/osaka-bike-restriction</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/kanagawa-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/kanagawa-bike-restriction</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/fukuoka-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/fukuoka-bike-restriction</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/hyogo-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/hyogo-bike-restriction</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/saitama-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/saitama-bike-restriction</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/chiba-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/chiba-bike-restriction</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/ishikawa-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/ishikawa-bike-restriction</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/shizuoka-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/shizuoka-bike-restriction</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/hiroshima-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/hiroshima-bike-restriction</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/nagoya-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/nagoya-bike-restriction</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/hokkaido-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/hokkaido-bike-restriction</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/tunnel-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/tunnel-bike-restriction</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/moped-expressway-reason</loc>
+    <loc>https://www.bikeroutemap.com/articles/moped-expressway-reason</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/bike-no-entry-signs</loc>
+    <loc>https://www.bikeroutemap.com/articles/bike-no-entry-signs</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/125cc-road-guide</loc>
+    <loc>https://www.bikeroutemap.com/articles/125cc-road-guide</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/shutoko-bike-restriction</loc>
+    <loc>https://www.bikeroutemap.com/articles/shutoko-bike-restriction</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/bike-traffic-rules</loc>
+    <loc>https://www.bikeroutemap.com/articles/bike-traffic-rules</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/articles/new-moped-2025</loc>
+    <loc>https://www.bikeroutemap.com/articles/new-moped-2025</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/guide</loc>
+    <loc>https://www.bikeroutemap.com/guide</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/faq</loc>
+    <loc>https://www.bikeroutemap.com/faq</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures</loc>
+    <loc>https://www.bikeroutemap.com/prefectures</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/hokkaido</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/hokkaido</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/aomori</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/aomori</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/iwate</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/iwate</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/miyagi</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/miyagi</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/akita</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/akita</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/yamagata</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/yamagata</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/fukushima</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/fukushima</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/ibaraki</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/ibaraki</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/tochigi</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/tochigi</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/gunma</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/gunma</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/saitama</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/saitama</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/chiba</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/chiba</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/tokyo</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/tokyo</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/kanagawa</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/kanagawa</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/niigata</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/niigata</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/toyama</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/toyama</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/ishikawa</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/ishikawa</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/fukui</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/fukui</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/yamanashi</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/yamanashi</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/nagano</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/nagano</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/shizuoka</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/shizuoka</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/aichi</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/aichi</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/gifu</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/gifu</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/mie</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/mie</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/shiga</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/shiga</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/kyoto</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/kyoto</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/osaka</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/osaka</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/hyogo</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/hyogo</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/nara</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/nara</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/wakayama</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/wakayama</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/tottori</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/tottori</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/shimane</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/shimane</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/okayama</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/okayama</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/hiroshima</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/hiroshima</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/yamaguchi</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/yamaguchi</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/tokushima</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/tokushima</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/kagawa</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/kagawa</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/ehime</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/ehime</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/kochi</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/kochi</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/fukuoka</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/fukuoka</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/saga</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/saga</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/nagasaki</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/nagasaki</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/kumamoto</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/kumamoto</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/oita</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/oita</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/miyazaki</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/miyazaki</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/kagoshima</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/kagoshima</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/prefectures/okinawa</loc>
+    <loc>https://www.bikeroutemap.com/prefectures/okinawa</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/contact</loc>
+    <loc>https://www.bikeroutemap.com/contact</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/about</loc>
+    <loc>https://www.bikeroutemap.com/about</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://bikeroute.vercel.app/privacy</loc>
+    <loc>https://www.bikeroutemap.com/privacy</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>

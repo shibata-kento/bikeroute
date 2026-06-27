@@ -16,9 +16,9 @@ const articleSchema = {
     "原付一種・原付二種が高速道路・自動車専用道路を通れない理由を、道路交通法・道路法の仕組みから解説。",
   datePublished: "2026-06-04",
   dateModified: "2026-06-04",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/moped-expressway-reason",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/moped-expressway-reason",
   inLanguage: "ja",
 };
 

@@ -1,4 +1,4 @@
-const BASE_URL = "https://bikeroute.vercel.app";
+const BASE_URL = "https://www.bikeroutemap.com";
 
 type Item = { name: string; path?: string };
 

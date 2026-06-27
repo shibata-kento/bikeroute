@@ -16,9 +16,9 @@ const articleSchema = {
     "山手トンネル・川崎トンネル・大阪港トンネル・関門トンネルなど、普通二輪でも通行禁止のトンネルを全国まとめ。",
   datePublished: "2026-06-25",
   dateModified: "2026-06-25",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/tunnel-bike-restriction",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/tunnel-bike-restriction",
   inLanguage: "ja",
 };
 

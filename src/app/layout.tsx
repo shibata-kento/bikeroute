@@ -4,7 +4,7 @@ import "./globals.css";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { AuthButton } from "@/components/AuthButton";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bikeroute.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bikeroutemap.com";
 
 export const metadata: Metadata = {
   title: {
@@ -67,14 +67,14 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "BikeRoute",
-              url: "https://bikeroute.vercel.app",
+              url: "https://www.bikeroutemap.com",
               description:
                 "50cc・125cc・二輪車の通行禁止区間をマップで事前確認できるWebアプリ。原付が通れない道・自動車専用道路を車種別にチェック。",
               inLanguage: "ja",
               publisher: {
                 "@type": "Organization",
                 name: "BikeRoute",
-                url: "https://bikeroute.vercel.app",
+                url: "https://www.bikeroutemap.com",
               },
             }),
           }}

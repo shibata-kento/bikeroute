@@ -16,9 +16,9 @@ const articleSchema = {
     "原付二種（51〜125cc）が通行できる道路・できない道路を徹底解説。高速道路・自動車専用道路は禁止。バイパスは通れる場合も。",
   datePublished: "2026-06-04",
   dateModified: "2026-06-04",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/125cc-road-guide",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/125cc-road-guide",
   inLanguage: "ja",
 };
 

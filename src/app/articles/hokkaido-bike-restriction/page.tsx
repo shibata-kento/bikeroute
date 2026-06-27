@@ -16,9 +16,9 @@ const articleSchema = {
     "北海道ツーリングでのバイク通行禁止区間を車種別に解説。道央自動車道など高速道路は原付一種・二種が通行禁止。",
   datePublished: "2026-06-25",
   dateModified: "2026-06-25",
-  author: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://bikeroute.vercel.app" },
-  url: "https://bikeroute.vercel.app/articles/hokkaido-bike-restriction",
+  author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
+  url: "https://www.bikeroutemap.com/articles/hokkaido-bike-restriction",
   inLanguage: "ja",
 };
 
