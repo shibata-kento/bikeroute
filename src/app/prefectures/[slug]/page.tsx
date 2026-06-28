@@ -245,7 +245,19 @@ export default async function PrefecturePage({ params }: Props) {
           </div>
 
           <ul className="space-y-3">
-            {segments.map((seg, i) => {
+            {(() => {
+              // street_view_url ありを優先し、road_name で重複除去
+              const sorted = [...segments].sort((a, b) =>
+                (b.street_view_url ? 1 : 0) - (a.street_view_url ? 1 : 0)
+              );
+              const seen = new Set<string>();
+              return sorted.filter((seg) => {
+                const key = seg.road_name ?? seg.id;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+              });
+            })().map((seg, i) => {
               const midLat = seg.start_lat != null && seg.end_lat != null
                 ? (seg.start_lat + seg.end_lat) / 2 : null;
               const midLng = seg.start_lng != null && seg.end_lng != null

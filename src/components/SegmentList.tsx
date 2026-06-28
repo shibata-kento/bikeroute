@@ -38,7 +38,20 @@ export function SegmentList() {
   }, [category, userOnly]);
 
   const hasCoords = !loading && segments.some((s) => s.start_lat != null);
-  const listItems = segments.slice(0, LIST_LIMIT);
+
+  // 地図は全件表示、リストは road_name で重複除去（street_view_url ありを優先）
+  const listItems = (() => {
+    const sorted = [...segments].sort((a, b) =>
+      (b.street_view_url ? 1 : 0) - (a.street_view_url ? 1 : 0)
+    );
+    const seen = new Set<string>();
+    return sorted.filter((seg) => {
+      const key = seg.road_name ?? seg.id;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).slice(0, LIST_LIMIT);
+  })();
 
   return (
     <div className="space-y-4">
