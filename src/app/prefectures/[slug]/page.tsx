@@ -28,7 +28,7 @@ async function getSegments(prefectureName: string): Promise<SegmentListItem[]> {
   const { data, error } = await supabase.rpc("list_restricted_segments", {
     p_prefecture: prefectureName,
     p_status: "verified",
-    p_limit: 200,
+    p_limit: 2000,
   });
 
   if (error) return [];
