@@ -13,6 +13,7 @@
     "import:osm": "tsx --env-file=.env.local scripts/import-osm.ts",
     "import:mlit": "tsx --env-file=.env.local scripts/import-mlit.ts",
     "fill:prefecture": "tsx --env-file=.env.local scripts/fill-prefecture.ts",
+    "fill:segments": "tsx --env-file=.env.local scripts/fill-segments.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -31,6 +32,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/ws": "^8.18.1",
     "@types/xml2js": "^0.4.14",
     "adm-zip": "^0.5.17",
     "autoprefixer": "^10",
@@ -42,6 +44,7 @@
     "tsx": "^4.21.0",
     "typescript": "^5",
     "vitest": "^4.1.8",
+    "ws": "^8.21.0",
     "xml2js": "^0.6.2"
   }
 }

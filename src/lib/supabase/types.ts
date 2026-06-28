@@ -167,6 +167,7 @@ export interface SegmentRow {
   verification_count: number;
   created_at: string;
   coordinate_accuracy: "exact" | "municipality";
+  street_view_url: string | null;
   start_lat: number;
   start_lng: number;
   end_lat: number;
