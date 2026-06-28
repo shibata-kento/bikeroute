@@ -245,40 +245,77 @@ export default async function PrefecturePage({ params }: Props) {
           </div>
 
           <ul className="space-y-3">
-            {segments.map((seg) => (
+            {segments.map((seg, i) => {
+              const midLat = seg.start_lat != null && seg.end_lat != null
+                ? (seg.start_lat + seg.end_lat) / 2 : null;
+              const midLng = seg.start_lng != null && seg.end_lng != null
+                ? (seg.start_lng + seg.end_lng) / 2 : null;
+              const mapsUrl = midLat != null && midLng != null
+                ? `https://maps.google.com/?cbll=${midLat},${midLng}&layer=c`
+                : null;
+
+              return (
               <li
                 key={seg.id}
-                className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
+                className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden"
               >
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {(seg.applies_to as string[]).map((vc) => (
-                    <span
-                      key={vc}
-                      className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700"
-                    >
-                      {VEHICLE_LABEL[vc] ?? vc}
-                    </span>
-                  ))}
-                  {seg.source === "user" && (
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
-                      ユーザー投稿
-                    </span>
+                {/* Street View サムネイル — 最初の3枚は eager、以降は lazy */}
+                {seg.street_view_url && mapsUrl && (
+                  <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={seg.street_view_url}
+                      alt={seg.road_name ?? "通行禁止区間"}
+                      className="w-full h-36 object-cover"
+                      loading={i < 3 ? "eager" : "lazy"}
+                      fetchPriority={i < 3 ? "high" : "low"}
+                    />
+                  </a>
+                )}
+
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    {(seg.applies_to as string[]).map((vc) => (
+                      <span
+                        key={vc}
+                        className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700"
+                      >
+                        {VEHICLE_LABEL[vc] ?? vc}
+                      </span>
+                    ))}
+                    {seg.source === "user" && (
+                      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
+                        ユーザー投稿
+                      </span>
+                    )}
+                  </div>
+
+                  {seg.road_name && (
+                    <p className="font-medium text-gray-800 text-sm">{seg.road_name}</p>
                   )}
+                  {seg.description && (
+                    <p className="mt-1 text-sm text-gray-600">{seg.description}</p>
+                  )}
+
+                  <div className="mt-2 flex items-center justify-between">
+                    <p className="text-xs text-gray-400">
+                      確認数: {seg.verification_count} ·{" "}
+                      {new Date(seg.created_at).toLocaleDateString("ja-JP")}
+                    </p>
+                    {mapsUrl && (
+                      <a
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-orange-500 hover:underline"
+                      >
+                        地図で見る →
+                      </a>
+                    )}
+                  </div>
                 </div>
-
-                {seg.road_name && (
-                  <p className="font-medium text-gray-800 text-sm">{seg.road_name}</p>
-                )}
-                {seg.description && (
-                  <p className="mt-1 text-sm text-gray-600">{seg.description}</p>
-                )}
-
-                <p className="mt-2 text-xs text-gray-400">
-                  確認数: {seg.verification_count} ·{" "}
-                  {new Date(seg.created_at).toLocaleDateString("ja-JP")}
-                </p>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </>
       )}
