@@ -100,76 +100,82 @@ async function uploadImage(segmentId: string, img: Uint8Array): Promise<string |
   return publicUrl;
 }
 
+type Seg = {
+  id: string;
+  road_name: string | null;
+  street_view_url: string | null;
+  start_lat: number;
+  start_lng: number;
+  end_lat: number;
+  end_lng: number;
+};
+
 async function main() {
-  // CLI 引数: --offset N --limit N
+  // CLI 引数: --offset N
   const argv = process.argv.slice(2);
   const getArg = (flag: string, def: number) => {
     const i = argv.indexOf(flag);
     return i !== -1 ? parseInt(argv[i + 1], 10) : def;
   };
-  const offset = getArg("--offset", 0);
-  const limit  = getArg("--limit", 1000);
+  const startOffset = getArg("--offset", 0);
+  const PAGE = 1000;
 
-  console.log(`Fetching verified segments (offset=${offset}, limit=${limit})...`);
+  let totalDone = 0;
+  let offset = startOffset;
 
-  const { data: segments, error } = await supabase.rpc("list_restricted_segments", {
-    p_status: "verified",
-    p_limit: limit,
-    p_offset: offset,
-  });
+  while (true) {
+    console.log(`\nFetching verified segments (offset=${offset}, limit=${PAGE})...`);
 
-  if (error) throw error;
+    const { data: segments, error } = await supabase.rpc("list_restricted_segments", {
+      p_status: "verified",
+      p_limit: PAGE,
+      p_offset: offset,
+    });
 
-  type Seg = {
-    id: string;
-    road_name: string | null;
-    street_view_url: string | null;
-    start_lat: number;
-    start_lng: number;
-    end_lat: number;
-    end_lng: number;
-  };
+    if (error) throw error;
 
-  const toUpdate = (segments as Seg[]).filter(
-    (s) => !s.road_name || !s.street_view_url
-  );
+    const batch = segments as Seg[];
+    if (batch.length === 0) break;
 
-  console.log(`${toUpdate.length} / ${(segments as Seg[]).length} segments need update\n`);
+    const toUpdate = batch.filter((s) => !s.road_name || !s.street_view_url);
+    console.log(`${toUpdate.length} / ${batch.length} segments need update`);
 
-  let done = 0;
-  for (const seg of toUpdate) {
-    const midLat = (seg.start_lat + seg.end_lat) / 2;
-    const midLng = (seg.start_lng + seg.end_lng) / 2;
-    const updates: Record<string, string> = {};
+    for (const seg of toUpdate) {
+      const midLat = (seg.start_lat + seg.end_lat) / 2;
+      const midLng = (seg.start_lng + seg.end_lng) / 2;
+      const updates: Record<string, string> = {};
 
-    // road_name 補完
-    if (!seg.road_name) {
-      const name = await getRoadName(midLat, midLng);
-      if (name) updates.road_name = name;
-      await sleep(200);
-    }
-
-    // Street View 画像
-    if (!seg.street_view_url) {
-      const img = await fetchStreetViewImage(midLat, midLng);
-      if (img) {
-        const url = await uploadImage(seg.id, img);
-        if (url) updates.street_view_url = url;
+      // road_name 補完
+      if (!seg.road_name) {
+        const name = await getRoadName(midLat, midLng);
+        if (name) updates.road_name = name;
+        await sleep(200);
       }
-      await sleep(200);
+
+      // Street View 画像
+      if (!seg.street_view_url) {
+        const img = await fetchStreetViewImage(midLat, midLng);
+        if (img) {
+          const url = await uploadImage(seg.id, img);
+          if (url) updates.street_view_url = url;
+        }
+        await sleep(200);
+      }
+
+      if (Object.keys(updates).length > 0) {
+        await supabase.from("restricted_segments").update(updates).eq("id", seg.id);
+        totalDone++;
+        process.stdout.write(
+          `\r  [offset=${offset}] 更新済み: ${totalDone} 件 | 最新: ${updates.road_name ?? seg.road_name ?? "（名称なし）"}${updates.street_view_url ? " 📷" : ""}`
+        );
+      }
     }
 
-    if (Object.keys(updates).length > 0) {
-      await supabase.from("restricted_segments").update(updates).eq("id", seg.id);
-      done++;
-      console.log(
-        `[${done}/${toUpdate.length}] ${updates.road_name ?? seg.road_name ?? "（名称なし）"}` +
-        (updates.street_view_url ? " + 📷" : "")
-      );
-    }
+    if (batch.length < PAGE) break;
+    offset += PAGE;
   }
 
-  console.log(`\nDone: ${done} segments updated`);
+  console.log(`\n\nDone: ${totalDone} segments updated`);
 }
 
 main().catch((err) => {
