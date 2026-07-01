@@ -17,7 +17,8 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
 
 const DRY_RUN = process.argv.includes("--dry-run");
-const GRID = 0.05; // ~5km グリッド（デデュープ精度）
+const FORCE  = process.argv.includes("--force"); // 既存値も上書き
+const GRID = 0.02; // ~2km グリッド（都道府県境での誤判定を減らす）
 const CONCURRENCY = 5; // 同時 API 呼び出し数
 const BATCH_SIZE = 500; // DB 更新バッチサイズ
 
@@ -108,7 +109,7 @@ async function getSegmentsWithCoords(): Promise<SegRow[]> {
       if (res.status === 416) break;
       if (!res.ok) throw new Error(`RPC error (${status} ${from}-${to}): ${await res.text()}`);
       const data = (await res.json()) as SegRow[];
-      const nullPref = data.filter((r) => r.prefecture === null && r.start_lat != null && r.start_lng != null);
+      const nullPref = data.filter((r) => (FORCE || r.prefecture === null) && r.start_lat != null && r.start_lng != null);
       results.push(...nullPref);
       process.stdout.write(`\r  取得中 (${status}): ${results.length} 件...`);
       if (data.length < PAGE) break; // 最終ページ
@@ -141,7 +142,10 @@ async function main() {
   for (const seg of segments) {
     const key = gridKey(seg.start_lat!, seg.start_lng!);
     if (!gridMap.has(key)) {
-      gridMap.set(key, { lat: seg.start_lat!, lon: seg.start_lng!, ids: [] });
+      // 最初のセグメント座標ではなくグリッド中心を使う（都道府県境での誤判定防止）
+      const gLat = Math.round(seg.start_lat! / GRID) * GRID;
+      const gLon = Math.round(seg.start_lng! / GRID) * GRID;
+      gridMap.set(key, { lat: gLat, lon: gLon, ids: [] });
     }
     gridMap.get(key)!.ids.push(seg.id);
   }
