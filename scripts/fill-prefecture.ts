@@ -84,30 +84,25 @@ async function getSegmentsWithCoords(): Promise<SegRow[]> {
   for (const status of ["verified", "pending"]) {
     let offset = 0;
     while (true) {
-      const from = offset;
-      const to = offset + PAGE - 1;
       const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/list_restricted_segments`, {
         method: "POST",
         headers: {
           apikey: SERVICE_ROLE_KEY,
           Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
           "Content-Type": "application/json",
-          Range: `${from}-${to}`,
-          "Range-Unit": "items",
         },
         body: JSON.stringify({
           p_vehicle: null,
           p_status: status,
-          p_limit: 200000,
+          p_limit: PAGE,
+          p_offset: offset,
           p_sources: null,
           p_prefecture: null,
           p_applies_to_exact: null,
           p_restriction_tags: null,
         }),
       });
-      // 416 = Range 超過（これ以上データなし）
-      if (res.status === 416) break;
-      if (!res.ok) throw new Error(`RPC error (${status} ${from}-${to}): ${await res.text()}`);
+      if (!res.ok) throw new Error(`RPC error (${status} offset=${offset}): ${await res.text()}`);
       const data = (await res.json()) as SegRow[];
       const nullPref = data.filter((r) => (FORCE || r.prefecture === null) && r.start_lat != null && r.start_lng != null);
       results.push(...nullPref);
