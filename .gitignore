@@ -18,3 +18,5 @@
 *.pem
 .vercel
 tsconfig.tsbuildinfo
+
+.xlsx
