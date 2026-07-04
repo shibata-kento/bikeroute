@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { AuthButton } from "@/components/AuthButton";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bikeroutemap.com";
@@ -47,16 +46,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
   return (
     <html lang="ja">
       <head>
@@ -111,7 +105,7 @@ export default async function RootLayout({
               >
                 FAQ
               </Link>
-              <AuthButton userEmail={user?.email} />
+              <AuthButton />
             </div>
           </div>
         </nav>

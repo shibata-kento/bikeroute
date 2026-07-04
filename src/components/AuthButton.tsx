@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-interface Props {
-  userEmail?: string | null;
-}
-
-export function AuthButton({ userEmail }: Props) {
+export function AuthButton() {
+  const [userEmail, setUserEmail] = useState<string | null | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const supabase = createClient();
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setUserEmail(data.user?.email ?? null);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setUserEmail(session?.user?.email ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   async function handleLogin() {
     setLoading(true);
@@ -26,6 +33,8 @@ export function AuthButton({ userEmail }: Props) {
     await supabase.auth.signOut();
     location.reload();
   }
+
+  if (userEmail === undefined) return null;
 
   if (userEmail) {
     return (
