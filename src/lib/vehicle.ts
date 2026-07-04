@@ -39,8 +39,10 @@ export function buildGoogleMapsUrl(params: {
     travelmode: "driving",
   });
   let url = `https://www.google.com/maps/dir/?${qs.toString()}`;
-  if (vehicle.avoid.length > 0) {
-    url += `&avoid=${vehicle.avoid.join("|")}`;
+  // Pass each avoid value as a separate parameter — Google Maps only processes
+  // the first value when using pipe-joined avoid=highways|tolls.
+  for (const a of vehicle.avoid) {
+    url += `&avoid=${a}`;
   }
   return url;
 }
