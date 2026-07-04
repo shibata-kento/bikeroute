@@ -137,6 +137,55 @@ export default async function PrefectureBikeRestrictionPage({ params }: Props) {
           </p>
         </section>
 
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">道路標識の見分け方</h2>
+          <p className="mb-3">
+            原付ライダーが特に注意すべき標識は「<strong>自動車専用</strong>」（青地に白文字で「自動車専用」と書かれた標識）です。
+            この標識がある道路は、原付一種・原付二種を含むすべての原動機付自転車が通行禁止です。
+            高速道路の本線入口や、バイパスの一部区間に設置されています。
+          </p>
+          <p className="mb-3">
+            これとは別に「<strong>二輪の自動車以外の自動車通行止め</strong>」という標識もあります。
+            こちらはトラックなどの大型車を規制するもので、バイクは通行可能です。
+            似た見た目でも意味が異なるため、標識の文字を必ず確認してください。
+          </p>
+          <div className="rounded-lg bg-blue-50 border border-blue-200 px-4 py-3 text-sm text-blue-800">
+            <strong>ポイント：</strong>
+            「自動車専用」標識のある道路への原付の進入は、道路交通法違反（違反点数2点・反則金あり）となります。
+            知らずに進入した場合でも罰則が適用されます。出発前のルート確認が重要です。
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">よくある質問</h2>
+          <div className="space-y-4">
+            <div className="rounded-lg border border-gray-200 bg-white p-4">
+              <p className="font-bold text-gray-900 text-sm mb-1">Q. 原付二種（125cc以下）は高速道路に乗れますか？</p>
+              <p className="text-sm text-gray-700">
+                乗れません。原付二種（51〜125cc）は法律上「原動機付自転車」に分類されるため、
+                高速自動車国道および自動車専用道路はすべて通行禁止です。
+                排気量が50ccを超えていても、125cc以下であれば同様の規制が適用されます。
+              </p>
+            </div>
+            <div className="rounded-lg border border-gray-200 bg-white p-4">
+              <p className="font-bold text-gray-900 text-sm mb-1">Q. Google マップのナビが高速道路を案内してきた場合はどうすればいいですか？</p>
+              <p className="text-sm text-gray-700">
+                Google マップは車種の排気量を考慮しないため、原付でも高速道路を含むルートを案内することがあります。
+                案内に従わず、一般道のみのルートを自分で設定し直すか、
+                BikeRoute を使って車種に合った安全なルートを事前に確認してください。
+              </p>
+            </div>
+            <div className="rounded-lg border border-gray-200 bg-white p-4">
+              <p className="font-bold text-gray-900 text-sm mb-1">Q. 「自動車専用道路」と「高速自動車国道」は何が違いますか？</p>
+              <p className="text-sm text-gray-700">
+                高速自動車国道（東名・中央道・東北道など）は国が指定した高速道路で、原付・軽車両は全線通行禁止です。
+                自動車専用道路はそれ以外の道路でも「自動車専用」の標識がある区間を指し、バイパスや都市高速の一部が該当します。
+                どちらも原付一種・二種は通行できません。
+              </p>
+            </div>
+          </div>
+        </section>
+
         <div className="rounded-lg bg-orange-50 border border-orange-200 p-5">
           <p className="font-bold text-gray-900 mb-1">{art.ctaTitle}</p>
           <p className="text-sm text-gray-700 mb-3">{art.ctaBody}</p>
