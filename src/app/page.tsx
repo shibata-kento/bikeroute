@@ -5,7 +5,11 @@ import Link from "next/link";
 import { VehicleSelector } from "@/components/VehicleSelector";
 import { RouteResult } from "@/components/RouteResult";
 import type { VehicleClass } from "@/lib/vehicle";
+import { buildGoogleMapsUrl } from "@/lib/vehicle";
 import type { RouteCheckResult } from "@/app/api/route/route";
+import { parseMapsUrl, isShortMapsUrl } from "@/lib/parse-maps-url";
+
+type InputMode = "address" | "url";
 
 type State =
   | { status: "idle" }
@@ -13,11 +17,24 @@ type State =
   | { status: "done"; result: RouteCheckResult }
   | { status: "error"; message: string };
 
+type UrlParseState =
+  | { status: "idle" }
+  | { status: "parsing" }
+  | { status: "parsed"; origin: string; destination: string }
+  | { status: "error"; message: string };
+
 export default function Home() {
+  const [mode, setMode] = useState<InputMode>("address");
+
+  // address mode
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [vehicle, setVehicle] = useState<VehicleClass>("genki1");
   const [state, setState] = useState<State>({ status: "idle" });
+
+  // url mode
+  const [mapsUrlInput, setMapsUrlInput] = useState("");
+  const [urlParseState, setUrlParseState] = useState<UrlParseState>({ status: "idle" });
 
   const canSubmit =
     origin.trim() !== "" && destination.trim() !== "" && state.status !== "loading";
@@ -46,6 +63,48 @@ export default function Home() {
     }
   }
 
+  async function handleUrlChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const val = e.target.value.trim();
+    setMapsUrlInput(e.target.value);
+    setUrlParseState({ status: "idle" });
+    if (!val) return;
+
+    // Try client-side parse first
+    if (!isShortMapsUrl(val)) {
+      const parsed = parseMapsUrl(val);
+      if (parsed) {
+        setUrlParseState({ status: "parsed", ...parsed });
+        return;
+      }
+    }
+
+    // Fall back to server-side redirect resolution (short URLs)
+    setUrlParseState({ status: "parsing" });
+    try {
+      const res = await fetch(`/api/resolve-maps-url?url=${encodeURIComponent(val)}`);
+      const data = await res.json() as { resolvedUrl?: string; error?: string };
+      if (!res.ok || !data.resolvedUrl) throw new Error(data.error ?? "URL解決失敗");
+      const parsed = parseMapsUrl(data.resolvedUrl);
+      if (parsed) {
+        setUrlParseState({ status: "parsed", ...parsed });
+      } else {
+        setUrlParseState({ status: "error", message: "ルート情報を読み取れませんでした。出発地・目的地が設定されたURLを貼り付けてください。" });
+      }
+    } catch {
+      setUrlParseState({ status: "error", message: "URL解決に失敗しました。URLを確認してください。" });
+    }
+  }
+
+  function openSafeRoute() {
+    if (urlParseState.status !== "parsed") return;
+    const url = buildGoogleMapsUrl({
+      origin: urlParseState.origin,
+      destination: urlParseState.destination,
+      vehicleClass: vehicle,
+    });
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
   function openMaps() {
     if (state.status !== "done") return;
     window.open(state.result.mapsUrl, "_blank", "noopener,noreferrer");
@@ -53,6 +112,8 @@ export default function Home() {
 
   function reset() {
     setState({ status: "idle" });
+    setMapsUrlInput("");
+    setUrlParseState({ status: "idle" });
   }
 
   return (
@@ -82,7 +143,90 @@ export default function Home() {
         </p>
       </section>
 
-      {state.status !== "done" ? (
+      {/* 入力モード切替タブ */}
+      <div className="flex rounded-xl border border-gray-200 bg-gray-50 p-1 gap-1 mb-6">
+        {(["address", "url"] as InputMode[]).map((m) => (
+          <button
+            key={m}
+            type="button"
+            onClick={() => { setMode(m); reset(); }}
+            className={[
+              "flex-1 rounded-lg py-2 text-sm font-semibold transition-colors",
+              mode === m
+                ? "bg-white text-orange-600 shadow-sm"
+                : "text-gray-500 hover:text-gray-700",
+            ].join(" ")}
+          >
+            {m === "address" ? "住所・地名で入力" : "Google MapsのURLを貼り付け"}
+          </button>
+        ))}
+      </div>
+
+      {/* URL入力モード */}
+      {mode === "url" && (
+        <div className="space-y-5">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Google MapsのルートURL
+            </label>
+            <textarea
+              value={mapsUrlInput}
+              onChange={handleUrlChange}
+              rows={3}
+              placeholder={"https://maps.app.goo.gl/...\nまたは\nhttps://www.google.com/maps/dir/..."}
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm shadow-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 resize-none"
+            />
+            <p className="mt-1 text-xs text-gray-400">
+              Google マップでルートを作成 → 共有ボタン → リンクをコピー → ここに貼り付け
+            </p>
+          </div>
+
+          {urlParseState.status === "parsing" && (
+            <p className="text-sm text-gray-500 flex items-center gap-2">
+              <svg className="h-4 w-4 animate-spin text-orange-500" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+              </svg>
+              URLを解析中…
+            </p>
+          )}
+
+          {urlParseState.status === "parsed" && (
+            <div className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm">
+              <p className="text-xs font-semibold text-blue-600 mb-1">ルートを読み取りました</p>
+              <p className="text-gray-800">
+                <span className="font-medium">{urlParseState.origin}</span>
+                <span className="mx-2 text-gray-400">→</span>
+                <span className="font-medium">{urlParseState.destination}</span>
+              </p>
+            </div>
+          )}
+
+          {urlParseState.status === "error" && (
+            <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+              {urlParseState.message}
+            </p>
+          )}
+
+          <VehicleSelector value={vehicle} onChange={setVehicle} />
+
+          <button
+            type="button"
+            onClick={openSafeRoute}
+            disabled={urlParseState.status !== "parsed"}
+            className="w-full rounded-xl bg-orange-500 py-4 text-base font-bold text-white shadow-md transition-colors hover:bg-orange-600 disabled:cursor-not-allowed disabled:bg-gray-300"
+          >
+            車種に合わせたルートをGoogleマップで開く →
+          </button>
+
+          <p className="text-xs text-gray-400 text-center">
+            原付一種・二種は高速道路・自動車専用道路を自動で回避します
+          </p>
+        </div>
+      )}
+
+      {/* 住所・地名入力モード */}
+      {mode === "address" && state.status !== "done" && (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <div>
@@ -146,7 +290,9 @@ export default function Home() {
             )}
           </button>
         </form>
-      ) : (
+      )}
+
+      {mode === "address" && state.status === "done" && (
         <div className="space-y-4">
           <div className="rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-600">
             <span className="font-semibold">{origin}</span>
