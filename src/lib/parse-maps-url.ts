@@ -16,8 +16,8 @@ export function parseMapsUrl(url: string): ParsedMapsRoute | null {
     if (dirMatch) {
       const origin = decodeURIComponent(dirMatch[1]);
       const destination = decodeURIComponent(dirMatch[2]);
-      // Skip coordinate-only segments like "35.6894,139.6917"
-      if (origin && destination && !/^[\d.,]+$/.test(origin)) {
+      // Reject only viewport markers like "@35.73,139.73,12z" — coordinate endpoints are valid
+      if (origin && destination && !origin.startsWith("@") && !destination.startsWith("@")) {
         return { origin, destination };
       }
     }
