@@ -30,13 +30,17 @@ export function buildGoogleMapsUrl(params: {
   vehicleClass: VehicleClass;
 }): string {
   const vehicle = VEHICLES.find((v) => v.id === params.vehicleClass)!;
-  const url = new URL("https://www.google.com/maps/dir/");
-  url.searchParams.set("api", "1");
-  url.searchParams.set("origin", params.origin);
-  url.searchParams.set("destination", params.destination);
-  url.searchParams.set("travelmode", "driving");
+  // Use URLSearchParams for origin/destination encoding, but append avoid with
+  // literal "|" — Google Maps URL API does not accept percent-encoded %7C.
+  const qs = new URLSearchParams({
+    api: "1",
+    origin: params.origin,
+    destination: params.destination,
+    travelmode: "driving",
+  });
+  let url = `https://www.google.com/maps/dir/?${qs.toString()}`;
   if (vehicle.avoid.length > 0) {
-    url.searchParams.set("avoid", vehicle.avoid.join("|"));
+    url += `&avoid=${vehicle.avoid.join("|")}`;
   }
-  return url.toString();
+  return url;
 }
