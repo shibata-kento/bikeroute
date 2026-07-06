@@ -118,6 +118,7 @@ export default function RootLayout({
               <Link href="/guide" className="hover:text-gray-600">使い方</Link>
               <Link href="/faq" className="hover:text-gray-600">FAQ</Link>
               <Link href="/about" className="hover:text-gray-600">運営者情報</Link>
+              <Link href="/contact" className="hover:text-gray-600">お問い合わせ</Link>
               <Link href="/privacy" className="hover:text-gray-600">プライバシーポリシー</Link>
               <a
                 href="https://github.com/shibata-kento/bikeroute"
