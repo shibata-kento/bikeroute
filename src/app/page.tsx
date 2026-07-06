@@ -153,7 +153,7 @@ export default function Home() {
             className={[
               "flex-1 rounded-lg py-2 text-sm font-semibold transition-colors",
               mode === m
-                ? "bg-white text-orange-600 shadow-sm"
+                ? "bg-white text-orange-700 shadow-sm"
                 : "text-gray-500 hover:text-gray-700",
             ].join(" ")}
           >
@@ -314,7 +314,7 @@ export default function Home() {
       <div className="mt-6 text-center">
         <Link
           href="/segments"
-          className="text-sm text-orange-600 underline hover:text-orange-800"
+          className="text-sm text-orange-700 underline hover:text-orange-900"
         >
           通行禁止区間マップを見る →
         </Link>
@@ -391,11 +391,11 @@ export default function Home() {
           ].map(({ label, desc, color }) => (
             <div key={label} className={`rounded-lg border px-4 py-3 ${color}`}>
               <p className="text-xs font-bold">{label}</p>
-              <p className="text-xs mt-0.5 opacity-80">{desc}</p>
+              <p className="text-xs mt-0.5">{desc}</p>
             </div>
           ))}
         </div>
-        <p className="mt-3 text-xs text-gray-400">
+        <p className="mt-3 text-xs text-gray-500">
           データはJMPSA・国土交通省・OpenStreetMap・ユーザー投稿をもとに構成されています。
         </p>
       </section>
@@ -464,12 +464,12 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <Link href="/prefectures" className="mt-2 inline-block text-xs text-gray-400 hover:text-orange-600 hover:underline">
+        <Link href="/prefectures" className="mt-2 inline-block text-xs text-gray-500 hover:text-orange-600 hover:underline">
           全47都道府県を見る →
         </Link>
       </div>
 
-      <footer className="mt-8 text-center text-xs text-gray-400 space-y-1">
+      <footer className="mt-8 text-center text-xs text-gray-500 space-y-1">
         <p>表示される情報は参考情報です。走行時は必ず道路標識を確認してください。</p>
         <div className="flex justify-center gap-4">
           <Link href="/contact" className="underline hover:text-gray-600">お問い合わせ</Link>

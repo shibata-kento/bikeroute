@@ -73,7 +73,6 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7521900221411063"
@@ -111,7 +110,7 @@ export default function RootLayout({
         </nav>
         {children}
         <footer className="mt-12 border-t border-gray-200 bg-white px-4 py-6">
-          <div className="mx-auto max-w-2xl flex flex-col gap-1 text-xs text-gray-400 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mx-auto max-w-2xl flex flex-col gap-1 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
             <span>© 2026 BikeRoute — MIT License / Data: ODbL 1.0</span>
             <div className="flex gap-4">
               <Link href="/articles" className="hover:text-gray-600">解説記事</Link>

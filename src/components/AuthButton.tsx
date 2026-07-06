@@ -34,7 +34,8 @@ export function AuthButton() {
     location.reload();
   }
 
-  if (userEmail === undefined) return null;
+  // CLS防止: 認証確認中はボタンと同サイズの透明プレースホルダーを返す
+  if (userEmail === undefined) return <div aria-hidden className="h-7 w-24" />;
 
   if (userEmail) {
     return (
@@ -55,7 +56,7 @@ export function AuthButton() {
     <button
       onClick={handleLogin}
       disabled={loading}
-      className="rounded-lg bg-orange-500 px-4 py-1.5 text-xs font-bold text-white hover:bg-orange-600 disabled:opacity-50"
+      className="rounded-lg bg-orange-700 px-4 py-1.5 text-xs font-bold text-white hover:bg-orange-800 disabled:opacity-50"
     >
       {loading ? "…" : "Googleでログイン"}
     </button>

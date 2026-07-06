@@ -1,5 +1,6 @@
 "use client";
 
+import "leaflet/dist/leaflet.css";
 import { useEffect, useRef } from "react";
 import type { Map as LeafletMap, Polyline } from "leaflet";
 import type { SegmentListItem } from "@/lib/supabase/types";

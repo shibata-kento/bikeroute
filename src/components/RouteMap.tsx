@@ -1,5 +1,6 @@
 "use client";
 
+import "leaflet/dist/leaflet.css";
 import { useEffect, useRef } from "react";
 import type { Map as LeafletMap } from "leaflet";
 import type { RouteCheckResult } from "@/app/api/route/route";
