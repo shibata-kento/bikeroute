@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import { AuthButton } from "@/components/AuthButton";
 
@@ -25,16 +26,16 @@ export const metadata: Metadata = {
   ],
   metadataBase: new URL(BASE_URL),
   openGraph: {
+    // url は各ページで個別指定する（ここで固定するとサブページが全てトップの og:url を継承するため）
     type: "website",
     locale: "ja_JP",
-    url: BASE_URL,
     siteName: "BikeRoute",
     title: "BikeRoute — 50cc・バイク 通行禁止区間マップ",
     description:
       "50cc・125cc・二輪車の通行禁止区間をマップで事前確認。原付が通れない道を出発前にチェック。",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "BikeRoute — 50cc・バイク 通行禁止区間マップ",
     description: "50cc・125cc・二輪車の通行禁止区間マップ。原付が通れない道を出発前に確認。",
   },
@@ -70,13 +71,16 @@ export default function RootLayout({
             }),
           }}
         />
-        <script
+      </head>
+      <body className="min-h-screen bg-gray-50 text-gray-900 antialiased">
+        {/* AdSense ローダーは afterInteractive で遅延読み込みし、初期描画をブロックしない */}
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7521900221411063"
           crossOrigin="anonymous"
         />
-      </head>
-      <body className="min-h-screen bg-gray-50 text-gray-900 antialiased">
         <nav className="border-b border-gray-200 bg-white px-4 py-3">
           <div className="mx-auto flex max-w-2xl items-center justify-between">
             <Link href="/" className="text-sm font-black text-gray-900 hover:text-orange-500">

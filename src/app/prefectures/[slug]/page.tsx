@@ -5,6 +5,7 @@ import { createStaticSupabaseClient } from "@/lib/supabase/server";
 import { PREFECTURES, slugToName } from "@/lib/prefectures";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PrefectureSegmentMap } from "@/components/PrefectureSegmentMap";
+import { streetViewMapsUrl, dedupeByRoadName } from "@/lib/segment-utils";
 import type { SegmentListItem } from "@/lib/supabase/types";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -16,10 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const name = slugToName(slug);
   if (!name) return {};
+  const title = `${name}のバイク通行禁止区間`;
+  const description = `${name}のバイク・原付の通行禁止区間一覧。自動車専用道路・二輪通行禁止区間など、車種ごとに通れない道を確認できます。`;
   return {
-    title: `${name}のバイク通行禁止区間`,
-    description: `${name}のバイク・原付の通行禁止区間一覧。自動車専用道路・二輪通行禁止区間など、車種ごとに通れない道を確認できます。`,
+    title,
+    description,
     alternates: { canonical: `/prefectures/${slug}` },
+    openGraph: { url: `/prefectures/${slug}`, title, description },
   };
 }
 
@@ -249,26 +253,8 @@ export default async function PrefecturePage({ params }: Props) {
           </div>
 
           <ul className="space-y-3">
-            {(() => {
-              // street_view_url ありを優先し、road_name で重複除去
-              const sorted = [...segments].sort((a, b) =>
-                (b.street_view_url ? 1 : 0) - (a.street_view_url ? 1 : 0)
-              );
-              const seen = new Set<string>();
-              return sorted.filter((seg) => {
-                const key = seg.road_name ?? seg.id;
-                if (seen.has(key)) return false;
-                seen.add(key);
-                return true;
-              });
-            })().map((seg, i) => {
-              const midLat = seg.start_lat != null && seg.end_lat != null
-                ? (seg.start_lat + seg.end_lat) / 2 : null;
-              const midLng = seg.start_lng != null && seg.end_lng != null
-                ? (seg.start_lng + seg.end_lng) / 2 : null;
-              const mapsUrl = midLat != null && midLng != null
-                ? `https://maps.google.com/?cbll=${midLat},${midLng}&layer=c`
-                : null;
+            {dedupeByRoadName(segments).map((seg, i) => {
+              const mapsUrl = streetViewMapsUrl(seg);
 
               return (
               <li

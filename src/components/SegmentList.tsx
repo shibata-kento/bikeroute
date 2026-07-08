@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import type { SegmentListItem } from "@/lib/supabase/types";
 import { CATEGORY_CONFIG, CATEGORY_LIST, type RestrictionCategory } from "@/lib/restriction-categories";
+import { streetViewMapsUrl, dedupeByRoadName } from "@/lib/segment-utils";
 
 const SegmentMap = dynamic(
   () => import("@/components/SegmentMap").then((m) => m.SegmentMap),
@@ -40,18 +41,7 @@ export function SegmentList() {
   const hasCoords = !loading && segments.some((s) => s.start_lat != null);
 
   // 地図は全件表示、リストは road_name で重複除去（street_view_url ありを優先）
-  const listItems = (() => {
-    const sorted = [...segments].sort((a, b) =>
-      (b.street_view_url ? 1 : 0) - (a.street_view_url ? 1 : 0)
-    );
-    const seen = new Set<string>();
-    return sorted.filter((seg) => {
-      const key = seg.road_name ?? seg.id;
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    }).slice(0, LIST_LIMIT);
-  })();
+  const listItems = dedupeByRoadName(segments).slice(0, LIST_LIMIT);
 
   return (
     <div className="space-y-4">
@@ -114,13 +104,7 @@ export function SegmentList() {
 
       <ul className="space-y-3">
         {listItems.map((seg) => {
-          const midLat = seg.start_lat != null && seg.end_lat != null
-            ? (seg.start_lat + seg.end_lat) / 2 : null;
-          const midLng = seg.start_lng != null && seg.end_lng != null
-            ? (seg.start_lng + seg.end_lng) / 2 : null;
-          const mapsUrl = midLat != null && midLng != null
-            ? `https://maps.google.com/?cbll=${midLat},${midLng}&layer=c`
-            : null;
+          const mapsUrl = streetViewMapsUrl(seg);
 
           return (
             <li

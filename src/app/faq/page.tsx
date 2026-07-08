@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { FaqJsonLd } from "@/components/FaqJsonLd";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/faq" },
@@ -9,14 +10,18 @@ export const metadata: Metadata = {
     "BikeRouteに関するよくある質問をまとめました。原付・125cc・二輪の車種区分、通行禁止区間の確認方法、データの信頼性などについて解説します。",
 };
 
-const faqs: { q: string; a: React.ReactNode }[] = [
+// a: 画面表示用（リッチな JSX）、text: FAQPage 構造化データ用のプレーンテキスト。
+// 単一配列から表示とスキーマの両方を生成し、二重管理を防ぐ。
+const faqs: { q: string; a: React.ReactNode; text: string }[] = [
   {
     q: "BikeRouteとは何ですか？",
     a: "バイクの車種（原付一種・原付二種・普通二輪以上）ごとに、通行できない道路が含まれていないかを事前に確認できるWebサービスです。出発地と目的地を入力すると、その車種では通れない区間がルート上にないかをチェックできます。",
+    text: "バイクの車種（原付一種・原付二種・普通二輪以上）ごとに、通行できない道路が含まれていないかを事前に確認できるWebサービスです。出発地と目的地を入力すると、その車種では通れない区間がルート上にないかをチェックできます。",
   },
   {
     q: "リアルタイムナビゲーションに使えますか？",
     a: "いいえ。BikeRouteは走行前の事前確認ツールです。実際の走行中のナビには、Google マップなどの専用アプリをご利用ください。",
+    text: "いいえ。BikeRouteは走行前の事前確認ツールです。実際の走行中のナビには、Google マップなどの専用アプリをご利用ください。",
   },
   {
     q: "対応している車種を教えてください。",
@@ -39,6 +44,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
         </ul>
       </div>
     ),
+    text: "原付一種（50cc以下・新基準原付）、原付二種（51〜125cc）、普通二輪以上（126cc〜）の3区分に対応しています。",
   },
   {
     q: "原付一種と原付二種の違いは何ですか？",
@@ -55,6 +61,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
         </p>
       </div>
     ),
+    text: "原付一種は排気量50cc以下で法定速度30km/h・二段階右折が必要です。自動車専用道路・高速道路は通行できません。原付二種は51〜125ccで法定速度60km/h・二段階右折不要です。高速道路は通行できませんが、自動車専用指定のないバイパスは通行可能です。",
   },
   {
     q: "通行禁止区間のデータはどこから取得していますか？",
@@ -76,10 +83,12 @@ const faqs: { q: string; a: React.ReactNode }[] = [
         </p>
       </div>
     ),
+    text: "主にOpenStreetMap（OSM）のデータをもとに、二輪車・原付の通行禁止情報を収録しています（ODbL 1.0ライセンス）。またユーザーが写真付きで投稿した情報も収録しています。",
   },
   {
     q: "データの信頼性はどの程度ですか？",
     a: "OpenStreetMapのデータは世界中のボランティアが更新しており、一般的に精度は高いですが、最新の規制変更が反映されていない場合があります。実際の走行前には現地の標識を必ず確認してください。",
+    text: "OpenStreetMapのデータは世界中のボランティアが更新しており、一般的に精度は高いですが、最新の規制変更が反映されていない場合があります。実際の走行前には現地の標識を必ず確認してください。",
   },
   {
     q: "通行禁止区間を投稿・報告できますか？",
@@ -95,22 +104,27 @@ const faqs: { q: string; a: React.ReactNode }[] = [
         をご覧ください。
       </span>
     ),
+    text: "はい。Googleアカウントでログインすると、通行禁止区間を投稿できます。投稿には写真（標識・現地の様子）の添付を推奨しています。投稿内容は他のユーザーによる確認投票を経て公開されます。",
   },
   {
     q: "「警告」が出たときはどうすればいいですか？",
     a: "ルート上に通行禁止区間が含まれている可能性があります。Google マップのリンクを開き、手動で迂回路を設定するか、ルート上の該当区間を避けるよう出発地・目的地・経由地を調整してください。",
+    text: "ルート上に通行禁止区間が含まれている可能性があります。Google マップのリンクを開き、手動で迂回路を設定するか、ルート上の該当区間を避けるよう出発地・目的地・経由地を調整してください。",
   },
   {
     q: "ログインは必須ですか？",
     a: "ルート確認・通行禁止区間の閲覧はログイン不要で利用できます。ログインが必要なのは、区間の投稿と確認投票のみです。",
+    text: "ルート確認・通行禁止区間の閲覧はログイン不要で利用できます。ログインが必要なのは、区間の投稿と確認投票のみです。",
   },
   {
     q: "スマートフォンで使えますか？",
     a: "はい。BikeRouteはモバイル対応のWebアプリです。iPhoneやAndroidのブラウザからそのままご利用いただけます。アプリのインストールは不要です。",
+    text: "はい。BikeRouteはモバイル対応のWebアプリです。iPhoneやAndroidのブラウザからそのままご利用いただけます。アプリのインストールは不要です。",
   },
   {
     q: "利用料金はかかりますか？",
     a: "無料でご利用いただけます。サービスの維持費用は広告収入で賄っています。",
+    text: "無料でご利用いただけます。サービスの維持費用は広告収入で賄っています。",
   },
   {
     q: "バグや誤情報を見つけた場合はどこに報告すればいいですか？",
@@ -127,35 +141,14 @@ const faqs: { q: string; a: React.ReactNode }[] = [
         にてご報告ください。データの誤りは投稿フォームからも報告できます。
       </span>
     ),
+    text: "GitHub Issues（https://github.com/shibata-kento/bikeroute/issues）にてご報告ください。データの誤りは投稿フォームからも報告できます。",
   },
 ];
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "BikeRouteとは何ですか？", acceptedAnswer: { "@type": "Answer", text: "バイクの車種（原付一種・原付二種・普通二輪以上）ごとに、通行できない道路が含まれていないかを事前に確認できるWebサービスです。出発地と目的地を入力すると、その車種では通れない区間がルート上にないかをチェックできます。" } },
-    { "@type": "Question", name: "リアルタイムナビゲーションに使えますか？", acceptedAnswer: { "@type": "Answer", text: "いいえ。BikeRouteは走行前の事前確認ツールです。実際の走行中のナビには、Google マップなどの専用アプリをご利用ください。" } },
-    { "@type": "Question", name: "対応している車種を教えてください。", acceptedAnswer: { "@type": "Answer", text: "原付一種（50cc以下・新基準原付）、原付二種（51〜125cc）、普通二輪以上（126cc〜）の3区分に対応しています。" } },
-    { "@type": "Question", name: "原付一種と原付二種の違いは何ですか？", acceptedAnswer: { "@type": "Answer", text: "原付一種は排気量50cc以下で法定速度30km/h・二段階右折が必要です。自動車専用道路・高速道路は通行できません。原付二種は51〜125ccで法定速度60km/h・二段階右折不要です。高速道路は通行できませんが、自動車専用指定のないバイパスは通行可能です。" } },
-    { "@type": "Question", name: "通行禁止区間のデータはどこから取得していますか？", acceptedAnswer: { "@type": "Answer", text: "主にOpenStreetMap（OSM）のデータをもとに、二輪車・原付の通行禁止情報を収録しています（ODbL 1.0ライセンス）。またユーザーが写真付きで投稿した情報も収録しています。" } },
-    { "@type": "Question", name: "データの信頼性はどの程度ですか？", acceptedAnswer: { "@type": "Answer", text: "OpenStreetMapのデータは世界中のボランティアが更新しており、一般的に精度は高いですが、最新の規制変更が反映されていない場合があります。実際の走行前には現地の標識を必ず確認してください。" } },
-    { "@type": "Question", name: "通行禁止区間を投稿・報告できますか？", acceptedAnswer: { "@type": "Answer", text: "はい。Googleアカウントでログインすると、通行禁止区間を投稿できます。投稿には写真（標識・現地の様子）の添付を推奨しています。投稿内容は他のユーザーによる確認投票を経て公開されます。" } },
-    { "@type": "Question", name: "「警告」が出たときはどうすればいいですか？", acceptedAnswer: { "@type": "Answer", text: "ルート上に通行禁止区間が含まれている可能性があります。Google マップのリンクを開き、手動で迂回路を設定するか、出発地・目的地・経由地を調整してください。" } },
-    { "@type": "Question", name: "ログインは必須ですか？", acceptedAnswer: { "@type": "Answer", text: "ルート確認・通行禁止区間の閲覧はログイン不要で利用できます。ログインが必要なのは、区間の投稿と確認投票のみです。" } },
-    { "@type": "Question", name: "スマートフォンで使えますか？", acceptedAnswer: { "@type": "Answer", text: "はい。BikeRouteはモバイル対応のWebアプリです。iPhoneやAndroidのブラウザからそのままご利用いただけます。アプリのインストールは不要です。" } },
-    { "@type": "Question", name: "利用料金はかかりますか？", acceptedAnswer: { "@type": "Answer", text: "無料でご利用いただけます。サービスの維持費用は広告収入で賄っています。" } },
-    { "@type": "Question", name: "バグや誤情報を見つけた場合はどこに報告すればいいですか？", acceptedAnswer: { "@type": "Answer", text: "GitHub Issues（https://github.com/shibata-kento/bikeroute/issues）にてご報告ください。データの誤りは投稿フォームからも報告できます。" } },
-  ],
-};
 
 export default function FaqPage() {
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <FaqJsonLd items={faqs.map(({ q, text }) => ({ q, a: text }))} />
       <BreadcrumbJsonLd items={[
         { name: "ホーム", path: "/" },
         { name: "よくある質問 (FAQ)", path: "/faq" },

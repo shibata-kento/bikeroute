@@ -28,16 +28,21 @@ describe("buildGoogleMapsUrl", () => {
     destination: "新宿駅",
   };
 
-  it("genki1: avoid=highways|tolls|ferries を含む URL を生成する", () => {
+  it("genki1: highways / tolls / ferries を個別の avoid パラメータで生成する", () => {
+    // Google マップは avoid=highways|tolls のような pipe 結合だと先頭値しか解釈しないため、
+    // avoid=highways&avoid=tolls&avoid=ferries のように個別パラメータで渡す
     const url = buildGoogleMapsUrl({ ...base, vehicleClass: "genki1" });
-    expect(url).toContain("avoid=highways%7Ctolls%7Cferries");
+    expect(url).toContain("avoid=highways");
+    expect(url).toContain("avoid=tolls");
+    expect(url).toContain("avoid=ferries");
     expect(url).toContain("origin=%E6%9D%B1%E4%BA%AC%E9%A7%85");
     expect(url).toContain("travelmode=driving");
   });
 
-  it("genki2: avoid=highways|tolls を含む URL を生成する", () => {
+  it("genki2: highways / tolls を個別の avoid パラメータで生成し ferries は含まない", () => {
     const url = buildGoogleMapsUrl({ ...base, vehicleClass: "genki2" });
-    expect(url).toContain("avoid=highways%7Ctolls");
+    expect(url).toContain("avoid=highways");
+    expect(url).toContain("avoid=tolls");
     expect(url).not.toContain("ferries");
   });
 
