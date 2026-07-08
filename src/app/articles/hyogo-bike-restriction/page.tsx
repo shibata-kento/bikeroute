@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/hyogo-bike-restriction" },
   title: "兵庫のバイク通行禁止区間まとめ【阪神高速神戸線・第二神明・原付別】",
   description:
     "兵庫県のバイク・原付通行禁止区間を車種別に解説。阪神高速3号神戸線・第二神明道路は原付一種・二種が全線禁止。神戸淡路鳴門道の通行可否と代替ルートをまとめました。",

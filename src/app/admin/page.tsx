@@ -2,7 +2,10 @@ import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { AdminList } from "./AdminList";
 
-export const metadata = { title: "管理画面 | BikeRoute" };
+export const metadata = {
+  title: "管理画面 | BikeRoute",
+  robots: { index: false, follow: false },
+};
 
 function isAdmin(email: string | undefined | null): boolean {
   if (!email) return false;

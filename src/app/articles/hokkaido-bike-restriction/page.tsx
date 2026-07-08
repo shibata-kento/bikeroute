@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/hokkaido-bike-restriction" },
   title: "北海道のバイク通行禁止区間まとめ【道央道・原付・ツーリング注意点】",
   description:
     "北海道ツーリングでのバイク通行禁止区間を車種別に解説。道央自動車道・道東道など高速道路は原付一種・二種が通行禁止。国道・道道の代替ルートと通行可否早見表をまとめました。",

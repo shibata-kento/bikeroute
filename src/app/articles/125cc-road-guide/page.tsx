@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/125cc-road-guide" },
   title: "原付二種（125cc以下）で通れる道・通れない道ガイド【バイパス・専用道路】",
   description:
     "125cc（原付二種）が走れない道路・通れない道路を解説。高速道路・自動車専用道路は走行禁止。バイパスは通れる場合も。標識の見分け方とBikeRouteでのルート事前確認方法もご紹介。",

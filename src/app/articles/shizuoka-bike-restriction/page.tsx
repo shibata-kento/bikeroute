@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/shizuoka-bike-restriction" },
   title: "静岡のバイク通行禁止区間まとめ【新東名・東名・伊豆・原付別】",
   description:
     "静岡県のバイク・原付通行禁止区間を車種別に解説。新東名・東名高速は原付一種・二種が全線禁止。伊豆縦貫道の自動車専用区間も注意。箱根・伊豆ツーリング前の確認ポイントをまとめました。",

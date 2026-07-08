@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/saitama-bike-restriction" },
   title: "埼玉のバイク通行禁止区間まとめ【首都高・外環道・関越・原付別】",
   description:
     "埼玉県のバイク・原付通行禁止区間を車種別に解説。首都高速埼玉線・外環自動車道・関越自動車道は原付一種・二種が全線禁止。代替ルートの国道17号・254号もまとめました。",

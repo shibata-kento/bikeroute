@@ -3,10 +3,27 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ArticleJsonLd } from "@/components/ArticleJsonLd";
+import { FaqJsonLd, type FaqItem } from "@/components/FaqJsonLd";
 import { prefectureArticles, prefectureArticleMap } from "@/lib/prefecture-articles";
 import { articles } from "@/lib/articles";
 
 type Props = { params: Promise<{ slug: string }> };
+
+// 表示とFAQPage構造化データを単一ソースから生成する（全記事共通のQ&A）
+const ARTICLE_FAQS: FaqItem[] = [
+  {
+    q: "原付二種（125cc以下）は高速道路に乗れますか？",
+    a: "乗れません。原付二種（51〜125cc）は法律上「原動機付自転車」に分類されるため、高速自動車国道および自動車専用道路はすべて通行禁止です。排気量が50ccを超えていても、125cc以下であれば同様の規制が適用されます。",
+  },
+  {
+    q: "Google マップのナビが高速道路を案内してきた場合はどうすればいいですか？",
+    a: "Google マップは車種の排気量を考慮しないため、原付でも高速道路を含むルートを案内することがあります。案内に従わず、一般道のみのルートを自分で設定し直すか、BikeRoute を使って車種に合った安全なルートを事前に確認してください。",
+  },
+  {
+    q: "「自動車専用道路」と「高速自動車国道」は何が違いますか？",
+    a: "高速自動車国道（東名・中央道・東北道など）は国が指定した高速道路で、原付・軽車両は全線通行禁止です。自動車専用道路はそれ以外の道路でも「自動車専用」の標識がある区間を指し、バイパスや都市高速の一部が該当します。どちらも原付一種・二種は通行できません。",
+  },
+];
 
 export function generateStaticParams() {
   return prefectureArticles.map((a) => ({ slug: a.slug }));
@@ -16,7 +33,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const meta = articles.find((a) => a.slug === slug);
   if (!meta) return {};
-  return { title: meta.title, description: meta.description };
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: { canonical: `/articles/${slug}` },
+  };
 }
 
 export default async function PrefectureBikeRestrictionPage({ params }: Props) {
@@ -158,31 +179,14 @@ export default async function PrefectureBikeRestrictionPage({ params }: Props) {
 
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-3">よくある質問</h2>
+          <FaqJsonLd items={ARTICLE_FAQS} />
           <div className="space-y-4">
-            <div className="rounded-lg border border-gray-200 bg-white p-4">
-              <p className="font-bold text-gray-900 text-sm mb-1">Q. 原付二種（125cc以下）は高速道路に乗れますか？</p>
-              <p className="text-sm text-gray-700">
-                乗れません。原付二種（51〜125cc）は法律上「原動機付自転車」に分類されるため、
-                高速自動車国道および自動車専用道路はすべて通行禁止です。
-                排気量が50ccを超えていても、125cc以下であれば同様の規制が適用されます。
-              </p>
-            </div>
-            <div className="rounded-lg border border-gray-200 bg-white p-4">
-              <p className="font-bold text-gray-900 text-sm mb-1">Q. Google マップのナビが高速道路を案内してきた場合はどうすればいいですか？</p>
-              <p className="text-sm text-gray-700">
-                Google マップは車種の排気量を考慮しないため、原付でも高速道路を含むルートを案内することがあります。
-                案内に従わず、一般道のみのルートを自分で設定し直すか、
-                BikeRoute を使って車種に合った安全なルートを事前に確認してください。
-              </p>
-            </div>
-            <div className="rounded-lg border border-gray-200 bg-white p-4">
-              <p className="font-bold text-gray-900 text-sm mb-1">Q. 「自動車専用道路」と「高速自動車国道」は何が違いますか？</p>
-              <p className="text-sm text-gray-700">
-                高速自動車国道（東名・中央道・東北道など）は国が指定した高速道路で、原付・軽車両は全線通行禁止です。
-                自動車専用道路はそれ以外の道路でも「自動車専用」の標識がある区間を指し、バイパスや都市高速の一部が該当します。
-                どちらも原付一種・二種は通行できません。
-              </p>
-            </div>
+            {ARTICLE_FAQS.map(({ q, a }) => (
+              <div key={q} className="rounded-lg border border-gray-200 bg-white p-4">
+                <p className="font-bold text-gray-900 text-sm mb-1">Q. {q}</p>
+                <p className="text-sm text-gray-700">{a}</p>
+              </div>
+            ))}
           </div>
         </section>
 

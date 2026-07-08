@@ -2,7 +2,10 @@ import Link from "next/link";
 import { SegmentForm } from "@/components/SegmentForm";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
-export const metadata = { title: "禁止区間を投稿 | BikeRoute" };
+export const metadata = {
+  title: "禁止区間を投稿 | BikeRoute",
+  alternates: { canonical: "/segments/new" },
+};
 
 export default async function NewSegmentPage() {
   const supabase = await createServerSupabaseClient();

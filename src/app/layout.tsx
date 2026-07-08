@@ -38,9 +38,6 @@ export const metadata: Metadata = {
     title: "BikeRoute — 50cc・バイク 通行禁止区間マップ",
     description: "50cc・125cc・二輪車の通行禁止区間マップ。原付が通れない道を出発前に確認。",
   },
-  alternates: {
-    canonical: BASE_URL,
-  },
   verification: {
     google: "B_Wu1VSaKJNomuyjn6oqg8xvhG9wi2lGWxZMThGIWow",
   },

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/fukuoka-bike-restriction" },
   title: "福岡のバイク通行禁止区間まとめ【福岡都市高速・若戸トンネル・原付別】",
   description:
     "福岡・北九州のバイク通行禁止区間を車種別に解説。福岡都市高速は原付一種・二種が全線禁止。若戸トンネルは普通二輪も通行禁止。代替ルートと通行可否早見表をまとめました。",

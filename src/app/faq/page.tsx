@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faq" },
   title: "よくある質問 (FAQ)",
   description:
     "BikeRouteに関するよくある質問をまとめました。原付・125cc・二輪の車種区分、通行禁止区間の確認方法、データの信頼性などについて解説します。",

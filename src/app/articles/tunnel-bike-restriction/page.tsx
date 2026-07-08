@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/tunnel-bike-restriction" },
   title: "バイク・二輪車通行禁止トンネルまとめ【全国・山手トンネル・川崎・関門】",
   description:
     "山手トンネル・川崎トンネル・大阪港トンネル・関門トンネルなど、普通二輪（126cc以上）でも通行禁止のトンネルを全国まとめ。車種別の通行可否早見表と迂回ルートを解説します。",

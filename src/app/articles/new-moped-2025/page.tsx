@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/new-moped-2025" },
   title: "新基準原付（2025年11月〜）の走行ルール解説 — 125ccでも原付一種扱い？",
   description:
     "2025年11月から導入された新基準原付（排気量125cc以下・出力4kW以下）の通行ルールを解説。高速道路・自動車専用道路・バイパスへの通行可否、従来の原付一種・二種との違いも比較します。",

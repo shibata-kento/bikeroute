@@ -4,6 +4,7 @@ import { SegmentList } from "@/components/SegmentList";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/segments" },
   title: "バイク・原付 通行禁止区間マップ【50cc・125cc・今すぐ地図で確認・無料】",
   description:
     "50cc・125cc・バイクが通れない道を今すぐ地図で確認できます。車種を選ぶだけで自動車専用道路・二輪禁止トンネルを絞り込みマップ表示。首都高・阪神高速など全国対応・無料。",

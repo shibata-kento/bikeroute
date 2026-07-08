@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "お問い合わせ",
   description:
     "BikeRouteへのお問い合わせはこちらから。データの誤り・不具合報告・ご意見・ご要望などをお気軽にお送りください。",

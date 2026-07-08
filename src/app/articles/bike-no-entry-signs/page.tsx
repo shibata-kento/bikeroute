@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/bike-no-entry-signs" },
   title: "二輪通行禁止の標識の見分け方【原付・バイク別に解説】",
   description:
     "「自動二輪車通行禁止」「原動機付自転車通行禁止」「自動車専用」など、バイクに関係する標識の見分け方を解説。どの標識がどの車種に適用されるかを一覧表と図で整理しました。",

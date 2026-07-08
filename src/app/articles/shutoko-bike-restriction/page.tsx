@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/shutoko-bike-restriction" },
   title: "首都高速道路 バイク通行禁止区間まとめ【原付・二輪別】",
   description:
     "首都高速道路でバイクが通れない区間を車種別に解説。原付一種・原付二種は全線通行禁止。普通二輪も山手トンネルなど一部区間で通行禁止。出発前に確認すべきポイントをまとめました。",

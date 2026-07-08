@@ -3,6 +3,7 @@ import Link from "next/link";
 import { articles } from "@/lib/articles";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles" },
   title: "バイク・原付の道路通行ルール解説",
   description:
     "原付一種・原付二種・普通二輪の通行禁止ルール、自動車専用道路、新基準原付など、バイクの道路通行に関する記事をまとめています。",

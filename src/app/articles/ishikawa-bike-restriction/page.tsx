@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/ishikawa-bike-restriction" },
   title: "石川のバイク通行禁止区間まとめ【のと里山海道・北陸道・原付別】",
   description:
     "石川県のバイク・原付通行禁止区間を車種別に解説。北陸自動車道・のと里山海道の自動車専用区間は原付一種・二種が通行禁止。能登半島ツーリング前の確認ポイントをまとめました。",

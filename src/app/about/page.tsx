@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "運営者情報・BikeRouteについて",
   description:
     "BikeRouteの運営者情報、サービス概要、データソース、お問い合わせ先をご案内します。",

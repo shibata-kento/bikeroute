@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/guide" },
   title: "使い方ガイド",
   description:
     "BikeRouteの使い方を解説します。ルート確認の手順、車種の選び方、通行禁止区間の見方、投稿方法などを画面例つきで説明します。",

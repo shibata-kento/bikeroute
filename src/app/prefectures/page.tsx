@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createStaticSupabaseClient } from "@/lib/supabase/server";
 import { PREFECTURES, nameToSlug } from "@/lib/prefectures";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/prefectures" },
   title: "都道府県別 バイク・原付 通行禁止マップ【47都道府県対応・地図で確認】",
   description:
     "東京・神奈川・大阪など47都道府県のバイク・原付 通行禁止区間を地図で確認。自動車専用道路・二輪禁止トンネル・原付通行禁止区間を車種別にマップ表示。お住まいの都道府県から選んで確認できます。",
 };
 
+// Cookie 非依存クライアントを使うため静的生成 + 1時間ごとの ISR で配信する
+export const revalidate = 3600;
+
 async function getPrefectureCounts(): Promise<Map<string, number>> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = createStaticSupabaseClient();
   const { data, error } = await supabase.rpc("get_prefecture_segment_counts");
   if (error || !data) return new Map();
   return new Map(data.map((r) => [r.prefecture, Number(r.cnt)]));

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/kanagawa-bike-restriction" },
   title: "神奈川のバイク通行禁止区間マップ【横羽線・湾岸線・125cc・原付別】",
   description:
     "神奈川県の125cc・原付 通行禁止区間を地図で確認。横羽線・湾岸線・第三京浜・横浜横須賀道路は原付一種・二種が全線禁止。車種別の通行可否早見表と代替ルートをまとめました。",

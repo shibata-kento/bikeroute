@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/bike-traffic-rules" },
   title: "原付一種・原付二種・普通二輪の通行ルール完全ガイド【車種別】",
   description:
     "50cc・125cc・それ以上のバイクで「通れない道」が違う理由を、法律の仕組みからわかりやすく解説します。自動車専用道路・高速道路・バイパスごとに、原付一種・原付二種・普通二輪の通行可否を整理。",

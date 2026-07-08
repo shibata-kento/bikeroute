@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/bike-restriction-map" },
   title: "バイク・50cc 通行禁止区間マップを地図で確認【車種別・全国対応】",
   description:
     "50cc・125cc・二輪車の通行禁止区間を地図上で確認できます。自動車専用道路・二輪禁止トンネルを車種別にマップ表示。首都高・阪神高速など全国対応。ツーリング前の事前チェックに。",

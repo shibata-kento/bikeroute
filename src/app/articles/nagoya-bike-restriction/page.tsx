@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/nagoya-bike-restriction" },
   title: "名古屋・愛知のバイク通行禁止区間まとめ【名古屋高速・原付別】",
   description:
     "名古屋・愛知県のバイク・原付通行禁止区間を車種別に解説。名古屋高速道路は原付一種・二種が全線通行禁止。伊勢湾岸道・名二環など自動車専用道路の通行可否早見表と代替ルートをまとめました。",

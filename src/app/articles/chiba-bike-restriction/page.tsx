@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/chiba-bike-restriction" },
   title: "千葉のバイク通行禁止区間まとめ【アクアライン・湾岸線・京葉道路・原付別】",
   description:
     "千葉県のバイク・原付通行禁止区間を車種別に解説。東京湾アクアライン・京葉道路・東関東道は原付一種・二種が通行禁止。アクアラインの二輪通行可否と代替ルートもまとめました。",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/hiroshima-bike-restriction" },
   title: "広島のバイク通行禁止区間まとめ【広島高速・山陽道・しまなみ海道・原付別】",
   description:
     "広島県のバイク・原付通行禁止区間を車種別に解説。広島高速道路は原付一種・二種が全線禁止。しまなみ海道（西瀬戸道）は普通二輪が通行可能。代替ルートと通行可否をまとめました。",

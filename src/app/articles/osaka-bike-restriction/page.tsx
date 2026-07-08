@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/osaka-bike-restriction" },
   title: "大阪のバイク通行禁止区間まとめ【阪神高速・原付別】",
   description:
     "大阪府のバイク・原付通行禁止区間を車種別に解説。阪神高速道路は原付一種・二種が全線通行禁止。大阪港トンネルなど二輪車全車種禁止区間も。出発前に確認すべきポイントをまとめました。",

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { createStaticSupabaseClient } from "@/lib/supabase/server";
 import { PREFECTURES, slugToName } from "@/lib/prefectures";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PrefectureSegmentMap } from "@/components/PrefectureSegmentMap";
 import type { SegmentListItem } from "@/lib/supabase/types";
 
 type Props = { params: Promise<{ slug: string }> };
+
+// Cookie 非依存クライアントを使うため静的生成 + 1時間ごとの ISR で配信する
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -16,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${name}のバイク通行禁止区間`,
     description: `${name}のバイク・原付の通行禁止区間一覧。自動車専用道路・二輪通行禁止区間など、車種ごとに通れない道を確認できます。`,
+    alternates: { canonical: `/prefectures/${slug}` },
   };
 }
 
@@ -24,7 +28,7 @@ export function generateStaticParams() {
 }
 
 async function getSegments(prefectureName: string): Promise<SegmentListItem[]> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = createStaticSupabaseClient();
   const { data, error } = await supabase.rpc("list_restricted_segments", {
     p_prefecture: prefectureName,
     p_status: "verified",
@@ -36,7 +40,7 @@ async function getSegments(prefectureName: string): Promise<SegmentListItem[]> {
 }
 
 async function getTotalCount(prefectureName: string): Promise<number> {
-  const supabase = await createServerSupabaseClient();
+  const supabase = createStaticSupabaseClient();
   const { data } = await supabase.rpc("get_prefecture_segment_count", {
     p_prefecture: prefectureName,
   });

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/articles/moped-expressway-reason" },
   title: "有料道路・バイパスで原付が通れないのはなぜ？【法律の仕組みを解説】",
   description:
     "原付一種・原付二種が高速道路・自動車専用道路を通れない理由を、道路交通法・道路法の仕組みから解説。有料道路とバイパスの違い、「自動車専用」の意味まで詳しく説明します。",

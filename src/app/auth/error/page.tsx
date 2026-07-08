@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
 export default function AuthErrorPage() {
   return (
     <main className="mx-auto max-w-sm px-4 py-20 text-center">
