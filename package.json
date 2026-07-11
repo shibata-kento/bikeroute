@@ -16,7 +16,8 @@
     "fill:segments": "tsx --env-file=.env.local scripts/fill-segments.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:index": "node --env-file=.env.local scripts/check-index-status.mjs"
+    "check:index": "node --env-file=.env.local scripts/check-index-status.mjs",
+    "check:sites": "node --env-file=.env.local scripts/list-sites.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
