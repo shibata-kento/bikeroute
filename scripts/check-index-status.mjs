@@ -1,10 +1,12 @@
 // Search Console の URL Inspection API で sitemap 内全URLのインデックス状況を確認し、
 // 未登録ページ一覧をレポートするスクリプト（GitHub Actions から定期実行する想定）。
 //
+// 認証情報（どちらか一方でよい）:
+//   GCP_SA_KEY_FILE … サービスアカウント鍵JSONへのパス（例: ./ai-project-xxxx.json）。← ローカルはこれが簡単
+//   GCP_SA_KEY      … 鍵JSONそのもの、または base64 化した文字列（自動判別）。← GitHub Secrets向き
+//   （GOOGLE_APPLICATION_CREDENTIALS が設定済みならそれも使う）
+//
 // 必要な環境変数:
-//   GCP_SA_KEY   … サービスアカウントの JSON キー。
-//                  そのままの JSON でも、base64 化した JSON でも可（自動判別）。
-//                  .env.local に1行で書く場合は base64 を推奨。
 //   GSC_SITE_URL … Search Console のプロパティ URL
 //                  URLプレフィックス型: "https://www.bikeroutemap.com/"
 //                  ドメイン型:          "sc-domain:bikeroutemap.com"
@@ -26,7 +28,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function assertEnv() {
   const missing = [];
-  if (!process.env.GCP_SA_KEY) missing.push("GCP_SA_KEY");
+  const hasKey =
+    process.env.GCP_SA_KEY ||
+    process.env.GCP_SA_KEY_FILE ||
+    process.env.GOOGLE_APPLICATION_CREDENTIALS;
+  if (!hasKey) missing.push("GCP_SA_KEY または GCP_SA_KEY_FILE");
   if (!SITE_URL) missing.push("GSC_SITE_URL");
   if (missing.length) {
     console.error(`環境変数が不足しています: ${missing.join(", ")}`);
@@ -55,10 +61,21 @@ function parseServiceAccount(raw) {
   }
 }
 
+// 認証情報のソースを決める。優先順位:
+//   1. GCP_SA_KEY（生JSON または base64）
+//   2. GCP_SA_KEY_FILE / GOOGLE_APPLICATION_CREDENTIALS（鍵JSONへのパス）
+function credentialSource() {
+  if (process.env.GCP_SA_KEY) {
+    return { credentials: parseServiceAccount(process.env.GCP_SA_KEY) };
+  }
+  const keyFile = process.env.GCP_SA_KEY_FILE || process.env.GOOGLE_APPLICATION_CREDENTIALS;
+  if (keyFile) return { keyFile };
+  throw new Error("GCP_SA_KEY も GCP_SA_KEY_FILE も設定されていません");
+}
+
 async function getAccessToken() {
-  const credentials = parseServiceAccount(process.env.GCP_SA_KEY);
   const auth = new GoogleAuth({
-    credentials,
+    ...credentialSource(),
     scopes: ["https://www.googleapis.com/auth/webmasters.readonly"],
   });
   const client = await auth.getClient();

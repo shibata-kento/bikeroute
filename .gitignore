@@ -29,3 +29,6 @@ tsconfig.tsbuildinfo
 
 # マーケティング用画像（リポジトリ管理外）
 /public/twitter-*
+# GCP サービスアカウント鍵（コミット厳禁）
+ai-project-*.json
+*.gserviceaccount.json
