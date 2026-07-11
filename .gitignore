@@ -19,4 +19,13 @@
 .vercel
 tsconfig.tsbuildinfo
 
-.xlsx
+# Search Console エクスポート等（追跡不要）
+*.xlsx
+*:Zone.Identifier
+
+# ローカル専用のドキュメント・エージェント状態
+/docs/
+.claude/
+
+# マーケティング用画像（リポジトリ管理外）
+/public/twitter-*
