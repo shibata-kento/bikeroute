@@ -151,8 +151,19 @@ async function main() {
   }
 
   if (errored.length) {
-    lines.push(`## ❗ 取得エラー`);
-    for (const r of errored) lines.push(`- ${r.url} … ${r.error}`);
+    lines.push(`## ❗ 取得エラー（${errored.length}件）`);
+    lines.push("");
+    // 同じエラーメッセージでまとめる（同種エラーが大量に出ても見やすくする）
+    const byMessage = new Map();
+    for (const r of errored) {
+      const key = (r.error ?? "").replace(/\s+/g, " ").trim().slice(0, 160);
+      if (!byMessage.has(key)) byMessage.set(key, []);
+      byMessage.get(key).push(r.url);
+    }
+    for (const [msg, urls] of byMessage) {
+      lines.push(`- **${urls.length}件**: \`${msg}\``);
+      lines.push(`  例: ${urls[0]}`);
+    }
     lines.push("");
   }
 
