@@ -19,8 +19,9 @@
 
 import { GoogleAuth } from "google-auth-library";
 
-const SITE_URL = process.env.GSC_SITE_URL;
-const SITEMAP_URL = process.env.SITEMAP_URL ?? "https://www.bikeroutemap.com/sitemap.xml";
+// Secret に紛れ込む前後の空白・改行を除去（400 Invalid input の典型原因）
+const SITE_URL = process.env.GSC_SITE_URL?.trim();
+const SITEMAP_URL = (process.env.SITEMAP_URL ?? "https://www.bikeroutemap.com/sitemap.xml").trim();
 const INSPECT_ENDPOINT = "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect";
 
 // レート制御用の待機（600 req/min 上限に余裕を持たせる）
