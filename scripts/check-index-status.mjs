@@ -2,11 +2,15 @@
 // 未登録ページ一覧をレポートするスクリプト（GitHub Actions から定期実行する想定）。
 //
 // 必要な環境変数:
-//   GCP_SA_KEY   … サービスアカウントの JSON キー（文字列そのまま）
+//   GCP_SA_KEY   … サービスアカウントの JSON キー。
+//                  そのままの JSON でも、base64 化した JSON でも可（自動判別）。
+//                  .env.local に1行で書く場合は base64 を推奨。
 //   GSC_SITE_URL … Search Console のプロパティ URL
 //                  URLプレフィックス型: "https://www.bikeroutemap.com/"
 //                  ドメイン型:          "sc-domain:bikeroutemap.com"
 //   SITEMAP_URL  … 省略時は https://www.bikeroutemap.com/sitemap.xml
+//
+// ローカル実行: .env.local に上記を記載して `npm run check:index`
 //
 // 注意: URL Inspection API はプロパティの「オーナー」または「フル」権限が必要。
 //       サービスアカウントのメールを Search Console のユーザーに追加しておくこと。
@@ -37,8 +41,22 @@ async function fetchSitemapUrls() {
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
 }
 
+// GCP_SA_KEY は「生の JSON」または「base64 化した JSON」のどちらでも受け付ける。
+// .env.local に多行 JSON をそのまま書くのは扱いづらいため、base64 も許容する。
+function parseServiceAccount(raw) {
+  const val = raw.trim();
+  const json = val.startsWith("{") ? val : Buffer.from(val, "base64").toString("utf8");
+  try {
+    return JSON.parse(json);
+  } catch {
+    throw new Error(
+      "GCP_SA_KEY を解析できません。サービスアカウントの JSON、または base64 化した JSON を指定してください。"
+    );
+  }
+}
+
 async function getAccessToken() {
-  const credentials = JSON.parse(process.env.GCP_SA_KEY);
+  const credentials = parseServiceAccount(process.env.GCP_SA_KEY);
   const auth = new GoogleAuth({
     credentials,
     scopes: ["https://www.googleapis.com/auth/webmasters.readonly"],

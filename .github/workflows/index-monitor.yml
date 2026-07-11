@@ -34,10 +34,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
 
-      # 本体の依存には入れず、CIでのみ必要な認証ライブラリを都度インストール
-      - name: Install auth library
-        run: npm install --no-save google-auth-library@9
+      - name: Install dependencies
+        run: npm ci
 
       - name: Check index status
         env:
