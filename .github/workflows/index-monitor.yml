@@ -1,0 +1,47 @@
+name: Index status monitor
+
+# sitemap 内の全URLについて Search Console のインデックス状況を定期チェックし、
+# 未登録ページ一覧をジョブサマリーに出力する。
+# （Google は「インデックス登録リクエスト」の公式APIを提供していないため、
+#   ここでは “どのページを手動でナッジすべきか” の可視化までを自動化する）
+#
+# ── 一度だけ必要なセットアップ ───────────────────────────────
+# 1. GCP でサービスアカウントを作成し JSON 鍵をダウンロード。
+#    「Google Search Console API」を有効化しておく。
+# 2. Search Console →「設定」→「ユーザーと権限」で、そのサービスアカウントの
+#    メールを追加（権限は「オーナー」または「フル」。制限付きだと URL 検査 API 不可）。
+# 3. このリポジトリの Settings → Secrets and variables → Actions に登録:
+#      GCP_SA_KEY   … サービスアカウント JSON の中身そのまま
+#      GSC_SITE_URL … "https://www.bikeroutemap.com/"（URLプレフィックス型）
+#                     または "sc-domain:bikeroutemap.com"（ドメイン型）
+# 4. Actions タブから手動実行（Run workflow）で動作確認。
+# ────────────────────────────────────────────────────────
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # 毎週月曜 00:00 UTC（日本時間 月曜 09:00）
+  workflow_dispatch: {} # 手動実行も可能
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # 本体の依存には入れず、CIでのみ必要な認証ライブラリを都度インストール
+      - name: Install auth library
+        run: npm install --no-save google-auth-library@9
+
+      - name: Check index status
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          SITEMAP_URL: https://www.bikeroutemap.com/sitemap.xml
+        run: node scripts/check-index-status.mjs
