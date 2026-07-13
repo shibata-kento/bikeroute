@@ -32,3 +32,6 @@ tsconfig.tsbuildinfo
 # GCP サービスアカウント鍵（コミット厳禁）
 ai-project-*.json
 *.gserviceaccount.json
+
+# GCP サービスアカウント鍵（固定名）
+gcp-*.json
