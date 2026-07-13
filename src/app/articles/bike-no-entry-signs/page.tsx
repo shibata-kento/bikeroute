@@ -16,7 +16,7 @@ const articleSchema = {
   description:
     "「自動二輪車通行禁止」「原動機付自転車通行禁止」「自動車専用」など、バイクに関係する標識の見分け方を解説。",
   datePublished: "2026-06-04",
-  dateModified: "2026-06-04",
+  dateModified: "2026-07-14",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   url: "https://www.bikeroutemap.com/articles/bike-no-entry-signs",
@@ -24,33 +24,31 @@ const articleSchema = {
 };
 
 type SignCardProps = {
-  color: string;
-  shape: "circle" | "rect";
-  label: string;
+  src: string;
+  no: string;
   name: string;
   applies: { vehicle: string; ok: boolean }[];
   note: string;
+  warn?: boolean;
 };
 
-function SignCard({ color, shape, label, name, applies, note }: SignCardProps) {
+function SignCard({ src, no, name, applies, note, warn }: SignCardProps) {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4">
+    <div className={`rounded-xl border bg-white p-4 ${warn ? "border-orange-300" : "border-gray-200"}`}>
       <div className="flex items-start gap-4">
-        {/* 標識模式図 */}
-        <div
-          className="shrink-0 flex items-center justify-center text-white font-bold text-xs text-center leading-tight"
-          style={{
-            width: 64,
-            height: 64,
-            background: color,
-            borderRadius: shape === "circle" ? "50%" : 8,
-            padding: 4,
-          }}
-        >
-          {label}
-        </div>
+        {/* 実際の道路標識（公式デザイン・パブリックドメイン） */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={`${name}の道路標識`}
+          width={76}
+          height={76}
+          loading="lazy"
+          className="shrink-0 rounded-md border border-gray-100 bg-white"
+        />
 
         <div className="flex-1 min-w-0">
+          <p className="text-[11px] font-bold text-orange-700 mb-0.5">{no}</p>
           <p className="font-bold text-gray-900 text-sm mb-2">{name}</p>
           <div className="flex flex-wrap gap-1 mb-2">
             {applies.map(({ vehicle, ok }) => (
@@ -116,77 +114,58 @@ export default function BikeNoEntrySignsPage() {
           </p>
         </section>
 
-        {/* 標識一覧 */}
+        {/* 標識一覧（実際の標識画像） */}
         <section>
-          <h2 className="text-lg font-bold text-gray-900 mb-4">バイクに関係する標識一覧</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-1">まず覚える3つの標識</h2>
+          <p className="text-xs text-gray-500 mb-4">
+            原付・バイクの通行可否は、次の3標識でほぼ判断できます（図は実際の道路標識）。
+          </p>
 
           <div className="space-y-4">
             <SignCard
-              color="#1a56a0"
-              shape="rect"
-              label="自動車専用"
-              name="自動車専用（案内標識）"
+              src="/signs/jp-325.svg"
+              no="325・自動車専用"
+              name="自動車専用"
               applies={[
                 { vehicle: "原付一種", ok: false },
                 { vehicle: "原付二種", ok: false },
                 { vehicle: "普通二輪以上", ok: true },
               ]}
-              note="高速道路・バイパスの入口に設置される青い長方形の看板。原付一種・二種は通行不可。普通二輪以上は通行可。"
+              note="青い四角の標識。高速道路・自動車専用道路の入口に設置。原付（125cc以下）は進入禁止で、126cc以上の二輪のみ通行できる。"
             />
 
             <SignCard
-              color="#c0392b"
-              shape="circle"
-              label="自動二輪車通行禁止"
-              name="自動二輪車通行禁止（規制標識）"
+              src="/signs/jp-307.svg"
+              no="307・二輪の自動車・原動機付自転車通行止め"
+              name="二輪通行止め"
               applies={[
                 { vehicle: "原付一種", ok: false },
                 { vehicle: "原付二種", ok: false },
                 { vehicle: "普通二輪以上", ok: false },
               ]}
-              note="赤丸に白抜きのバイクマーク。排気量に関係なく二輪車すべてが通行禁止。トンネル・山岳道路などに設置される。"
+              note="赤いリングの規制標識。すべての二輪が通行禁止で、排気量に関係なく原付も大型バイクも進入できない。トンネル・峠道に多い。"
             />
 
             <SignCard
-              color="#c0392b"
-              shape="circle"
-              label="原付通行禁止"
-              name="原動機付自転車通行禁止（規制標識）"
-              applies={[
-                { vehicle: "原付一種", ok: false },
-                { vehicle: "原付二種", ok: false },
-                { vehicle: "普通二輪以上", ok: true },
-              ]}
-              note="赤丸に原付マーク。原付一種・二種が通行禁止。普通二輪以上（126cc〜）は通行可。幹線道路の一部区間で見られる。"
-            />
-
-            <SignCard
-              color="#c0392b"
-              shape="circle"
-              label="大型自動二輪禁止"
-              name="大型自動二輪車通行禁止（規制標識）"
+              src="/signs/jp-304.svg"
+              no="304・二輪の自動車以外の自動車通行止め"
+              name="二輪以外通行止め（バイクは通行可）"
+              warn
               applies={[
                 { vehicle: "原付一種", ok: true },
                 { vehicle: "原付二種", ok: true },
-                { vehicle: "普通二輪〜400cc", ok: true },
-                { vehicle: "大型二輪（401cc〜）", ok: false },
+                { vehicle: "普通二輪以上", ok: true },
               ]}
-              note="赤丸に大型バイクマーク。401cc以上の大型二輪のみ禁止。原付・125cc・400cc以下の中型は通行可。"
+              note="車のマークだが「二輪以外」＝四輪車が禁止という意味。二輪・原付は通行できる。避けてしまいがちな紛らわしい標識。"
             />
+          </div>
 
-            <SignCard
-              color="#c0392b"
-              shape="circle"
-              label="車両通行禁止"
-              name="車両通行止め（規制標識）"
-              applies={[
-                { vehicle: "原付一種", ok: false },
-                { vehicle: "原付二種", ok: false },
-                { vehicle: "普通二輪以上", ok: false },
-                { vehicle: "自動車", ok: false },
-              ]}
-              note="赤丸に車と二輪のマーク（または縦棒のみ）。自動車・バイク・原付すべて通行禁止。歩行者・自転車は通行可の場合が多い。"
-            />
+          <div className="mt-4 rounded-lg bg-blue-50 border border-blue-200 px-4 py-3 text-xs text-blue-800">
+            <strong className="block mb-1">「原付だけ通行止め」の標識はある？</strong>
+            原付専用の絵文字標識は法律上ありません。原付が通れないのは主に上の
+            <strong>「自動車専用（325）」</strong>と<strong>「二輪通行止め（307）」</strong>です。
+            原付だけを対象にしたい場合は、標識の下に「原付」などの補助標識を付けて示します
+            （若戸トンネルのように「125cc以下」と文字で範囲を示す例もあります）。
           </div>
         </section>
 
@@ -206,11 +185,11 @@ export default function BikeNoEntrySignsPage() {
               </thead>
               <tbody>
                 {[
-                  ["自動車専用（青看板）", "✕", "✕", "○", "○"],
-                  ["自動二輪車通行禁止", "✕", "✕", "✕", "✕"],
-                  ["原動機付自転車通行禁止", "✕", "✕", "○", "○"],
-                  ["大型自動二輪車通行禁止", "○", "○", "○", "✕"],
-                  ["車両通行止め", "✕", "✕", "✕", "✕"],
+                  ["自動車専用（325・青看板）", "✕", "✕", "○", "○"],
+                  ["二輪通行止め（307）", "✕", "✕", "✕", "✕"],
+                  ["二輪以外通行止め（304・車の絵）", "○", "○", "○", "○"],
+                  ["大型自動二輪車通行止め", "○", "○", "○", "✕"],
+                  ["車両通行止め（302）", "✕", "✕", "✕", "✕"],
                   ["標識なし（一般道）", "○", "○", "○", "○"],
                 ].map(([sign, ...statuses]) => (
                   <tr key={sign}>
