@@ -19,11 +19,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!name) return {};
   const title = `${name}のバイク通行禁止区間`;
   const description = `${name}のバイク・原付の通行禁止区間一覧。自動車専用道路・二輪通行禁止区間など、車種ごとに通れない道を確認できます。`;
+
+  // 固有情報（PREFECTURE_INFO）も個別区間データも無い都道府県ページは、
+  // ほぼ共通テンプレートのみの薄いページなので noindex（低価値判定・重複を避ける）。
+  // 同じ検索意図は /articles/*-bike-restriction 記事側でカバーする。
+  const hasInfo = !!PREFECTURE_INFO[slug];
+  const count = hasInfo ? 1 : await getTotalCount(name);
+  const thin = !hasInfo && count === 0;
+
   return {
     title,
     description,
     alternates: { canonical: `/prefectures/${slug}` },
     openGraph: { url: `/prefectures/${slug}`, title, description },
+    ...(thin ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
