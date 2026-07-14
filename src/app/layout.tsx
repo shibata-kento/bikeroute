@@ -88,6 +88,12 @@ export default function RootLayout({
             </Link>
             <div className="flex items-center gap-4">
               <Link
+                href="/articles"
+                className="text-xs text-gray-500 hover:text-gray-800"
+              >
+                解説記事
+              </Link>
+              <Link
                 href="/segments"
                 className="text-xs text-gray-500 hover:text-gray-800"
               >
