@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/articles/ishikawa-bike-restriction" },
@@ -35,10 +36,8 @@ export default function IshikawaBikeRestrictionPage() {
       <div className="mb-2">
         <Link href="/articles" className="text-sm text-gray-400 hover:text-gray-600">← 解説記事一覧</Link>
       </div>
-      <div className="mb-2 flex flex-wrap gap-1">
-        {["のと里山海道", "北陸自動車道", "北陸"].map((tag) => (
-          <span key={tag} className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700">{tag}</span>
-        ))}
+      <div className="mb-2">
+        <TagPills tags={["のと里山海道", "北陸自動車道", "北陸"]} />
       </div>
       <h1 className="mb-1 text-2xl font-black text-gray-900 leading-snug">
         石川のバイク通行禁止区間まとめ【のと里山海道・北陸道・原付別】

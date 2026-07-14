@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/articles/shutoko-bike-restriction" },
@@ -42,12 +43,8 @@ export default function ShutokoBikeRestrictionPage() {
         </Link>
       </div>
 
-      <div className="mb-2 flex flex-wrap gap-1">
-        {["首都高速", "通行禁止", "関東"].map((tag) => (
-          <span key={tag} className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700">
-            {tag}
-          </span>
-        ))}
+      <div className="mb-2">
+        <TagPills tags={["首都高速", "通行禁止", "関東"]} />
       </div>
 
       <h1 className="mb-1 text-2xl font-black text-gray-900 leading-snug">

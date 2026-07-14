@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/articles/new-moped-2025" },
@@ -40,12 +41,8 @@ export default function NewMoped2025Page() {
         </Link>
       </div>
 
-      <div className="mb-2 flex flex-wrap gap-1">
-        {["新基準原付", "125cc", "2025年改正"].map((tag) => (
-          <span key={tag} className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700">
-            {tag}
-          </span>
-        ))}
+      <div className="mb-2">
+        <TagPills tags={["新基準原付", "125cc", "2025年改正"]} />
       </div>
 
       <h1 className="mb-1 text-2xl font-black text-gray-900 leading-snug">
