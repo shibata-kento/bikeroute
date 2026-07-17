@@ -52,6 +52,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        {/* AdSense/同意フレームのオリジンに事前接続（LCP 短縮） */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fundingchoicesmessages.google.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -73,10 +77,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-gray-50 text-gray-900 antialiased">
-        {/* AdSense ローダーは afterInteractive で遅延読み込みし、初期描画をブロックしない */}
+        {/* AdSense ローダーは lazyOnload（描画完了後・アイドル時）で読み込み、
+            モバイルの FCP/LCP をブロックしない。審査・広告表示には影響しない。 */}
         <Script
           id="adsbygoogle-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7521900221411063"
           crossOrigin="anonymous"
