@@ -316,7 +316,7 @@ export function HomePage() {
           href="/segments"
           className="text-sm text-orange-700 underline hover:text-orange-900"
         >
-          通行禁止区間マップを見る →
+          50cc・125ccバイクの通行禁止区間マップを見る →
         </Link>
       </div>
 

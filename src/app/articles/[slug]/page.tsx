@@ -166,6 +166,11 @@ export default async function PrefectureBikeRestrictionPage({ params }: Props) {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-3">関連情報</h2>
           <ul className="space-y-2">
+            <li>
+              <Link href="/segments" className="text-orange-600 underline text-sm">
+                → 全国の50cc・125cc通行禁止区間マップ（地図で確認）
+              </Link>
+            </li>
             {art.relatedLinks.map(({ href, label }) => (
               <li key={href}>
                 <Link href={href} className="text-orange-600 underline text-sm">

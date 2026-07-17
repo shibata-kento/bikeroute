@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { SegmentListItem } from "@/lib/supabase/types";
 import { CATEGORY_CONFIG, CATEGORY_LIST, type RestrictionCategory } from "@/lib/restriction-categories";
@@ -19,13 +19,25 @@ const CATEGORY_BADGE: Record<RestrictionCategory, string> = {
 
 const LIST_LIMIT = 200;
 
-export function SegmentList() {
-  const [category, setCategory] = useState<RestrictionCategory>("all_bikes");
+export function SegmentList({
+  initialSegments = [],
+  initialCategory = "all_bikes",
+}: {
+  initialSegments?: SegmentListItem[];
+  initialCategory?: RestrictionCategory;
+} = {}) {
+  const [category, setCategory] = useState<RestrictionCategory>(initialCategory);
   const [userOnly, setUserOnly] = useState(false);
-  const [segments, setSegments] = useState<SegmentListItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [segments, setSegments] = useState<SegmentListItem[]>(initialSegments);
+  const [loading, setLoading] = useState(false);
+  // サーバー描画済みの初期データがある場合、最初の fetch はスキップする
+  const skipInitialFetch = useRef(initialSegments.length > 0);
 
   useEffect(() => {
+    if (skipInitialFetch.current) {
+      skipInitialFetch.current = false;
+      return;
+    }
     setLoading(true);
     const params = new URLSearchParams({
       category,

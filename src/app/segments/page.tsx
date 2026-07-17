@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SegmentList } from "@/components/SegmentList";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { createStaticSupabaseClient } from "@/lib/supabase/server";
+import { CATEGORY_CONFIG } from "@/lib/restriction-categories";
+import type { SegmentListItem } from "@/lib/supabase/types";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/segments" },
@@ -10,7 +13,28 @@ export const metadata: Metadata = {
     "50cc・125cc・バイクが通れない道を今すぐ地図で確認できます。車種を選ぶだけで自動車専用道路・二輪禁止トンネルを絞り込みマップ表示。首都高・阪神高速など全国対応・無料。",
 };
 
-export default function SegmentsPage() {
+// Cookie 非依存クライアントで初期一覧を取得 → 静的生成 + 1時間 ISR。
+// 一覧を HTML に載せることで「通行禁止マップ」クエリの本命ページにする。
+export const revalidate = 3600;
+
+async function getInitialSegments(): Promise<SegmentListItem[]> {
+  const { appliesToExact, sources, restrictionTags } = CATEGORY_CONFIG.all_bikes;
+  const supabase = createStaticSupabaseClient();
+  const { data, error } = await supabase.rpc("list_restricted_segments", {
+    p_vehicle: null,
+    p_status: "verified",
+    p_limit: 2000,
+    p_sources: sources,
+    p_prefecture: null,
+    p_applies_to_exact: appliesToExact,
+    p_restriction_tags: restrictionTags ?? null,
+  });
+  if (error) return [];
+  return (data ?? []) as SegmentListItem[];
+}
+
+export default async function SegmentsPage() {
+  const initialSegments = await getInitialSegments();
   return (
     <main className="mx-auto max-w-2xl px-4 py-10">
       <BreadcrumbJsonLd items={[
@@ -56,7 +80,7 @@ export default function SegmentsPage() {
         </p>
       </section>
 
-      <SegmentList />
+      <SegmentList initialSegments={initialSegments} initialCategory="all_bikes" />
     </main>
   );
 }
