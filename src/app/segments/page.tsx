@@ -17,20 +17,30 @@ export const metadata: Metadata = {
 // 一覧を HTML に載せることで「通行禁止マップ」クエリの本命ページにする。
 export const revalidate = 3600;
 
+// 初期HTMLに埋め込む件数。全件（最大2000）を埋め込むとページが数百KBに膨らみ、
+// ビルドのメモリ/シリアライズ負荷にもなるため、初期表示に十分な数に絞る。
+// （リストは重複除去後200件表示、フィルタ変更時はクライアントが全件を再取得する）
+const INITIAL_LIMIT = 250;
+
 async function getInitialSegments(): Promise<SegmentListItem[]> {
-  const { appliesToExact, sources, restrictionTags } = CATEGORY_CONFIG.all_bikes;
-  const supabase = createStaticSupabaseClient();
-  const { data, error } = await supabase.rpc("list_restricted_segments", {
-    p_vehicle: null,
-    p_status: "verified",
-    p_limit: 2000,
-    p_sources: sources,
-    p_prefecture: null,
-    p_applies_to_exact: appliesToExact,
-    p_restriction_tags: restrictionTags ?? null,
-  });
-  if (error) return [];
-  return (data ?? []) as SegmentListItem[];
+  try {
+    const { appliesToExact, sources, restrictionTags } = CATEGORY_CONFIG.all_bikes;
+    const supabase = createStaticSupabaseClient();
+    const { data, error } = await supabase.rpc("list_restricted_segments", {
+      p_vehicle: null,
+      p_status: "verified",
+      p_limit: INITIAL_LIMIT,
+      p_sources: sources,
+      p_prefecture: null,
+      p_applies_to_exact: appliesToExact,
+      p_restriction_tags: restrictionTags ?? null,
+    });
+    if (error) return [];
+    return (data ?? []) as SegmentListItem[];
+  } catch {
+    // ビルド時に Supabase が一時的に応答しなくてもページ生成を止めない
+    return [];
+  }
 }
 
 export default async function SegmentsPage() {
