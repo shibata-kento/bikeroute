@@ -4,12 +4,13 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ArticleSources } from "@/components/ArticleSources";
 import { TagPills } from "@/components/TagPills";
 import { PREFECTURES } from "@/lib/prefectures";
+import { buildGoogleMapsUrl } from "@/lib/vehicle";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/articles/michinoeki-touring-route" },
   title: "原付・125ccで下道だけで巡る 道の駅ツーリングルートの作り方【県別】",
   description:
-    "高速に乗れない原付・125ccでも、道の駅を下道でつないでいけば無理なくロングツーリングが楽しめます。道の駅を軸にした下道ルートの組み方3ステップと、自動車専用バイパスの避け方、都道府県別の通行禁止区間チェックの入口をまとめました。",
+    "高速に乗れない原付・125ccでも、道の駅を下道でつないでいけば無理なくロングツーリングが楽しめます。ルート設計の3ステップに加え、愛知・神奈川・大阪・静岡・広島・兵庫・北海道・埼玉の県庁所在地の駅から行ける道の駅への下道ルートを、原付向けのGoogleマップリンク付きで掲載します。",
 };
 
 const articleSchema = {
@@ -17,7 +18,7 @@ const articleSchema = {
   "@type": "Article",
   headline: "原付・125ccで下道だけで巡る 道の駅ツーリングルートの作り方【県別】",
   description:
-    "高速に乗れない原付・125ccが、道の駅を下道でつないで巡るためのルート設計3ステップと、自動車専用バイパスの避け方・県別チェックの入口を解説。",
+    "高速に乗れない原付・125ccが道の駅を下道でつないで巡るためのルート設計3ステップと、需要の高い8県の県庁所在地の駅から行ける道の駅への下道ルート集を掲載。",
   datePublished: "2026-07-26",
   dateModified: "2026-07-26",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
@@ -31,6 +32,58 @@ const prefecturesByRegion = PREFECTURES.reduce<Record<string, typeof PREFECTURES
   (acc[p.region] ??= []).push(p);
   return acc;
 }, {});
+
+// 検索需要の高い8県について、県庁所在地の主要駅から下道で行ける実在の道の駅ルート。
+// 道の駅はすべて実在する国交省登録施設。距離は下道での概算。
+// ルートリンクは buildGoogleMapsUrl で原付二種（125cc / 高速・有料回避）向けに生成する。
+type MichinoekiRoute = { eki: string; road: string; dist: string; note: string };
+const ROUTES: { pref: string; from: string; items: MichinoekiRoute[] }[] = [
+  {
+    pref: "愛知", from: "名古屋駅", items: [
+      { eki: "道の駅 藤川宿", road: "国道1号（旧東海道）", dist: "約40km", note: "岡崎の東の玄関口。むらさき麦うどん・八丁味噌。24時間トイレあり。" },
+      { eki: "道の駅 もっくる新城", road: "国道151号", dist: "約65km", note: "新城の玄関口。足湯と特大五平餅で有名なライダー人気スポット。" },
+    ],
+  },
+  {
+    pref: "神奈川", from: "横浜駅", items: [
+      { eki: "道の駅 清川", road: "県道60号ほか", dist: "約40km", note: "神奈川唯一の村。宮ヶ瀬・丹沢方面の入口。" },
+      { eki: "道の駅 湘南ちがさき", road: "国道134号ほか", dist: "約25km", note: "湘南の海沿いを走って到着。海岸線ツーリングの休憩に。" },
+    ],
+  },
+  {
+    pref: "大阪", from: "大阪駅", items: [
+      { eki: "道の駅 しらとりの郷・羽曳野", road: "国道170号ほか", dist: "約25km", note: "新鮮野菜が安い。市街から近く初回に行きやすい。" },
+      { eki: "道の駅 ちはやあかさか", road: "府道705号ほか", dist: "約35km", note: "大阪唯一の村・千早赤阪村。金剛山麓の“日本一かわいい道の駅”。" },
+    ],
+  },
+  {
+    pref: "静岡", from: "静岡駅", items: [
+      { eki: "道の駅 宇津ノ谷峠", road: "国道1号（旧東海道）", dist: "約12km", note: "市街から近い峠の駅。お茶・みかんなど地場品。" },
+      { eki: "道の駅 富士川楽座", road: "国道1号ほか", dist: "約35km", note: "富士山ビューの大型館。一般道からもアクセス可。" },
+    ],
+  },
+  {
+    pref: "広島", from: "広島駅", items: [
+      { eki: "道の駅 湖畔の里福富", road: "国道375号", dist: "約40km", note: "福富ダム湖畔。広島県最大級の複合施設。市街から北へ。" },
+    ],
+  },
+  {
+    pref: "兵庫", from: "三ノ宮駅", items: [
+      { eki: "道の駅 神戸フルーツ・フラワーパーク大沢", road: "県道38号ほか", dist: "約20km", note: "北神戸の花と果実のテーマパーク。西日本最大級。" },
+    ],
+  },
+  {
+    pref: "北海道", from: "札幌駅", items: [
+      { eki: "道の駅 サーモンパーク千歳", road: "国道36号・337号", dist: "約45km", note: "サケの水族館併設。新千歳空港も近い。" },
+      { eki: "道の駅 望羊中山", road: "国道230号", dist: "約50km", note: "中山峠の“あげいも”が名物。羊蹄山ビュー。" },
+    ],
+  },
+  {
+    pref: "埼玉", from: "大宮駅", items: [
+      { eki: "道の駅 果樹公園あしがくぼ", road: "国道299号ほか", dist: "約60km", note: "秩父の玄関口。バイク駐輪スペース多数のライダー人気駅。" },
+    ],
+  },
+];
 
 export default function MichinoekiTouringRoutePage() {
   return (
@@ -116,6 +169,55 @@ export default function MichinoekiTouringRoutePage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-1">県庁所在地の駅から行く 道の駅 下道ルート集</h2>
+          <p className="text-xs text-gray-500 mb-3">検索需要の高い8県をピックアップ</p>
+          <p className="mb-4">
+            「まずどこへ行こう？」の一歩目に。各県の<strong>県庁所在地の主要駅から下道で行ける実在の道の駅</strong>への
+            モデルルートです。ルートリンクは<strong>125cc（原付二種）向けに高速・有料道路を回避</strong>したGoogleマップを開きます。
+          </p>
+          <div className="space-y-4">
+            {ROUTES.map(({ pref, from, items }) => (
+              <div key={pref} className="rounded-xl border border-gray-200 bg-white p-4">
+                <p className="font-bold text-gray-900 text-sm mb-3">
+                  {pref}
+                  <span className="ml-1 font-normal text-xs text-gray-400">（{from} 発）</span>
+                </p>
+                <div className="space-y-3">
+                  {items.map((r) => (
+                    <div key={r.eki} className="border-t border-gray-100 pt-3 first:border-t-0 first:pt-0">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="font-bold text-gray-800 text-sm">{r.eki}</p>
+                          <p className="text-xs text-gray-500 mt-0.5">
+                            {r.road} ／ 下道 {r.dist}（概算）
+                          </p>
+                          <p className="text-xs text-gray-600 mt-1 leading-relaxed">{r.note}</p>
+                        </div>
+                        <a
+                          href={buildGoogleMapsUrl({ origin: from, destination: r.eki, vehicleClass: "genki2" })}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0 rounded-lg bg-orange-500 px-3 py-1.5 text-xs font-bold text-white hover:bg-orange-600"
+                        >
+                          ルート →
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-gray-500">
+            ※道の駅はすべて実在する国土交通省登録施設です。距離は下道での概算で、実際の所要は交通状況により変わります。
+            50cc（原付一種）はフェリーも回避対象になるため、
+            出発前に{" "}
+            <Link href="/" className="text-orange-600 underline">BikeRoute で車種を選んでルート判定</Link>
+            {" "}するのが確実です。
+          </p>
         </section>
 
         <section>
