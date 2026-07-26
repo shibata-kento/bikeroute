@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ArticleSources } from "@/components/ArticleSources";
 import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
@@ -158,6 +159,8 @@ export default function FukuokaBikeRestrictionPage() {
             <li><Link href="/articles/bike-traffic-rules" className="text-orange-600 underline text-sm">→ 原付一種・原付二種・普通二輪の通行ルール完全ガイド</Link></li>
           </ul>
         </section>
+        <ArticleSources />
+
       </div>
     </main>
   );

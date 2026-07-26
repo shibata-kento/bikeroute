@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ArticleSources } from "@/components/ArticleSources";
 import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
@@ -167,6 +168,8 @@ export default function IshikawaBikeRestrictionPage() {
             <li><Link href="/articles/moped-expressway-reason" className="text-orange-600 underline text-sm">→ 有料道路・バイパスで原付が通れない理由</Link></li>
           </ul>
         </section>
+        <ArticleSources />
+
       </div>
     </main>
   );

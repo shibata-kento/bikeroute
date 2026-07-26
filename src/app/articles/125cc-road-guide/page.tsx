@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { ArticleSources } from "@/components/ArticleSources";
 import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
@@ -263,6 +264,8 @@ export default function Moped125RoadGuidePage() {
             </li>
           </ul>
         </section>
+
+        <ArticleSources />
 
       </div>
     </main>

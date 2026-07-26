@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { ArticleJsonLd } from "@/components/ArticleJsonLd";
+import { ArticleSources } from "@/components/ArticleSources";
 import { TagPills } from "@/components/TagPills";
 import { prefectureArticles, prefectureArticleMap } from "@/lib/prefecture-articles";
 import { articles } from "@/lib/articles";
@@ -180,6 +181,8 @@ export default async function PrefectureBikeRestrictionPage({ params }: Props) {
             ))}
           </ul>
         </section>
+
+        <ArticleSources />
 
       </div>
     </main>
