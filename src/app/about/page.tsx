@@ -96,6 +96,59 @@ export default function AboutPage() {
         </section>
 
         <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">編集方針とデータの信頼性</h2>
+          <p className="mb-3">
+            当サイトの通行可否情報は、公的な法令・機関の情報を根拠に編集しています。
+            推測や個人の感想ではなく、次のプロセスで正確性を担保しています。
+          </p>
+          <ul className="space-y-2">
+            {[
+              {
+                t: "一次情報にもとづく",
+                d: "各高速道路会社・国土交通省が公表する通行規制、および道路標識（自動車専用・二輪車通行止め等）の実際の設置内容を根拠にしています。",
+              },
+              {
+                t: "投稿は写真証拠と複数確認を経て承認",
+                d: "ユーザー投稿の区間は、現地写真の添付と、他の利用者による確認投票（3件以上の確認）を経てはじめて「承認済み」として掲載します。",
+              },
+              {
+                t: "規制変更に応じて更新",
+                d: "通行規制は法改正・道路の新設で変わります。変更を把握しだい随時更新し、各記事には最終更新日を明記しています。",
+              },
+              {
+                t: "誤りの報告を受け付け",
+                d: "掲載内容の誤りは GitHub Issues・お問い合わせから報告でき、確認のうえ修正します。",
+              },
+            ].map(({ t, d }) => (
+              <li key={t} className="rounded-lg border border-gray-200 bg-white px-4 py-3">
+                <p className="font-medium text-gray-900 text-sm">{t}</p>
+                <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{d}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">扱う専門領域・準拠する法令</h2>
+          <p className="mb-3">
+            BikeRoute は「バイク・原付の車種区分と道路の通行可否」に特化した情報サイトです。
+            記事・データは以下の法令および区分の枠組みに準拠して作成しています。
+          </p>
+          <ul className="list-disc pl-5 space-y-1.5 text-sm">
+            <li><strong>道路交通法</strong>（昭和35年法律第105号）— 車両区分・通行区分の根拠</li>
+            <li><strong>道路標識、区画線及び道路標示に関する命令（標識令）</strong> — 標識の意味と適用車種</li>
+            <li><strong>道路法・道路運送車両法</strong> — 自動車専用道路の指定、原付一種/二種・自動二輪の車格区分</li>
+          </ul>
+          <p className="mt-3 text-xs text-gray-500 leading-relaxed">
+            「原付二種は道路交通法上は普通自動二輪車だが、125cc以下のため高速道路・自動車専用道路は通行不可」といった、
+            2つの法律にまたがる分類のねじれも、根拠にもとづいて整理しています。
+            詳しくは{" "}
+            <Link href="/articles/bike-passage-chart" className="text-orange-600 underline">通行区分 完全早見表</Link>
+            {" "}をご覧ください。
+          </p>
+        </section>
+
+        <section>
           <h2 className="text-lg font-bold text-gray-900 mb-3">免責事項</h2>
           <p className="mb-2">
             BikeRoute が提供する通行可否情報は参考情報であり、正確性・完全性を保証するものではありません。

@@ -172,6 +172,16 @@ export default async function PrefectureBikeRestrictionPage({ params }: Props) {
                 → 全国の50cc・125cc通行禁止区間マップ（地図で確認）
               </Link>
             </li>
+            <li>
+              <Link href="/articles/bike-passage-chart" className="text-orange-600 underline text-sm">
+                → バイク・原付の通行区分 完全早見表【保存版】
+              </Link>
+            </li>
+            <li>
+              <Link href="/articles/pre-ride-checklist" className="text-orange-600 underline text-sm">
+                → ツーリング前チェックリスト（引き返さないための準備）
+              </Link>
+            </li>
             {art.relatedLinks.map(({ href, label }) => (
               <li key={href}>
                 <Link href={href} className="text-orange-600 underline text-sm">

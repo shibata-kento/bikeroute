@@ -425,6 +425,8 @@ export function HomePage() {
             { href: "/articles/moped-expressway-reason", label: "有料道路・バイパスで原付が通れない理由" },
             { href: "/articles/bike-passage-chart", label: "バイク・原付の通行区分 完全早見表【保存版】" },
             { href: "/articles/125cc-touring-guide", label: "原付二種で行く下道ロングツーリング術" },
+            { href: "/articles/pre-ride-checklist", label: "ツーリング前チェックリスト【原付・125cc】" },
+            { href: "/articles/bike-tax-insurance-guide", label: "車種区分で変わる 通行・税金・保険・車検の完全比較" },
           ].map(({ href, label }) => (
             <li key={href}>
               <Link href={href} className="text-sm text-gray-600 hover:text-orange-600 hover:underline">
