@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/articles/michinoeki-bypass-caution" },
   title: "道の駅へ向かう“うっかり自動車専用バイパス”注意マップ【原付・125cc】",
   description:
-    "道の駅は幹線道路沿いに多く、その幹線が「自動車専用バイパス」になっていることがあります。無料でも原付・125ccは通れません。うっかり進入しやすい理由と見分け方3サイン、そして実際の通行禁止区間を地図で確認する方法を解説します。",
+    "道の駅は幹線道路沿いに多く、その幹線が「自動車専用バイパス」になっていることがあります。無料でも原付・125ccは通れません。うっかり進入しやすい理由と見分け方3サイン、愛知・神奈川・大阪・静岡など主要8県の注意ポイント、実際の通行禁止区間を地図で確認する方法を解説します。",
 };
 
 const articleSchema = {
@@ -24,6 +24,20 @@ const articleSchema = {
   url: "https://www.bikeroutemap.com/articles/michinoeki-bypass-caution",
   inLanguage: "ja",
 };
+
+// 道の駅ルート集（記事①）と対になる、需要トップ8県の「向かう途中の要注意ポイント」。
+// note は各県の公開済み記事で出典明記済みの検証済み事実のみを要約。個別地点は県ページ/地図に委ねる。
+type PrefHazard = { pref: string; article: string; prefSlug: string; note: string };
+const PREF_HAZARDS: PrefHazard[] = [
+  { pref: "愛知", article: "nagoya-bike-restriction", prefSlug: "aichi", note: "名古屋高速が原付の全線禁止。伊勢湾岸道・名二環などの自動車専用道への合流にも注意。" },
+  { pref: "神奈川", article: "kanagawa-bike-restriction", prefSlug: "kanagawa", note: "横羽線・湾岸線・第三京浜・横浜横須賀道路が原付禁止。海沿い・丹沢方面で自専道への流入に注意。" },
+  { pref: "大阪", article: "osaka-bike-restriction", prefSlug: "osaka", note: "阪神高速が全線禁止。大阪港トンネル・夢咲トンネルは126cc以上でも通行禁止。" },
+  { pref: "静岡", article: "shizuoka-bike-restriction", prefSlug: "shizuoka", note: "新東名・東名が原付禁止。伊豆方面は伊豆縦貫道の一部が自動車専用区間なので要注意。" },
+  { pref: "広島", article: "hiroshima-bike-restriction", prefSlug: "hiroshima", note: "広島高速が原付禁止。しまなみ海道は本線ではなく橋の側道（原付道）を利用する。" },
+  { pref: "兵庫", article: "hyogo-bike-restriction", prefSlug: "hyogo", note: "阪神高速神戸線・第二神明が原付禁止。淡路島へは原付で明石海峡大橋を渡れないためフェリーを利用。" },
+  { pref: "北海道", article: "hokkaido-bike-restriction", prefSlug: "hokkaido", note: "道央道・道東道など高速は原付禁止。無料の自動車専用道も禁止対象で“無料だから”では判断できない。" },
+  { pref: "埼玉", article: "saitama-bike-restriction", prefSlug: "saitama", note: "首都高・外環道・関越・東北道が原付禁止。秩父方面へは国道299号など一般道で。" },
+];
 
 export default function MichinoekiBypassCautionPage() {
   return (
@@ -149,6 +163,34 @@ export default function MichinoekiBypassCautionPage() {
               <div key={t} className="rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-3">
                 <p className="font-bold text-yellow-800 text-sm">{t}</p>
                 <p className="text-xs text-yellow-700 mt-0.5">{b}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-1">県別 うっかり注意ポイント</h2>
+          <p className="text-xs text-gray-500 mb-3">検索需要の高い8県</p>
+          <p className="mb-4">
+            道の駅ツーリングでよく走られる8県について、<strong>向かう途中で原付・125ccがうっかり進入しやすい自専道</strong>を
+            県別にまとめました。各県の詳細と地図はリンク先で確認できます。
+            行き方のモデルルートは{" "}
+            <Link href="/articles/michinoeki-touring-route" className="text-orange-600 underline">道の駅 下道ルート集</Link>
+            {" "}と対で見ると便利です。
+          </p>
+          <div className="space-y-3">
+            {PREF_HAZARDS.map((h) => (
+              <div key={h.pref} className="rounded-xl border border-gray-200 bg-white p-4">
+                <p className="font-bold text-gray-900 text-sm mb-1">{h.pref}</p>
+                <p className="text-xs text-gray-600 leading-relaxed mb-2">{h.note}</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                  <Link href={`/articles/${h.article}`} className="text-orange-600 underline">
+                    → 禁止区間まとめ
+                  </Link>
+                  <Link href={`/prefectures/${h.prefSlug}`} className="text-orange-600 underline">
+                    → 地図で確認
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
