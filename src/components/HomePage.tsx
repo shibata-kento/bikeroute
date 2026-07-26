@@ -423,6 +423,8 @@ export function HomePage() {
             { href: "/articles/125cc-road-guide", label: "125ccが走れない道路・走れる道路ガイド" },
             { href: "/articles/bike-no-entry-signs", label: "二輪通行禁止の標識の見分け方" },
             { href: "/articles/moped-expressway-reason", label: "有料道路・バイパスで原付が通れない理由" },
+            { href: "/articles/bike-passage-chart", label: "バイク・原付の通行区分 完全早見表【保存版】" },
+            { href: "/articles/125cc-touring-guide", label: "原付二種で行く下道ロングツーリング術" },
           ].map(({ href, label }) => (
             <li key={href}>
               <Link href={href} className="text-sm text-gray-600 hover:text-orange-600 hover:underline">
