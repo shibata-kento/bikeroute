@@ -427,6 +427,8 @@ export function HomePage() {
             { href: "/articles/125cc-touring-guide", label: "原付二種で行く下道ロングツーリング術" },
             { href: "/articles/pre-ride-checklist", label: "ツーリング前チェックリスト【原付・125cc】" },
             { href: "/articles/bike-tax-insurance-guide", label: "車種区分で変わる 通行・税金・保険・車検の完全比較" },
+            { href: "/articles/michinoeki-touring-route", label: "原付・125ccで下道だけで巡る 道の駅ツーリングルートの作り方" },
+            { href: "/articles/michinoeki-bypass-caution", label: "道の駅へ向かう“うっかり自動車専用バイパス”注意マップ" },
           ].map(({ href, label }) => (
             <li key={href}>
               <Link href={href} className="text-sm text-gray-600 hover:text-orange-600 hover:underline">
