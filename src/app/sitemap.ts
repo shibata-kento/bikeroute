@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/lib/articles";
-import { PREFECTURES } from "@/lib/prefectures";
+import { PREFECTURES, PREFECTURE_INFO, nameToSlug } from "@/lib/prefectures";
 import { createStaticSupabaseClient } from "@/lib/supabase/server";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bikeroutemap.com";
@@ -10,26 +10,18 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bikeroutemap.c
 // （毎リクエスト now を返すと lastmod が常に変動し、Google に信頼されにくくなるため固定値にする）
 const CONTENT_LAST_UPDATED = new Date("2026-07-09");
 
-// PREFECTURE_INFO を持つ主要な都道府県
-const PREFECTURE_INFO_SLUGS = new Set([
-  "tokyo",
-  "kanagawa",
-  "osaka",
-  "aichi",
-  "fukuoka",
-  "hyogo",
-]);
-
+// index 対象の都道府県 = 固有情報がある（PREFECTURE_INFO）or 区間データが1件以上ある。
+// prefectures/[slug] の noindex 判定と同じ条件にすること。
 async function getIndexedPrefectureSlugs(): Promise<Set<string>> {
-  const indexedSlugs = new Set<string>(PREFECTURE_INFO_SLUGS);
+  const indexedSlugs = new Set<string>(Object.keys(PREFECTURE_INFO));
   try {
     const supabase = createStaticSupabaseClient();
     const { data, error } = await supabase.rpc("get_prefecture_segment_counts");
     if (!error && data) {
       for (const row of data) {
         if (Number(row.cnt) > 0) {
-          const pref = PREFECTURES.find((p) => p.name === row.prefecture);
-          if (pref) indexedSlugs.add(pref.slug);
+          const slug = nameToSlug(row.prefecture);
+          if (slug) indexedSlugs.add(slug);
         }
       }
     }
