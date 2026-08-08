@@ -162,16 +162,24 @@ export default function AboutPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-3">お問い合わせ</h2>
           <p className="mb-3">
-            バグ報告・機能要望・通行禁止区間の誤りは GitHub Issues からご連絡ください。
+            データの誤り報告・不具合・ご意見・ご要望はお問い合わせフォームよりお気軽にご連絡ください。
           </p>
-          <a
-            href="https://github.com/shibata-kento/bikeroute/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-          >
-            GitHub Issues を開く →
-          </a>
+          <div className="flex flex-wrap gap-3 items-center">
+            <Link
+              href="/contact"
+              className="inline-block rounded-lg bg-orange-500 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-orange-600 transition-colors"
+            >
+              お問い合わせフォーム →
+            </Link>
+            <a
+              href="https://github.com/shibata-kento/bikeroute/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              GitHub Issues (エンジニア向け) →
+            </a>
+          </div>
         </section>
 
         <section>

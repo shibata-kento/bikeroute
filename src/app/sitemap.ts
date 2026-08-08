@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/lib/articles";
 import { PREFECTURES } from "@/lib/prefectures";
+import { createStaticSupabaseClient } from "@/lib/supabase/server";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bikeroutemap.com";
 
@@ -9,8 +10,37 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bikeroutemap.c
 // （毎リクエスト now を返すと lastmod が常に変動し、Google に信頼されにくくなるため固定値にする）
 const CONTENT_LAST_UPDATED = new Date("2026-07-09");
 
-// 記事・都道府県データから自動生成する。ページを増やしても sitemap への追加漏れが起きない。
-export default function sitemap(): MetadataRoute.Sitemap {
+// PREFECTURE_INFO を持つ主要な都道府県
+const PREFECTURE_INFO_SLUGS = new Set([
+  "tokyo",
+  "kanagawa",
+  "osaka",
+  "aichi",
+  "fukuoka",
+  "hyogo",
+]);
+
+async function getIndexedPrefectureSlugs(): Promise<Set<string>> {
+  const indexedSlugs = new Set<string>(PREFECTURE_INFO_SLUGS);
+  try {
+    const supabase = createStaticSupabaseClient();
+    const { data, error } = await supabase.rpc("get_prefecture_segment_counts");
+    if (!error && data) {
+      for (const row of data) {
+        if (Number(row.cnt) > 0) {
+          const pref = PREFECTURES.find((p) => p.name === row.prefecture);
+          if (pref) indexedSlugs.add(pref.slug);
+        }
+      }
+    }
+  } catch {
+    // DBエラー時は情報のある都道府県のみ対象とする
+  }
+  return indexedSlugs;
+}
+
+// 記事・有効な都道府県データから自動生成する。
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/`, lastModified: CONTENT_LAST_UPDATED, changeFrequency: "weekly", priority: 1.0 },
     { url: `${BASE_URL}/segments`, lastModified: CONTENT_LAST_UPDATED, changeFrequency: "daily", priority: 0.8 },
@@ -31,12 +61,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const prefecturePages: MetadataRoute.Sitemap = PREFECTURES.map((p) => ({
-    url: `${BASE_URL}/prefectures/${p.slug}`,
-    lastModified: CONTENT_LAST_UPDATED,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  const indexedSlugs = await getIndexedPrefectureSlugs();
+
+  // noindex（データ0件かつ固有情報なし）の都道府県ページは sitemap から除外してインデックス品質を保つ
+  const prefecturePages: MetadataRoute.Sitemap = PREFECTURES
+    .filter((p) => indexedSlugs.has(p.slug))
+    .map((p) => ({
+      url: `${BASE_URL}/prefectures/${p.slug}`,
+      lastModified: CONTENT_LAST_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
 
   return [...staticPages, ...articlePages, ...prefecturePages];
 }

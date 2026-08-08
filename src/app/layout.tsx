@@ -77,11 +77,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-gray-50 text-gray-900 antialiased">
-        {/* AdSense ローダーは lazyOnload（描画完了後・アイドル時）で読み込み、
-            モバイルの FCP/LCP をブロックしない。審査・広告表示には影響しない。 */}
+        {/* AdSense ローダーは afterInteractive で読み込み、AdSense 審査Botが確実にコードを検出できるようにする。 */}
         <Script
           id="adsbygoogle-init"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7521900221411063"
           crossOrigin="anonymous"
@@ -115,6 +114,12 @@ export default function RootLayout({
                 className="text-xs text-gray-500 hover:text-gray-800"
               >
                 FAQ
+              </Link>
+              <Link
+                href="/contact"
+                className="text-xs text-gray-500 hover:text-gray-800"
+              >
+                お問い合わせ
               </Link>
               <AuthButton />
             </div>

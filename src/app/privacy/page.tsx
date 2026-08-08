@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
@@ -59,22 +60,41 @@ export default function PrivacyPage() {
                 プライバシーポリシー
               </a>）
             </li>
-            <li>
-              <strong>Google AdSense</strong>（導入予定）— 広告配信のために Cookie を使用します。
-              Cookie の使用をオプトアウトするには
-              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-orange-600 underline">
-                Google 広告設定
-              </a>
-              をご利用ください。
-            </li>
           </ul>
         </section>
 
         <section>
-          <h2 className="mb-2 font-bold text-gray-900">4. Cookie</h2>
+          <h2 className="mb-2 font-bold text-gray-900">4. 広告の配信および Cookie（クッキー）について</h2>
           <p>
-            本サービスはログイン状態の維持にセッション Cookie を使用します。
-            ブラウザの設定で Cookie を無効にすると、ログインが必要な機能が使えなくなる場合があります。
+            本サービスでは、第三者配信事業者（Google AdSense を含む）による広告配信サービスを利用しています。
+          </p>
+          <p className="mt-2">
+            第三者配信事業者は Cookie を使用して、ユーザーが当サイトや他のウェブサイトに過去にアクセスした際の情報に基づいて広告を配信します。
+            Google が広告 Cookie を使用することにより、ユーザーが当サイトや他のサイトにアクセスした情報に基づいて、Google やそのパートナーが適切な広告をユーザーに表示できます。
+          </p>
+          <p className="mt-2">
+            ユーザーは、
+            <a
+              href="https://www.google.com/settings/ads"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 underline"
+            >
+              Google 広告設定
+            </a>
+            にてパーソナライズ広告を無効にできます。また、
+            <a
+              href="https://www.aboutads.info/choices/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 underline"
+            >
+              www.aboutads.info
+            </a>
+            にアクセスすることで、第三者配信事業者がパーソナライズ広告のために使用する Cookie を無効にすることもできます。
+          </p>
+          <p className="mt-2">
+            その他、本サービスではログイン状態の維持にセッション Cookie を使用します。ブラウザの設定で Cookie を無効にすると、一部の機能が正常に動作しない場合があります。
           </p>
         </section>
 
@@ -95,7 +115,17 @@ export default function PrivacyPage() {
         <section>
           <h2 className="mb-2 font-bold text-gray-900">7. お問い合わせ</h2>
           <p>
-            本サービスに関するお問い合わせは{" "}
+            本サービスに関するお問い合わせ・データの誤り報告・ご意見は{" "}
+            <Link
+              href="/contact"
+              className="text-orange-600 underline font-medium"
+            >
+              お問い合わせフォーム
+            </Link>{" "}
+            よりお送りください。
+          </p>
+          <p className="mt-1 text-xs text-gray-500">
+            ※技術的な課題・不具合報告は{" "}
             <a
               href="https://github.com/shibata-kento/bikeroute/issues"
               target="_blank"
@@ -104,11 +134,11 @@ export default function PrivacyPage() {
             >
               GitHub Issues
             </a>{" "}
-            までお願いします。
+            もご利用いただけます。
           </p>
         </section>
 
-        <p className="text-xs text-gray-400">最終更新: 2026年6月2日</p>
+        <p className="text-xs text-gray-400">最終更新: 2026年8月8日</p>
       </div>
     </main>
   );
