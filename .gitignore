@@ -22,6 +22,9 @@ tsconfig.tsbuildinfo
 # Search Console エクスポート等（追跡不要）
 *.xlsx
 *:Zone.Identifier
+# CSV エクスポート（フォルダ単位でDLされる）
+bikeroutemap.com-Performance-*/
+bikeroutemap.com-Coverage-*/
 
 # ローカル専用のドキュメント・エージェント状態
 /docs/
