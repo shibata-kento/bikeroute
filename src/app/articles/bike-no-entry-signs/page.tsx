@@ -6,23 +6,55 @@ import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/articles/bike-no-entry-signs" },
-  title: "二輪通行禁止の標識の見分け方【原付・バイク別に解説】",
+  title: "二輪車通行禁止の標識の見分け方一覧【原付・バイク・125cc別】",
   description:
-    "「自動二輪車通行禁止」「原動機付自転車通行禁止」「自動車専用」など、バイクに関係する標識の見分け方を解説。どの標識がどの車種に適用されるかを一覧表と図で整理しました。",
+    "「二輪車通行禁止」「自動車専用」「原動機付自転車通行止め」など、バイク通行禁止に関わる標識の見分け方を一覧で解説。どの標識がどの車種（原付一種・二種・125cc・普通二輪以上）に適用されるかを、実際の標識画像と早見表で整理しました。",
 };
 
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "二輪通行禁止の標識の見分け方【原付・バイク別に解説】",
+  headline: "二輪車通行禁止の標識の見分け方一覧【原付・バイク・125cc別】",
   description:
-    "「自動二輪車通行禁止」「原動機付自転車通行禁止」「自動車専用」など、バイクに関係する標識の見分け方を解説。",
+    "「二輪車通行禁止」「自動車専用」「原動機付自転車通行止め」など、バイク通行禁止に関わる標識の見分け方と車種別の通行可否を一覧で解説。",
   datePublished: "2026-06-04",
-  dateModified: "2026-07-14",
+  dateModified: "2026-08-28",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   url: "https://www.bikeroutemap.com/articles/bike-no-entry-signs",
   inLanguage: "ja",
+};
+
+// 標識クエリ（「二輪車通行禁止 標識」等）向けのFAQ構造化データ
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "「二輪車通行禁止」の標識はどれですか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "赤いリングの規制標識「二輪の自動車・原動機付自転車通行止め（307）」です。すべての二輪が排気量に関係なく通行禁止で、原付も大型バイクも進入できません。トンネルや峠道に多く設置されています。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "バイク通行禁止に関わる標識は何種類ありますか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "主に「自動車専用（325・青看板）」「二輪の自動車・原動機付自転車通行止め（307）」「二輪の自動車以外の自動車通行止め（304）」の3つで判断できます。325は原付のみ不可、307は全二輪不可、304は逆に二輪は通行可（四輪が不可）です。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "原付だけ通行禁止にする標識はありますか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "原付専用の絵柄標識は法律上ありません。原付が通れないのは主に「自動車専用（325）」と「二輪通行止め（307）」です。原付だけを対象にする場合は、標識の下に「原付」などの補助標識を付けて示します。",
+      },
+    },
+  ],
 };
 
 type SignCardProps = {
@@ -85,6 +117,10 @@ export default function BikeNoEntrySignsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
       <div className="mb-2">
         <Link href="/articles" className="text-sm text-gray-400 hover:text-gray-600">
@@ -97,18 +133,20 @@ export default function BikeNoEntrySignsPage() {
       </div>
 
       <h1 className="mb-1 text-2xl font-black text-gray-900 leading-snug">
-        二輪通行禁止の標識の見分け方【原付・バイク別に解説】
+        二輪車通行禁止の標識の見分け方一覧【原付・バイク・125cc別】
       </h1>
-      <p className="mb-8 text-xs text-gray-400">公開: 2026年6月4日</p>
+      <p className="mb-8 text-xs text-gray-400">公開: 2026年6月4日 ／ 更新: 2026年8月28日</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-gray-700">
 
         <section>
           <p>
             「この道、バイクで入っていいの？」と迷ったとき、判断の根拠になるのが道路標識です。
-            しかしバイクに関係する標識は複数種類あり、<strong>どの標識がどの車種に適用されるか</strong>
+            ただ、<strong>「二輪車通行禁止」「自動車専用」「原動機付自転車通行止め」</strong>など、
+            バイク通行禁止に関わる標識は複数あり、<strong>どの標識がどの車種に適用されるか</strong>
             が分かりにくい設計になっています。
-            本記事では車種ごとの通行可否を標識別に整理します。
+            本記事では、実際の標識画像と早見表で、原付一種・原付二種（125cc）・普通二輪以上それぞれの
+            通行可否を標識別に整理します。
           </p>
         </section>
 
@@ -290,10 +328,41 @@ export default function BikeNoEntrySignsPage() {
           </Link>
         </div>
 
+        {/* よくある質問（FAQ構造化データと対応） */}
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">よくある質問</h2>
+          <div className="space-y-3">
+            {[
+              {
+                q: "「二輪車通行禁止」の標識はどれ？",
+                a: "赤いリングの規制標識「二輪の自動車・原動機付自転車通行止め（307）」です。すべての二輪が排気量に関係なく通行禁止で、原付も大型バイクも進入できません。トンネルや峠道に多く設置されています。",
+              },
+              {
+                q: "バイク通行禁止に関わる標識は何種類ある？",
+                a: "主に「自動車専用（325・青看板）」「二輪の自動車・原動機付自転車通行止め（307）」「二輪の自動車以外の自動車通行止め（304）」の3つで判断できます。325は原付のみ不可、307は全二輪不可、304は逆に二輪は通行可（四輪が不可）です。",
+              },
+              {
+                q: "原付だけ通行禁止にする標識はある？",
+                a: "原付専用の絵柄標識は法律上ありません。原付が通れないのは主に「自動車専用（325）」と「二輪通行止め（307）」で、原付だけを対象にする場合は標識の下に「原付」などの補助標識を付けて示します。",
+              },
+            ].map(({ q, a }) => (
+              <div key={q} className="rounded-lg border border-gray-200 bg-white p-4">
+                <p className="font-bold text-gray-900 text-sm mb-1">Q. {q}</p>
+                <p className="text-sm text-gray-700">{a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* 関連記事 */}
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-3">関連記事</h2>
           <ul className="space-y-2">
+            <li>
+              <Link href="/articles/bike-passage-chart" className="text-orange-600 underline text-sm">
+                バイク・原付の通行区分 完全早見表【車種×道路×標識】
+              </Link>
+            </li>
             <li>
               <Link href="/articles/bike-traffic-rules" className="text-orange-600 underline text-sm">
                 原付一種・原付二種・普通二輪の通行ルール完全ガイド

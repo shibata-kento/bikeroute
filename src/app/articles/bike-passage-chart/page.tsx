@@ -18,11 +18,43 @@ const articleSchema = {
   description:
     "原付一種・原付二種・普通二輪・大型二輪が各道路を通れるかを1ページに集約した保存版早見表。標識別の可否と車種分類のカラクリも解説。",
   datePublished: "2026-07-26",
-  dateModified: "2026-07-26",
+  dateModified: "2026-08-28",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   url: "https://www.bikeroutemap.com/articles/bike-passage-chart",
   inLanguage: "ja",
+};
+
+// 「高速×排気量」クエリ（125cc 高速 乗れる／何ccから高速／高速 道路 原付 等）向けFAQ
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "原付や125ccは高速道路に乗れますか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "乗れません。原付一種（50cc）も原付二種（125cc）も、高速道路・自動車専用道路は通行禁止です。125ccは道路交通法上は普通自動二輪車ですが、高速道路を通行できる条件を満たさないため乗れません。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "何ccから高速道路に乗れますか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "総排気量125cc超（126cc以上）の二輪から高速道路に乗れます。つまり軽二輪（126〜250cc）以上です。125ccちょうどは「125cc超」に含まれないため乗れません。",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "125ccで高速道路に乗れないのはなぜですか？",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "高速道路・自動車専用道路を通行できる条件が「総排気量125cc超（126cc以上）」だからです。運転免許の区分（原付か自動二輪か）とは別の、排気量による基準で判断されます。",
+      },
+    },
+  ],
 };
 
 const OK = "○";
@@ -47,6 +79,10 @@ export default function BikePassageChartPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="mb-2">
@@ -203,6 +239,37 @@ export default function BikePassageChartPage() {
             つまり「自動二輪だが125cc以下」なので、高速・自専道路は通行できません。
             運転区分（原付か自動二輪か）と、高速に乗れるかの基準（126cc以上か）は別物、と覚えると混乱しません。
           </div>
+        </section>
+
+        {/* 高速×排気量 の検索需要（125cc 高速 乗れる／何ccから高速 等）に対応 */}
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">原付・125ccは高速道路に乗れる？何ccから乗れる？</h2>
+          <div className="space-y-3">
+            {[
+              {
+                q: "原付・125ccは高速道路に乗れる？",
+                a: "乗れません。原付一種（50cc）も原付二種（125cc）も、高速道路・自動車専用道路はすべて通行禁止です。無料の自動車専用道路（バイパス等）も同様に通れません。",
+              },
+              {
+                q: "何ccから高速道路に乗れる？",
+                a: "総排気量125cc超（126cc以上）の二輪から乗れます。つまり軽二輪（126〜250cc）以上。125ccちょうどは「125cc超」に含まれないため不可です。",
+              },
+              {
+                q: "125ccは自動二輪なのに、なぜ高速に乗れない？",
+                a: "道路交通法上は「普通自動二輪車」ですが、高速道路を通行できる条件は排気量による別基準（126cc以上）だからです。免許区分と高速に乗れる基準は別物です。",
+              },
+            ].map(({ q, a }) => (
+              <div key={q} className="rounded-lg border border-gray-200 bg-white p-4">
+                <p className="font-bold text-gray-900 text-sm mb-1">Q. {q}</p>
+                <p className="text-sm text-gray-700">{a}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-gray-500">
+            なぜ排気量で線引きされるのかは{" "}
+            <Link href="/articles/moped-expressway-reason" className="text-orange-600 underline">有料道路・バイパスで原付が通れない理由</Link>
+            {" "}で詳しく解説しています。
+          </p>
         </section>
 
         <section>
