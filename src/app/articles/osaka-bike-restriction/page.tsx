@@ -59,7 +59,7 @@ export default function OsakaBikeRestrictionPage() {
           <p>
             大阪府内を走るバイク乗りが特に注意すべきは<strong>阪神高速道路</strong>の通行制限です。
             阪神高速は全線が「自動車専用道路」に指定されているため、原付一種・原付二種は一切通行できません。
-            さらに大阪港トンネルや夢咲トンネルなど、普通二輪以上でも通行禁止となるトンネル区間が複数あります。
+            大阪港トンネルは二輪車全車種が通行禁止です。夢咲トンネルは125cc以下が通行禁止で、126cc以上は通行できます。
             本記事で出発前に確認しておきましょう。
           </p>
         </section>
@@ -151,15 +151,15 @@ export default function OsakaBikeRestrictionPage() {
 
         {/* 二輪禁止トンネル */}
         <section>
-          <h2 className="text-lg font-bold text-gray-900 mb-3">二輪車全車種が通行禁止のトンネル</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">二輪車の通行規制があるトンネル</h2>
           <p className="mb-3">
-            大阪府内では以下のトンネル区間で、126cc以上の普通二輪・大型二輪も通行が禁止されています。
+            大阪港トンネルは二輪車全車種が通行禁止です。夢咲トンネルは125cc以下が通行禁止で、126cc以上は通行できます。
           </p>
 
           <div className="space-y-3">
             <div className="rounded-lg border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-2 mb-1">
-                <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">二輪禁止</span>
+                <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">二輪全車種禁止</span>
                 <span className="font-bold text-gray-900 text-sm">大阪港トンネル（阪神高速湾岸線）</span>
               </div>
               <p className="text-xs text-gray-600">
@@ -170,12 +170,12 @@ export default function OsakaBikeRestrictionPage() {
 
             <div className="rounded-lg border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-2 mb-1">
-                <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">二輪禁止</span>
+                <span className="rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">125cc以下禁止</span>
                 <span className="font-bold text-gray-900 text-sm">夢咲トンネル（阪神高速湾岸線）</span>
               </div>
               <p className="text-xs text-gray-600">
                 ユニバーサルシティ方面（此花区）の湾岸線区間にある海底トンネル。
-                USJ周辺へバイクでアクセスする際は注意が必要です。
+                125cc以下は通行できませんが、126cc以上の二輪車は通行できます。USJ周辺へ向かう際は車種に応じてルートを確認してください。
               </p>
             </div>
           </div>

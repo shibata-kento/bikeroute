@@ -86,11 +86,11 @@ export const PREFECTURE_INFO: Record<string, PrefectureInfo> = {
     articleLabel: "神奈川のバイク通行禁止区間まとめ",
   },
   osaka: {
-    summary: "大阪府では阪神高速道路（全線）が自動車専用道路に指定されており、原付一種・原付二種は通行できません。大阪港トンネル・夢咲トンネルは普通二輪以上も通行禁止です。",
+    summary: "大阪府では阪神高速道路（全線）が自動車専用道路に指定されており、原付一種・原付二種は通行できません。大阪港トンネルは二輪車全車種が通行禁止です。",
     roads: [
       { name: "阪神高速道路（全線）", note: "原付一種・二種 通行禁止" },
       { name: "大阪港トンネル", note: "二輪車全車種 通行禁止" },
-      { name: "夢咲トンネル", note: "二輪車全車種 通行禁止" },
+      { name: "夢咲トンネル", note: "125cc以下 通行禁止（126cc以上は通行可能）" },
       { name: "近畿自動車道", note: "原付一種・二種 通行禁止" },
     ],
     articleHref: "/articles/osaka-bike-restriction",

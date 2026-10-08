@@ -125,10 +125,10 @@ export default function TunnelBikeRestrictionPage() {
                 detail: "南港〜北港を結ぶ海底トンネル。換気・安全上の理由から全二輪禁止。南港地区（ATCやインテックス大阪）へのアクセスでは代替の橋を使う必要あり。",
               },
               {
-                label: "二輪禁止（全車種）",
+                label: "125cc以下 通行禁止",
                 name: "夢咲トンネル（阪神高速湾岸線）",
                 region: "大阪",
-                detail: "此花区のUSJ周辺区間。湾岸線の海底トンネル。ユニバーサルシティへのアクセスルートで注意が必要。",
+                detail: "125cc以下は通行禁止ですが、126cc以上の二輪車は通行できます。",
               },
             ].map(({ label, name, region, detail }) => (
               <div key={name} className="rounded-lg border border-gray-200 bg-white p-4">
@@ -189,7 +189,7 @@ export default function TunnelBikeRestrictionPage() {
                   { name: "山手トンネル（C2）", g1: "禁止", g2: "禁止", g3: "禁止" },
                   { name: "川崎トンネル（湾岸線）", g1: "禁止", g2: "禁止", g3: "禁止" },
                   { name: "大阪港トンネル", g1: "禁止", g2: "禁止", g3: "禁止" },
-                  { name: "夢咲トンネル", g1: "禁止", g2: "禁止", g3: "禁止" },
+                  { name: "夢咲トンネル", g1: "禁止", g2: "禁止", g3: "通行可" },
                   { name: "関門トンネル（国道）", g1: "禁止", g2: "禁止", g3: "禁止" },
                   { name: "若戸トンネル", g1: "禁止", g2: "禁止", g3: "禁止" },
                 ].map(({ name, g1, g2, g3 }, i) => (
