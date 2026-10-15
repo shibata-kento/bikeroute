@@ -6,17 +6,17 @@ import { TagPills } from "@/components/TagPills";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/articles/tunnel-bike-restriction" },
-  title: "バイク・二輪車通行禁止トンネルまとめ【全国・山手トンネル・川崎・関門】",
+  title: "バイク・二輪車通行禁止トンネルまとめ【全国・川崎・関門など】",
   description:
-    "山手トンネル・川崎トンネル・大阪港トンネル・関門トンネルなど、普通二輪（126cc以上）でも通行禁止のトンネルを全国まとめ。車種別の通行可否早見表と迂回ルートを解説します。",
+    "川崎トンネル・大阪港トンネル・関門トンネルなど、普通二輪（126cc以上）でも通行禁止のトンネルを全国まとめ。車種別の通行可否早見表と迂回ルートを解説します。",
 };
 
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: "バイク・二輪車通行禁止トンネルまとめ【全国・山手トンネル・川崎・関門】",
+  headline: "バイク・二輪車通行禁止トンネルまとめ【全国・川崎・関門など】",
   description:
-    "山手トンネル・川崎トンネル・大阪港トンネル・関門トンネルなど、普通二輪でも通行禁止のトンネルを全国まとめ。",
+    "川崎トンネル・大阪港トンネル・関門トンネルなど、普通二輪でも通行禁止のトンネルを全国まとめ。",
   datePublished: "2026-06-25",
   dateModified: "2026-06-25",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
@@ -49,7 +49,7 @@ export default function TunnelBikeRestrictionPage() {
       </div>
 
       <h1 className="mb-1 text-2xl font-black text-gray-900 leading-snug">
-        バイク・二輪車通行禁止トンネルまとめ【全国・山手トンネル・川崎・関門】
+        バイク・二輪車通行禁止トンネルまとめ【全国・川崎・関門など】
       </h1>
       <p className="mb-8 text-xs text-gray-400">公開: 2026年6月25日</p>
 
@@ -59,7 +59,7 @@ export default function TunnelBikeRestrictionPage() {
           <p>
             「高速道路は126cc以上のバイクなら通れる」と思っていても、
             <strong>トンネルによっては普通二輪・大型二輪でも通行禁止</strong>になっているケースがあります。
-            山手トンネル（東京）、川崎トンネル（神奈川）、大阪港トンネル（大阪）などが代表例です。
+            川崎トンネル（神奈川）、大阪港トンネル（大阪）などが代表例です。なお、山手トンネル（C2）は普通二輪・大型二輪が通行できます。
             これらはナビには反映されないため、事前に把握しておくことが重要です。
           </p>
         </section>
@@ -90,12 +90,6 @@ export default function TunnelBikeRestrictionPage() {
           <h3 className="text-base font-bold text-gray-800 mb-2 mt-4">関東エリア</h3>
           <div className="space-y-3">
             {[
-              {
-                label: "二輪禁止（全車種）",
-                name: "山手トンネル（首都高速中央環状線・C2）",
-                region: "東京",
-                detail: "大橋JCT〜西新宿JCT〜熊野町JCT〜板橋JCT。延長18.2kmで首都高最長。換気問題から全二輪が禁止。迂回は山手通り（目黒通り）などを使用。",
-              },
               {
                 label: "二輪禁止（全車種）",
                 name: "川崎トンネル（首都高速湾岸線・B）",
@@ -186,7 +180,6 @@ export default function TunnelBikeRestrictionPage() {
               </thead>
               <tbody>
                 {[
-                  { name: "山手トンネル（C2）", g1: "禁止", g2: "禁止", g3: "禁止" },
                   { name: "川崎トンネル（湾岸線）", g1: "禁止", g2: "禁止", g3: "禁止" },
                   { name: "大阪港トンネル", g1: "禁止", g2: "禁止", g3: "禁止" },
                   { name: "夢咲トンネル", g1: "禁止", g2: "禁止", g3: "通行可" },
@@ -233,7 +226,7 @@ export default function TunnelBikeRestrictionPage() {
         <div className="rounded-lg bg-orange-50 border border-orange-200 p-5">
           <p className="font-bold text-gray-900 mb-1">ルート上にトンネル禁止区間がないか確認</p>
           <p className="text-sm text-gray-700 mb-3">
-            BikeRoute は山手トンネル・川崎トンネルなどの二輪禁止トンネルを含む通行禁止区間のデータを収録しています。
+            BikeRoute は川崎トンネルなどの二輪禁止トンネルを含む通行禁止区間のデータを収録しています。山手トンネルは普通二輪・大型二輪が通行できます。
             ルートチェックで出発前に確認してください。
           </p>
           <Link
@@ -250,7 +243,7 @@ export default function TunnelBikeRestrictionPage() {
           <ul className="space-y-2">
             <li>
               <Link href="/articles/shutoko-bike-restriction" className="text-orange-600 underline text-sm">
-                → 首都高速道路 バイク通行禁止区間まとめ（山手トンネル含む）
+                → 首都高速道路 バイク通行禁止区間まとめ
               </Link>
             </li>
             <li>

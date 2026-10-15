@@ -130,7 +130,7 @@ export default function Moped125RoadGuidePage() {
             この場合は排気量に関係なくすべてのバイクが通行できません。
           </p>
           <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-2 text-xs text-red-700">
-            例：首都高 山手トンネル・東京アクアライン川崎トンネル
+            例：首都高（山手トンネルを含む）・東京アクアライン川崎トンネル。なお山手トンネルは普通二輪・大型二輪なら通行できます。
           </div>
         </section>
 

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/articles/shutoko-bike-restriction" },
   title: "首都高速道路 バイク通行禁止区間まとめ【原付・二輪別】",
   description:
-    "首都高速道路でバイクが通れない区間を車種別に解説。原付一種・原付二種は全線通行禁止。普通二輪も山手トンネルなど一部区間で通行禁止。出発前に確認すべきポイントをまとめました。",
+    "首都高速道路でバイクが通れない区間を車種別に解説。原付一種・原付二種は全線通行禁止。普通二輪・大型二輪向けの規制をまとめました。",
 };
 
 const articleSchema = {
@@ -16,7 +16,7 @@ const articleSchema = {
   "@type": "Article",
   headline: "首都高速道路 バイク通行禁止区間まとめ【原付・二輪別】",
   description:
-    "首都高速道路でバイクが通れない区間を車種別に解説。原付一種・原付二種は全線通行禁止。普通二輪も山手トンネルなど一部区間で通行禁止。",
+    "首都高速道路でバイクが通れない区間を車種別に解説。原付一種・原付二種は全線通行禁止。普通二輪・大型二輪向けの規制をまとめました。",
   datePublished: "2026-06-04",
   dateModified: "2026-06-04",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
@@ -125,21 +125,20 @@ export default function ShutokoBikeRestrictionPage() {
 
         {/* 普通二輪の禁止区間 */}
         <section>
-          <h2 className="text-lg font-bold text-gray-900 mb-3">普通二輪以上でも通れない区間</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">普通二輪以上の通行規制がある区間</h2>
           <p className="mb-3">
             126cc以上の普通二輪・大型二輪でも、首都高の一部区間では<strong>二輪車通行禁止</strong>の規制がかかっています。
-            代表的な禁止区間は以下のとおりです。
+            規制内容は区間ごとに異なります。山手トンネルは普通二輪・大型二輪が通行できます。
           </p>
 
           <div className="space-y-3">
             <div className="rounded-lg border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-2 mb-1">
-                <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">二輪禁止</span>
+                <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">二輪通行可</span>
                 <span className="font-bold text-gray-900 text-sm">山手トンネル（C2 中央環状線）</span>
               </div>
               <p className="text-xs text-gray-600">
-                延長約18kmの日本最長の山岳トンネル。換気・安全上の理由から自動二輪車の通行が禁止されています。
-                大橋JCT〜西新宿JCT〜熊野町JCT の区間（内環状・外環状ともに）が対象です。
+                首都高の自動車専用道路のため125cc以下は通行できませんが、普通二輪・大型二輪は通行できます。
               </p>
             </div>
 
@@ -191,7 +190,7 @@ export default function ShutokoBikeRestrictionPage() {
                   ["9号 深川線", "○", "通行可"],
                   ["11号 台場線", "○", "通行可"],
                   ["C1 都心環状線", "○", "通行可"],
-                  ["C2 中央環状線（山手トンネル区間）", "✕", "二輪通行禁止"],
+                  ["C2 中央環状線（山手トンネル区間）", "○", "普通二輪・大型二輪は通行可。125cc以下は首都高全線で通行不可"],
                   ["湾岸線（川崎トンネル）", "✕", "二輪通行禁止"],
                 ].map(([route, status, note]) => (
                   <tr key={route} className={status === "✕" ? "bg-red-50" : ""}>

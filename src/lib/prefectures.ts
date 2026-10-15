@@ -65,10 +65,10 @@ export type PrefectureInfo = {
 // 区間データが0件でも index 対象になる（sitemap.ts / prefectures/[slug] が参照）。
 export const PREFECTURE_INFO: Record<string, PrefectureInfo> = {
   tokyo: {
-    summary: "東京都内では首都高速道路（全線）が自動車専用道路に指定されており、原付一種・原付二種は通行できません。また、C2中央環状線の山手トンネルは普通二輪以上も通行禁止です。",
+    summary: "東京都内では首都高速道路（全線）が自動車専用道路に指定されており、原付一種・原付二種は通行できません。普通二輪・大型二輪はC2中央環状線の山手トンネルを通行できます。",
     roads: [
       { name: "首都高速道路（全線）", note: "原付一種・二種 通行禁止" },
-      { name: "C2山手トンネル", note: "二輪車全車種 通行禁止" },
+      { name: "C2山手トンネル", note: "普通二輪・大型二輪は通行可（125cc以下は首都高全線通行不可）" },
       { name: "東京外環自動車道", note: "原付一種・二種 通行禁止" },
     ],
     articleHref: "/articles/shutoko-bike-restriction",

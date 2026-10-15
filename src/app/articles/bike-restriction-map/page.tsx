@@ -194,7 +194,7 @@ export default function BikeRestrictionMapPage() {
               <p className="font-bold text-gray-900 text-sm mb-1">バイク全車種が通れない道路</p>
               <p className="text-xs text-gray-600">
                 「自動二輪車通行禁止」の標識が設置された区間。排気量に関係なくすべてのバイクが禁止。
-                山岳トンネル（首都高 山手トンネル、東京湾アクアライン 川崎トンネルなど）が代表例。
+                山岳トンネル（東京湾アクアライン 川崎トンネルなど）が代表例。首都高の山手トンネルは125cc以下が自動車専用道路を通行できないため対象となりますが、普通二輪・大型二輪は通行できます。
               </p>
             </div>
 
@@ -266,7 +266,6 @@ export default function BikeRestrictionMapPage() {
                 region: "関東",
                 items: [
                   "首都高速道路 全線（原付一種・二種は全線禁止）",
-                  "首都高 山手トンネル C2（普通二輪も禁止）",
                   "東京湾アクアライン 川崎トンネル（普通二輪も禁止）",
                   "国道1号 横浜新道・横浜横須賀道路",
                   "国道16号 横浜町田IC付近バイパス区間",
