@@ -123,18 +123,18 @@ export default function ShutokoBikeRestrictionPage() {
           </p>
         </section>
 
-        {/* 普通二輪の禁止区間 */}
+        {/* 普通二輪の通行可否 */}
         <section>
-          <h2 className="text-lg font-bold text-gray-900 mb-3">普通二輪以上の通行規制がある区間</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">普通二輪・大型二輪が通行できる区間</h2>
           <p className="mb-3">
-            126cc以上の普通二輪・大型二輪でも、首都高の一部区間では<strong>二輪車通行禁止</strong>の規制がかかっています。
-            規制内容は区間ごとに異なります。山手トンネルは普通二輪・大型二輪が通行できます。
+            126cc以上の普通二輪・大型二輪は首都高を通行できます。山手トンネルや湾岸線の川崎航路トンネルも通行可能です。
+            ただし、区間によって二人乗り規制があるため、同乗者がいる場合は事前に首都高の案内をご確認ください。
           </p>
 
           <div className="space-y-3">
             <div className="rounded-lg border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-2 mb-1">
-                <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">二輪通行可</span>
+                <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">通行可</span>
                 <span className="font-bold text-gray-900 text-sm">山手トンネル（C2 中央環状線）</span>
               </div>
               <p className="text-xs text-gray-600">
@@ -144,22 +144,21 @@ export default function ShutokoBikeRestrictionPage() {
 
             <div className="rounded-lg border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-2 mb-1">
-                <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">二輪禁止</span>
-                <span className="font-bold text-gray-900 text-sm">東京湾アクアライン（湾岸線接続部）</span>
+                <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">通行可</span>
+                <span className="font-bold text-gray-900 text-sm">首都高速湾岸線・川崎航路トンネル</span>
               </div>
               <p className="text-xs text-gray-600">
-                川崎浮島JCT〜木更津金田IC の海底トンネル区間（川崎トンネル）は自動二輪車通行禁止です。
-                対岸の千葉方面へのルートには注意が必要です。
+                首都高の自動車専用道路のため125cc以下は通行できませんが、普通二輪・大型二輪は通行できます。
               </p>
             </div>
 
             <div className="rounded-lg border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-700">要確認</span>
-                <span className="font-bold text-gray-900 text-sm">その他のトンネル区間</span>
+                <span className="rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-700">最新情報を確認</span>
+                <span className="font-bold text-gray-900 text-sm">工事・緊急時の一時規制</span>
               </div>
               <p className="text-xs text-gray-600">
-                首都高では工事や天候により臨時の二輪通行禁止が実施される場合があります。
+                首都高では工事や緊急時に通行止め・車線規制が実施される場合があります。
                 出発前に首都高ドライバーズサイトで最新情報を確認してください。
               </p>
             </div>
@@ -191,7 +190,7 @@ export default function ShutokoBikeRestrictionPage() {
                   ["11号 台場線", "○", "通行可"],
                   ["C1 都心環状線", "○", "通行可"],
                   ["C2 中央環状線（山手トンネル区間）", "○", "普通二輪・大型二輪は通行可。125cc以下は首都高全線で通行不可"],
-                  ["湾岸線（川崎トンネル）", "✕", "二輪通行禁止"],
+                  ["湾岸線（川崎航路トンネル）", "○", "普通二輪・大型二輪は通行可。125cc以下は首都高全線で通行不可"],
                 ].map(([route, status, note]) => (
                   <tr key={route} className={status === "✕" ? "bg-red-50" : ""}>
                     <td className="border border-gray-200 px-3 py-2">{route}</td>

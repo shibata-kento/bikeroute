@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/articles/osaka-bike-restriction" },
   title: "大阪のバイク通行禁止区間まとめ【阪神高速・原付別】",
   description:
-    "大阪府のバイク・原付通行禁止区間を車種別に解説。阪神高速道路は原付一種・二種が全線通行禁止。大阪港トンネルなど二輪車全車種禁止区間も。出発前に確認すべきポイントをまとめました。",
+    "大阪府のバイク・原付通行禁止区間を車種別に解説。阪神高速道路は原付一種・二種が全線通行禁止。大阪港咲洲トンネル・夢咲トンネルは125cc以下が通行禁止です。",
 };
 
 const articleSchema = {
@@ -16,9 +16,9 @@ const articleSchema = {
   "@type": "Article",
   headline: "大阪のバイク通行禁止区間まとめ【阪神高速・原付別】",
   description:
-    "大阪府のバイク・原付通行禁止区間を車種別に解説。阪神高速道路は原付一種・二種が全線通行禁止。大阪港トンネルなど二輪車全車種禁止区間も。",
+    "大阪府のバイク・原付通行禁止区間を車種別に解説。阪神高速道路は原付一種・二種が全線通行禁止。大阪港咲洲トンネル・夢咲トンネルは125cc以下が通行禁止です。",
   datePublished: "2026-06-15",
-  dateModified: "2026-06-15",
+  dateModified: "2026-10-15",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   url: "https://www.bikeroutemap.com/articles/osaka-bike-restriction",
@@ -59,7 +59,7 @@ export default function OsakaBikeRestrictionPage() {
           <p>
             大阪府内を走るバイク乗りが特に注意すべきは<strong>阪神高速道路</strong>の通行制限です。
             阪神高速は全線が「自動車専用道路」に指定されているため、原付一種・原付二種は一切通行できません。
-            大阪港トンネルは二輪車全車種が通行禁止です。夢咲トンネルは125cc以下が通行禁止で、126cc以上は通行できます。
+            大阪港咲洲トンネル・夢咲トンネルは125cc以下が通行禁止で、126cc以上の普通二輪・大型二輪は通行できます。
             本記事で出発前に確認しておきましょう。
           </p>
         </section>
@@ -153,18 +153,17 @@ export default function OsakaBikeRestrictionPage() {
         <section>
           <h2 className="text-lg font-bold text-gray-900 mb-3">二輪車の通行規制があるトンネル</h2>
           <p className="mb-3">
-            大阪港トンネルは二輪車全車種が通行禁止です。夢咲トンネルは125cc以下が通行禁止で、126cc以上は通行できます。
+            大阪港咲洲トンネル・夢咲トンネルは125cc以下が通行禁止で、126cc以上の普通二輪・大型二輪は通行できます。
           </p>
 
           <div className="space-y-3">
             <div className="rounded-lg border border-gray-200 bg-white p-4">
               <div className="flex items-center gap-2 mb-1">
-                <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">二輪全車種禁止</span>
-                <span className="font-bold text-gray-900 text-sm">大阪港トンネル（阪神高速湾岸線）</span>
+                <span className="rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">125cc以下 通行禁止</span>
+                <span className="font-bold text-gray-900 text-sm">大阪港咲洲トンネル</span>
               </div>
               <p className="text-xs text-gray-600">
-                大阪港の南港と北港を結ぶ海底トンネル区間。換気・安全上の理由から自動二輪車の通行が全面禁止。
-                南港〜天保山方面への移動は地上ルートを使う必要があります。
+                南港と天保山方面を結ぶ海底トンネルです。125cc以下の二輪車は通行できませんが、126cc以上は通行できます。
               </p>
             </div>
 

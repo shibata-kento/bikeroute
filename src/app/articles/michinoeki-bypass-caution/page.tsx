@@ -31,7 +31,7 @@ type PrefHazard = { pref: string; article: string; prefSlug: string; note: strin
 const PREF_HAZARDS: PrefHazard[] = [
   { pref: "愛知", article: "nagoya-bike-restriction", prefSlug: "aichi", note: "名古屋高速が原付の全線禁止。伊勢湾岸道・名二環などの自動車専用道への合流にも注意。" },
   { pref: "神奈川", article: "kanagawa-bike-restriction", prefSlug: "kanagawa", note: "横羽線・湾岸線・第三京浜・横浜横須賀道路が原付禁止。海沿い・丹沢方面で自専道への流入に注意。" },
-  { pref: "大阪", article: "osaka-bike-restriction", prefSlug: "osaka", note: "阪神高速は125cc以下が通行禁止。大阪港トンネルは全二輪禁止、夢咲トンネルは125cc以下が通行禁止。" },
+  { pref: "大阪", article: "osaka-bike-restriction", prefSlug: "osaka", note: "阪神高速・大阪港咲洲トンネル・夢咲トンネルは125cc以下が通行禁止。126cc以上の二輪はトンネルを通行可能。" },
   { pref: "静岡", article: "shizuoka-bike-restriction", prefSlug: "shizuoka", note: "新東名・東名が原付禁止。伊豆方面は伊豆縦貫道の一部が自動車専用区間なので要注意。" },
   { pref: "広島", article: "hiroshima-bike-restriction", prefSlug: "hiroshima", note: "広島高速が原付禁止。しまなみ海道は本線ではなく橋の側道（原付道）を利用する。" },
   { pref: "兵庫", article: "hyogo-bike-restriction", prefSlug: "hyogo", note: "阪神高速神戸線・第二神明が原付禁止。淡路島へは原付で明石海峡大橋を渡れないためフェリーを利用。" },

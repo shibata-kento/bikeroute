@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/articles/fukuoka-bike-restriction" },
   title: "福岡のバイク通行禁止区間まとめ【福岡都市高速・若戸トンネル・原付別】",
   description:
-    "福岡・北九州のバイク通行禁止区間を車種別に解説。福岡都市高速は原付一種・二種が全線禁止。若戸トンネルは普通二輪も通行禁止。代替ルートと通行可否早見表をまとめました。",
+    "福岡・北九州のバイク通行禁止区間を車種別に解説。福岡都市高速は原付一種・二種が全線禁止。若戸トンネルは125cc以下が通行禁止です。代替ルートと通行可否早見表をまとめました。",
 };
 
 const articleSchema = {
@@ -17,7 +17,7 @@ const articleSchema = {
   headline: "福岡のバイク通行禁止区間まとめ【福岡都市高速・若戸トンネル・原付別】",
   description: "福岡・北九州のバイク通行禁止区間を車種別に解説。",
   datePublished: "2026-06-26",
-  dateModified: "2026-06-26",
+  dateModified: "2026-10-15",
   author: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   publisher: { "@type": "Organization", name: "BikeRoute", url: "https://www.bikeroutemap.com" },
   url: "https://www.bikeroutemap.com/articles/fukuoka-bike-restriction",
@@ -50,7 +50,7 @@ export default function FukuokaBikeRestrictionPage() {
           <p>
             福岡県でバイクに乗る際は<strong>福岡都市高速道路</strong>と<strong>若戸トンネル</strong>の通行制限に特に注意が必要です。
             福岡都市高速は全線が自動車専用道路のため原付一種・二種は通行禁止。
-            若戸トンネルは126cc以上の普通二輪・大型二輪も通行禁止となっており、北九州エリアでの移動に影響します。
+            若戸トンネルは原付・小型自動二輪車（125cc以下）が通行禁止ですが、普通二輪・大型二輪（126cc以上）は通行できます。
           </p>
         </section>
 
@@ -83,7 +83,7 @@ export default function FukuokaBikeRestrictionPage() {
                   <td className="border border-gray-200 px-3 py-2 font-medium">普通二輪・大型二輪（126cc〜）</td>
                   <td className="border border-gray-200 px-3 py-2 text-center text-green-600 font-bold">基本可</td>
                   <td className="border border-gray-200 px-3 py-2 text-center text-green-600 font-bold">通行可</td>
-                  <td className="border border-gray-200 px-3 py-2 text-center text-red-600 font-bold">禁止</td>
+                  <td className="border border-gray-200 px-3 py-2 text-center text-green-600 font-bold">通行可</td>
                 </tr>
               </tbody>
             </table>
@@ -113,21 +113,19 @@ export default function FukuokaBikeRestrictionPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-bold text-gray-900 mb-3">若戸トンネル（普通二輪も通行禁止）</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">若戸トンネル（125cc以下は通行不可）</h2>
           <div className="rounded-lg border border-gray-200 bg-white p-4 mb-3">
             <div className="flex items-center gap-2 mb-1">
-              <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">二輪禁止（全車種）</span>
+              <span className="rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">125cc以下 通行禁止</span>
               <span className="font-bold text-gray-900 text-sm">若戸トンネル（北九州市）</span>
             </div>
             <p className="text-xs text-gray-600">
-              洞海湾を横断する海底トンネル（有料）。排気・換気上の問題から全二輪禁止。
-              並行する<strong>若戸大橋</strong>は普通二輪・大型二輪の通行が可能（有料）。
-              原付一種・二種は若戸大橋も通行禁止のため、対岸（戸畑・若松）へは遠回りになる。
+              洞海湾を横断する海底トンネルです。原付・小型自動二輪車（125cc以下）は通行できませんが、普通二輪・大型二輪（126cc以上）は通行できます。
+              並行する<strong>若戸大橋</strong>は原付を含む二輪車が通行できます。
             </p>
           </div>
           <div className="rounded-lg bg-yellow-50 border border-yellow-200 px-4 py-3 text-sm text-yellow-800">
-            <strong>注意：</strong> 若戸大橋は普通二輪以上は通行可能ですが、原付は禁止です。
-            原付で戸畑〜若松間を移動する場合は迂回路を利用してください。
+            <strong>注意：</strong> 原付一種・二種は若戸トンネルを通行できません。若戸大橋を利用してください。
           </div>
         </section>
 
@@ -155,7 +153,7 @@ export default function FukuokaBikeRestrictionPage() {
           <h2 className="text-lg font-bold text-gray-900 mb-3">関連情報</h2>
           <ul className="space-y-2">
             <li><Link href="/prefectures/fukuoka" className="text-orange-600 underline text-sm">→ 福岡県の通行禁止区間一覧マップ</Link></li>
-            <li><Link href="/articles/tunnel-bike-restriction" className="text-orange-600 underline text-sm">→ 全国の二輪車通行禁止トンネルまとめ</Link></li>
+            <li><Link href="/articles/tunnel-bike-restriction" className="text-orange-600 underline text-sm">→ 全国のバイク・トンネル通行規制まとめ</Link></li>
             <li><Link href="/articles/bike-traffic-rules" className="text-orange-600 underline text-sm">→ 原付一種・原付二種・普通二輪の通行ルール完全ガイド</Link></li>
           </ul>
         </section>
